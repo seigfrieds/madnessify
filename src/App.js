@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import Match from './components/Match.js';
+import Bracket from './components/Bracket.js';
 
 const obj = {
     "album": {
@@ -810,9 +810,8 @@ const obj2 = {
 function App() {
     return (
         <>
-            <Match currentRound="Grand Finals!" trackOne={obj} trackTwo={obj2}/>
+            <Bracket players={[obj,obj2]}/>
         </>
-
     );
 }
 
