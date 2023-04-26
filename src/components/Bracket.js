@@ -1,5 +1,6 @@
 import Match from "./Match.js";
 import {useState} from "react";
+import "./Bracket.css"
 
 function initializeBracket(players, handleClick)
 {
@@ -10,9 +11,9 @@ function initializeBracket(players, handleClick)
     for (let i = 0; i < players.length; i+=2) 
     {
         let match = {
-            matchId: matchIndex++,
+            matchRound: 1,
             matchComponent: <Match 
-                                currentRound={1}
+                                matchId={matchIndex++}
                                 trackOne={players[i]}
                                 trackTwo={players[i+1]}
                                 handleClick={handleClick}
@@ -52,7 +53,12 @@ function Bracket({players})
     return (
         <>
             {console.log(bracket)}
-            {console.log(currMatchId)}
+            {console.log(bracket[0].matchComponent.props.matchId)}
+
+            <p className="round-display">
+                {bracket[0].matchRound}
+            </p>
+
             {bracket[0].matchComponent}
         </>
     );
