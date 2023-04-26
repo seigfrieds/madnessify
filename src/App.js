@@ -1,5 +1,7 @@
+import React from 'react';
+
 import './App.css';
-import Player from './components/Player';
+import Match from './components/Match.js';
 
 const obj = {
     "album": {
@@ -808,8 +810,7 @@ const obj2 = {
 function App() {
     return (
         <>
-            <Player id={obj.id} artist={obj.artists[0].name} title={obj.name}/>
-            <Player id={obj2.id} artist={obj2.artists[0].name} title={obj2.name}/>
+            <Match currentRound="Grand Finals!" trackOne={obj} trackTwo={obj2}/>
         </>
 
     );
