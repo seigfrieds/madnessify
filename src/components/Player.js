@@ -21,9 +21,9 @@ function Player({id, artist, title})
         <div className="player">
             {insertEmbedHtml(id)}
 
-            <div className="track-artist-title">
-                <p>{artist + " - " + title}</p>
-            </div>
+            <p className="track-artist-title">
+                {artist + " - " + title}
+            </p>
         </div>
     );
 }
