@@ -1,16 +1,31 @@
 import "./Match.css";
 import Player from "./Player.js";
+import WinSelectButton from "./WinSelectButton";
+import {useState} from 'react';
 
 function Match({currentRound, trackOne, trackTwo})
 {
+    const [ winner, setWinner ] = useState(0);
+
+    function handleClick(id) {
+        setWinner(id);
+    }
+
     return (
         <div className="match">
-            <p className="current-round">
-                {currentRound}
-            </p>
+            <p>{currentRound}</p>
 
-            <Player id={trackOne.id} artist={trackOne.artists[0].name} title={trackOne.name}/>
-            <Player id={trackTwo.id} artist={trackTwo.artists[0].name} title={trackTwo.name}/>
+            <div className="player">
+                <Player id={trackOne.id} artist={trackOne.artists[0].name} title={trackOne.name}/>
+                <WinSelectButton onClick={() => handleClick(trackOne.id)}/>
+            </div>
+
+            <div className="player">
+                <Player id={trackTwo.id} artist={trackTwo.artists[0].name} title={trackTwo.name}/>
+                <WinSelectButton onClick={() => handleClick(trackTwo.id)}/>
+            </div>
+
+            <p>{winner}</p>
         </div>
     );
 }
