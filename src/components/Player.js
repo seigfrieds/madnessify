@@ -18,13 +18,13 @@ function insertEmbedHtml(id)
 function Player({id, artist, title}) 
 {
     return (
-        <div className="player">
+        <>
             {insertEmbedHtml(id)}
 
             <p className="track-artist-title">
                 {artist + " - " + title}
             </p>
-        </div>
+        </>
     );
 }
 
