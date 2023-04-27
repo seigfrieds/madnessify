@@ -1,7 +1,6 @@
 import Match from "./Match.js";
 import {useRef, useState} from "react";
 import "./Bracket.css"
-import { isLabelWithInternallyDisabledControl } from "@testing-library/user-event/dist/utils/index.js";
 
 function initializeBracket(players, handleClick)
 {
@@ -28,24 +27,70 @@ function initializeBracket(players, handleClick)
     return bracket;
 }
 
-//const Bracket = ({players}) =>
 function Bracket({players})
 {
     const [ bracket, setBracket ] = useState(() => initializeBracket(players, handleClick));
     const bracketRef = useRef({});
     bracketRef.current = bracket;
+
     const [ currMatchId, setCurrMatchId ] = useState(0);
+    const currMatchIdRef = useRef({});
+    currMatchIdRef.current = currMatchId;
+
     const [ nextMatchId, setNextMatchId ] = useState(bracket.length);
+    const nextMatchIdRef = useRef({});
+    nextMatchIdRef.current = nextMatchId;
+
+    function advanceMatchExists()
+    {
+        return bracketRef.current[nextMatchIdRef.current] !== undefined;
+    }
+
+    function advanceMatchIsSet()
+    {
+        return bracketRef.current[nextMatchIdRef.current].matchComponent.props.trackTwo !== null;
+    }
+
+    function addNextMatch(newBracket, matchId, winnerId)
+    {
+        if (!advanceMatchExists() || advanceMatchIsSet()) 
+        {
+            //add new match to bracket
+            newBracket.push({
+                matchRound: bracketRef.current[matchId].matchRound+1,
+                matchComponent: <Match 
+                                    matchId={nextMatchIdRef.current}
+                                    trackOne={winnerId === bracketRef.current[matchId].matchComponent.props.trackOne.id
+                                                ? bracketRef.current[matchId].matchComponent.props.trackOne
+                                                : bracketRef.current[matchId].matchComponent.props.trackTwo}
+                                    trackTwo={null}
+                                    handleClick={handleClick}
+                                />,
+                matchWinnerId: null
+            });
+
+            if (advanceMatchExists() && advanceMatchIsSet())
+                setNextMatchId(nextMatchId => nextMatchId+1);
+        }
+        //advance match is not set
+        else
+        {
+            newBracket[nextMatchIdRef.current].matchComponent = 
+                <Match 
+                    matchId={nextMatchIdRef.current}
+                    trackOne={bracketRef.current[nextMatchIdRef.current].matchComponent.props.trackOne}
+                    trackTwo={winnerId === bracketRef.current[matchId].matchComponent.props.trackOne.id
+                                ? bracketRef.current[matchId].matchComponent.props.trackOne
+                                : bracketRef.current[matchId].matchComponent.props.trackTwo}
+                    handleClick={handleClick}
+                />;
+        }
+
+        return newBracket;
+    }
 
     function handleClick(matchId, winnerId)
     {
-        console.log("STATE before process click on match: " + (matchId+1));
-        console.log("\tbracket: ");
-        console.log(bracketRef.current);
-        console.log("\tcurrMatchId: " + (currMatchId+1));
-        console.log("\tnextMatchId: " + (nextMatchId+1) + "\n\n\n\n");
-
-
         let newBracket = bracketRef.current.map((m, i) => {
             if (i === matchId)
                 return {
@@ -56,68 +101,7 @@ function Bracket({players})
                 return m;
         });
 
-        if (bracketRef.current[nextMatchId] === undefined) 
-        {
-            newBracket.push({
-                matchRound: bracketRef.current[matchId].matchRound+1,
-                //store match component as object until you can actually create a whole match
-                    //prevents errors with rendering!
-                /*matchComponent: {
-                                    matchId: nextMatchId,
-                                    trackOne: winnerId === bracket[matchId].matchComponent.props.trackOne.id
-                                                ? bracket[matchId].matchComponent.props.trackOne
-                                                : bracket[matchId].matchComponent.props.trackTwo,
-                                    trackTwo: null,
-                                    handleClick: handleClick
-                                },*/
-                matchComponent: <Match 
-                                    matchId={nextMatchId}
-                                    trackOne={winnerId === bracketRef.current[matchId].matchComponent.props.trackOne.id
-                                                ? bracketRef.current[matchId].matchComponent.props.trackOne
-                                                : bracketRef.current[matchId].matchComponent.props.trackTwo}
-                                    trackTwo={null}
-                                    handleClick={handleClick}
-                                />,
-                matchWinnerId: null
-            });
-
-        }
-        else if (bracketRef.current[nextMatchId].matchComponent.props.trackTwo === null) 
-        {
-            newBracket = newBracket.map((m, i) => {
-                if (i === nextMatchId)
-                    return {
-                        ...m,
-                        matchComponent: <Match 
-                                            matchId={nextMatchId}
-                                            trackOne={bracketRef.current[nextMatchId].matchComponent.props.trackOne}
-                                            trackTwo={winnerId === bracket[matchId].matchComponent.props.trackOne.id
-                                                        ? bracketRef.current[matchId].matchComponent.props.trackOne
-                                                        : bracketRef.current[matchId].matchComponent.props.trackTwo}
-                                            handleClick={handleClick}
-                                        />
-                    };
-                else 
-                    return m;
-            });                                     
-        }
-        else 
-        {
-            newBracket.push({
-                matchRound: bracketRef.current[matchId].matchRound+1,
-                matchComponent: <Match 
-                                    matchId={nextMatchId+1} 
-                                    trackOne={winnerId === bracketRef.current[matchId].matchComponent.props.trackOne.id
-                                                ? bracketRef.current[matchId].matchComponent.props.trackOne
-                                                : bracketRef.current[matchId].matchComponent.props.trackTwo}
-                                    trackTwo={null}
-                                    handleClick={handleClick}
-                                />,
-                matchWinnerId: null
-            });
-
-            setNextMatchId(nextMatchId => nextMatchId+1);
-        }
+        newBracket = addNextMatch(newBracket, matchId, winnerId);
 
         setBracket(newBracket);
         setCurrMatchId(currMatchId => currMatchId+1);
@@ -125,11 +109,6 @@ function Bracket({players})
 
     return (
         <>
-            {console.log("STATE when render match: " + (currMatchId+1))}
-            {console.log("\tbracket: ")}
-            {console.log(bracket)}
-            {console.log("\tcurrMatchId: " + (currMatchId+1))}
-            {console.log("\tnextMatchId: " + (nextMatchId+1) + "\n\n\n\n")}
             {currMatchId !== players.length-1
                 ?   <div>
                         <p className="round-display">
