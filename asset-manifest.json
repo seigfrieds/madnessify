@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/music-madness/static/css/main.2fe7bc84.css",
-    "main.js": "/music-madness/static/js/main.c88149f1.js",
+    "main.js": "/music-madness/static/js/main.3c328b96.js",
     "static/js/787.3767431c.chunk.js": "/music-madness/static/js/787.3767431c.chunk.js",
     "index.html": "/music-madness/index.html",
     "main.2fe7bc84.css.map": "/music-madness/static/css/main.2fe7bc84.css.map",
-    "main.c88149f1.js.map": "/music-madness/static/js/main.c88149f1.js.map",
+    "main.3c328b96.js.map": "/music-madness/static/js/main.3c328b96.js.map",
     "787.3767431c.chunk.js.map": "/music-madness/static/js/787.3767431c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2fe7bc84.css",
-    "static/js/main.c88149f1.js"
+    "static/js/main.3c328b96.js"
   ]
 }
