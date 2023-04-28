@@ -10,7 +10,8 @@
 #container { 
     width: 800px; 
     height: 600px; 
-    float: left; 
+    position:relative;
+    left:15%;
 }
 
 section { 
@@ -39,14 +40,11 @@ section > div {
 section > div img {
     flex-shrink: 0;
     min-height: 90%;
-
-    left:0!important;
+    translate: -50%;
+    border: 1px solid black;
 }
 
 section > div p {
-    width:100%;
-    text-align: right;
-
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -89,6 +87,5 @@ section > div:nth-child(2n) {
 
 #bracket-title {
     color: green;
-    text-align: center;
     text-decoration:underline;
 }
