@@ -77,3 +77,18 @@ section > div:nth-child(2n) {
     margin-left:375px;
     margin-top: 250px; 
 }
+
+#winner-display {
+    color: orange;
+    text-align: center;
+}
+
+#winner-image {
+    border:5px solid black;
+}
+
+#bracket-title {
+    color: green;
+    text-align: center;
+    text-decoration:underline;
+}
