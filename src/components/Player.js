@@ -21,9 +21,9 @@ function Player({id, artist, title})
         <>
             {insertEmbedHtml(id)}
 
-            <p className="track-artist-title">
+            <h3 className="track-artist-title">
                 {artist + " - " + title}
-            </p>
+            </h3>
         </>
     );
 }

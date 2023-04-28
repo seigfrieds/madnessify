@@ -1,8 +1,10 @@
+import "./WinSelectButton.css";
+
 function WinSelectButton({onClick})
 {
     return (
-        <div className="win-select-button">
-            <button onClick={onClick}>Select to win!</button>
+        <div>
+            <button id="win-select-button" onClick={onClick}>Select to win!</button>
         </div>
     );
 }
