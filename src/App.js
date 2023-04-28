@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import BracketParameterForm from './components/BracketParameterForm';
 
 import './App.css';
 import MatchPage from './components/MatchPage.js';
@@ -9,6 +10,9 @@ function App() {
     const [token, setToken] = useState("");
     const [topTracks, setTopTracks] = useState(null);
 
+    const [numTracks, setNumTracks] = useState(8);
+    const [timeFrame, setTimeFrame] = useState("medium_term");
+
     async function getTopTracks(token)
     {
         let request = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
@@ -16,11 +20,26 @@ function App() {
                 Authorization: "Bearer " + token
             },
             params: {
-                limit: 16,
+                limit: numTracks,
+                time_range: timeFrame
             }
         });
 
         setTopTracks(request.data.items);
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        getTopTracks(token);
+    }
+
+    function handleNumTracksChange(event) {
+        setNumTracks(event.target.value);
+    }
+
+    function handleTimeFrameChange(event) {
+        setTimeFrame(event.target.value);
     }
 
     //when you click login to spotify and login, it returns to url with info
@@ -37,7 +56,6 @@ function App() {
 
             if (spotifyToken) {
                 setToken(spotifyToken);
-                getTopTracks(spotifyToken);
             }
 
             window.location.hash = "";
@@ -66,8 +84,15 @@ function App() {
             {token &&
                 <>
                     {topTracks === null
-                        ? <> {console.log("Waiting for API...")} </>
-                        : <MatchPage players={topTracks}/>}
+                        ?   <> 
+                                <BracketParameterForm 
+                                    handleSubmit={handleSubmit}
+                                    handleNumTracksChange={handleNumTracksChange}
+                                    handleTimeFrameChange={handleTimeFrameChange}
+                                />
+                                {console.log("Waiting for API...")} 
+                            </>
+                        :   <MatchPage players={topTracks}/>}
                 </>
             }
         </div>
