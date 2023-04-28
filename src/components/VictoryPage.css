@@ -27,7 +27,7 @@ section > div {
     word-break: break-word;
     
     /*box stuff*/
-    width: 175px; 
+    width: 215px; 
     height: 20px; 
     border: 1px solid #000; 
     margin: 10px 0; 
@@ -46,6 +46,10 @@ section > div img {
 section > div p {
     width:100%;
     text-align: right;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 section > div:nth-child(2n) { 
