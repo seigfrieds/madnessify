@@ -29,7 +29,7 @@ function VictoryPage({bracket})
     let numPlayers = bracket.length;
 
     return (
-        <>
+        <div id="victory-page">
             <h1 id="winner-display">Winner!</h1>
             <img id="winner-image" src={winner.album.images[0].url} alt={winner.name} width="200" height="200"></img>
             <h4>{winner.artists[0].name + " - " + winner.name}</h4>
@@ -58,7 +58,7 @@ function VictoryPage({bracket})
                 </section>
 
             </article>
-        </>
+        </div>
     );
 }
 
