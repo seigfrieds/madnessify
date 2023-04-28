@@ -1,10 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import BracketParameterForm from './components/BracketParameterForm';
 
 import './App.css';
 import MatchPage from './components/MatchPage.js';
 import {CONFIG} from "./apiConfig.js";
 import axios from 'axios';
+
+//durstenfeld shuffle: https://stackoverflow.com/a/12646864
+function shuffleArray(array) 
+{
+    for (let i = array.length-1; i>0; i--) 
+    {
+        let j = Math.floor(Math.random() * (i+1));
+        [array[i],array[j]] = [array[j],array[i]];
+    }
+}
 
 function App() {
     const [token, setToken] = useState("");
@@ -24,6 +34,8 @@ function App() {
                 time_range: timeFrame
             }
         });
+
+        shuffleArray(request.data.items)
 
         setTopTracks(request.data.items);
     }
