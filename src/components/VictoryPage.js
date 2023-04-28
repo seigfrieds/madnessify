@@ -26,6 +26,7 @@ function roundToDivs(matchesInRound)
 function VictoryPage({bracket})
 {
     let winner = bracket[bracket.length-1].matchComponent.props.trackOne;
+    let numPlayers = bracket.length;
 
     return (
         <>
@@ -37,15 +38,15 @@ function VictoryPage({bracket})
 
             <article id="container">
                 <section id="round-of-8">
-                    {roundToDivs(bracket.filter((match) => match.matchRound === 2))}
+                    {roundToDivs(bracket.filter((match) => (numPlayers / Math.pow(2, match.matchRound-1)) === 8))}
                 </section>
 
                 <section id="round-of-4">
-                    {roundToDivs(bracket.filter((match) => match.matchRound === 3))}
+                    {roundToDivs(bracket.filter((match) => (numPlayers / Math.pow(2, match.matchRound-1)) === 4))}
                 </section>
 
                 <section id="final">
-                    {roundToDivs(bracket.filter((match) => match.matchRound === 4))}
+                    {roundToDivs(bracket.filter((match) => (numPlayers / Math.pow(2, match.matchRound-1)) === 2))}
                 </section>
 
                 <section id="winner-round">
