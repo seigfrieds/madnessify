@@ -1,3 +1,15 @@
 .App {
   text-align: center;
 }
+
+.title {
+    
+    color: red;
+}
+
+.spotify-login-button {
+    background-color: #199319;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+}
