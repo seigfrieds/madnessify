@@ -1,0 +1,75 @@
+/*  
+    Code from this file (VictoryPage.css) is 
+    derived from https://stackoverflow.com/a/12816099
+*/
+
+.bracket-title {
+    text-align:left;
+}
+
+#container { 
+    width: 800px; 
+    height: 600px; 
+    float: left; 
+}
+
+section { 
+    width: 130px; 
+    height: 520px; 
+    float: left;
+}
+
+section > div { 
+    /*keeping image and text (somewhat) clean*/
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    word-break: break-word;
+    
+    /*box stuff*/
+    width: 175px; 
+    height: 20px; 
+    border: 1px solid #000; 
+    margin: 10px 0; 
+    background: #eee2e2; 
+    color: rgb(0, 0, 0); 
+    padding: 10px 10px 10px 20px;
+}
+
+section > div img {
+    flex-shrink: 0;
+    min-height: 90%;
+
+    left:0!important;
+}
+
+section > div p {
+    width:100%;
+    text-align: right;
+}
+
+section > div:nth-child(2n) { 
+    margin-bottom: 40px;
+}
+
+#round-of-4 > div { 
+    margin-left: 125px;
+    margin-top: 91px; 
+}
+
+#round-of-4 > div:first-child { 
+    margin-top: 37px; 
+}
+
+#final > div { 
+    margin-left:250px;
+    margin-top: 230px; 
+}
+#final > div:first-child { 
+    margin-top: 105px; 
+}
+
+#winner-round > div { 
+    margin-left:375px;
+    margin-top: 250px; 
+}
