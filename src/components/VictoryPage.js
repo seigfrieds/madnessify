@@ -30,11 +30,12 @@ function VictoryPage({bracket})
 
     return (
         <>
-            <h1>Winner!</h1>
-            <img src={winner.album.images[0].url} alt={winner.name} width="200" height="200"></img>
-            <p>{winner.artists[0].name + " - " + winner.name}</p>
+            <h1 id="winner-display">Winner!</h1>
+            <img id="winner-image" src={winner.album.images[0].url} alt={winner.name} width="200" height="200"></img>
+            <h4>{winner.artists[0].name + " - " + winner.name}</h4>
+            <br></br><br></br>
 
-            <h1 className="bracket-title">The Final 8</h1>
+            <h1 id="bracket-title">The Final 8</h1>
 
             <article id="container">
                 <section id="round-of-8">
