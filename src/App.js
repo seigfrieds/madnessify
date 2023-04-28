@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import './App.css';
-import Bracket from './components/Bracket.js';
+import MatchPage from './components/MatchPage.js';
 import {CONFIG} from "./apiConfig.js";
 import axios from 'axios';
 
@@ -67,7 +67,7 @@ function App() {
                 <>
                     {topTracks === null
                         ? <> {console.log("Waiting for API...")} </>
-                        : <Bracket players={topTracks}/>}
+                        : <MatchPage players={topTracks}/>}
                 </>
             }
         </div>

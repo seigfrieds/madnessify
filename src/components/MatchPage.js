@@ -1,6 +1,6 @@
 import Match from "./Match.js";
 import {useRef, useState} from "react";
-import "./Bracket.css"
+import "./MatchPage.css"
 
 function initializeBracket(players, handleClick)
 {
@@ -27,7 +27,7 @@ function initializeBracket(players, handleClick)
     return bracket;
 }
 
-function Bracket({players})
+function MatchPage({players})
 {
     const [ bracket, setBracket ] = useState(() => initializeBracket(players, handleClick));
     const bracketRef = useRef({});
@@ -121,4 +121,4 @@ function Bracket({players})
     );
 }
 
-export default Bracket;
+export default MatchPage;
