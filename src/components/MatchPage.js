@@ -1,4 +1,5 @@
 import Match from "./Match.js";
+import VictoryPage from "./VictoryPage.js";
 import {useRef, useState} from "react";
 import "./MatchPage.css"
 
@@ -116,7 +117,7 @@ function MatchPage({players})
                         </p>
                         {bracket[currMatchId].matchComponent}
                     </div>
-                :   <p>Done!</p>}
+                :   <VictoryPage bracket={bracket}/>}
         </>
     );
 }
