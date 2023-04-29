@@ -10,12 +10,12 @@ function roundToDivs(matchesInRound)
         let trackTwo = matchesInRound[i].matchComponent.props.trackTwo;
         
         divArray.push(  <div key={trackOne.id}>
-                            <img src={trackOne.album.images[0].url} alt={trackOne.name} width="40" height="40"></img>
+                            <img src={trackOne.album.images[0].url} alt={trackOne.name}></img>
                             <p>{trackOne.name}</p>
                         </div>);
 
         divArray.push(  <div key={trackTwo.id}>
-                            <img src={trackTwo.album.images[0].url} alt={trackTwo.name} width="40" height="40"></img>
+                            <img src={trackTwo.album.images[0].url} alt={trackTwo.name}></img>
                             <p>{trackTwo.name}</p>
                         </div>);
     }
@@ -38,6 +38,10 @@ function VictoryPage({bracket})
             <h1 id="bracket-title">The Final 8</h1>
 
             <article id="container">
+                <section id="round-of-16">
+                    {roundToDivs(bracket.filter((match) => (numPlayers / Math.pow(2, match.matchRound-1)) === 16))}
+                </section>
+
                 <section id="round-of-8">
                     {roundToDivs(bracket.filter((match) => (numPlayers / Math.pow(2, match.matchRound-1)) === 8))}
                 </section>
