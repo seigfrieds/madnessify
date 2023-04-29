@@ -1,4 +1,4 @@
-button {
+#download-button {
     display:block;
     border-radius: 5px;
     font-size: 24px;
@@ -7,7 +7,7 @@ button {
     transition-duration: 0.3s;
 }
 
-button:hover {
+#download-button:hover {
     color: white;
     background-color: black;
 }
