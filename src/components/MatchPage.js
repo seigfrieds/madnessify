@@ -111,7 +111,7 @@ function MatchPage({players})
     return (
         <>
             {currMatchId !== players.length-1
-                ?   <div>
+                ?   <div id="match-display">
                         <h1 className="round-display">
                             {"Round of " + (players.length / Math.pow(2, bracket[currMatchId].matchRound-1))}
                         </h1>

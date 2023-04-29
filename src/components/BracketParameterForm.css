@@ -1,3 +1,28 @@
+.FormScreen {
+    /*center within screen*/
+    position:absolute;
+    left: 50%;
+    top:50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+
+    background-color: #2d2d2d;
+}
+
+label {
+    color: rgb(255, 255, 255);
+    text-shadow:#414141 3px 3px, /*3d text*/
+                rgb(97, 97, 97) 1px 0 7.5px /*glowy shadow*/;
+}
+
+.dropdown > select {
+    width:200px;
+    font-size:20px;
+    text-align: center;
+    background-color:rgb(24, 22, 22);
+    color:white;
+}
+
 .dropdown {
     padding: 10px;
     margin:10px;
@@ -8,4 +33,14 @@
     background-color: green;
     color:aliceblue;
     font-size:32px;
+    border-radius:15px;
+    border:2px solid greenyellow;
+
+    transition-duration: 0.35s;
+}
+
+#submit-button:hover {
+    background-color: aliceblue;
+    color:green;
+    box-shadow: 0 11px 0px 0 rgb(0,0,0,0.5);
 }

@@ -3,9 +3,9 @@ import "./BracketParameterForm.css";
 function BracketParameterForm({handleSubmit, handleNumTracksChange, handleTimeFrameChange})
 {
     return (
-        <>
+        <div className="FormScreen">
             <div className="dropdown">
-                <label for="num-songs-select">Select the number of songs: </label>
+                <label for="num-songs-select">Select the number of songs: </label><br></br>
                 <select onChange={handleNumTracksChange} id="num-songs-select" form="theform">
                     <option value={8}>Top 8 songs</option>
                     <option value={16}>Top 16 songs</option>
@@ -14,7 +14,7 @@ function BracketParameterForm({handleSubmit, handleNumTracksChange, handleTimeFr
             </div>
 
             <div className="dropdown">
-                <label for="time-frame-select">Select the time frame: </label>
+                <label for="time-frame-select">Select the time frame: </label><br></br>
                 <select onChange={handleTimeFrameChange} id="time-frame-select" form="theform">
                     <option value={"short_term"}>Past 4 weeks</option>
                     <option value={"medium_term"}>Past 6 months</option>
@@ -25,7 +25,7 @@ function BracketParameterForm({handleSubmit, handleNumTracksChange, handleTimeFr
             <form onSubmit={handleSubmit} id="theform">
                 <button id="submit-button" type="submit">Submit!</button>
             </form>
-        </>
+        </div>
     );
 }
 

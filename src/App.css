@@ -1,14 +1,59 @@
 .App {
-  text-align: center;
+    min-height:100vh;
+    min-width:100vw;
+    background-color: #2d2d2d;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#home-page {
+    /*Center within screen*/
+    position: absolute;
+    left:50%;
+    top:50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
 }
 
 #spotify-madness-title {
-    color: green;
+    color: rgb(67, 212, 67);
+    text-shadow:#0e4f0e 3px 3px, /*3d text*/
+                rgb(89, 209, 71) 1px 0 7.5px /*glowy shadow*/;
+}
+
+#app-hook {
+    color: white;
+}
+
+#github-link {
+    color:lightblue;
 }
 
 .spotify-login-button {
-    background-color: #199319;
+    /*button color*/
+    background-color: #0e640e;
+
+    /*text color*/
     color: white;
+
+    /*round button*/
+    border-radius: 30px;
+
+    /*Padding around the text*/
     padding: 15px 25px;
-    text-decoration: none;
+
+    /*remove underline from href*/
+    text-decoration:none;
+
+    /*shadow under button*/
+    box-shadow: 0 8px 1px 0 rgb(0,0,0,0.5);
+
+    transition-duration: 0.2s;
+}
+
+.spotify-login-button:hover {
+    /*button color*/
+    background-color: white;
+
+    /*text color*/
+    color: #0e640e;
 }

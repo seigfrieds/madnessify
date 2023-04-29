@@ -77,20 +77,20 @@ function App() {
     return (
         <div className="App">
             {!token &&
-                <>
-                    <h1 id="spotify-madness-title">Spotify Madness!</h1><br/>
+                <div id="home-page">
+                    <h1 id="spotify-madness-title">Spotify Madness!</h1>
 
-                    <h2>Create a single-elimination bracket tournament out of your most played songs on Spotify!</h2><br/>
+                    <h2 id="app-hook">Create a single-elimination bracket tournament out of your most played songs on Spotify!</h2><br/>
 
                     <a 
                         href={`${CONFIG.authEndpoint}?client_id=${CONFIG.clientId}&redirect_uri=${CONFIG.redirectUri}&response_type=${CONFIG.responseType}&scope=${CONFIG.scope}`}
                         className="spotify-login-button"
                     >
-                        To play, login to Spotify!
+                        Log in to Spotify!
                     </a><br/><br/><br/>
 
-                    <a href="https://github.com/seigfrieds/music-madness" target="_blank">GitHub</a>
-                </>
+                    <a id="github-link" href="https://github.com/seigfrieds/music-madness" target="_blank">GitHub</a>
+                </div>
             }
             
             {token &&

@@ -1,3 +1,19 @@
+
+#match-display {
+    /*center within screen*/
+    position:absolute;
+    left: 50%;
+    top:50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+}
+
+#match-display > h1 {
+    color:white;
+    text-shadow:#502e2e 3px 3px, /*3d text*/
+                rgb(187, 181, 181) 1px 0 7.5px /*glowy shadow*/;
+}
+
 .round-display {
     text-align: center;
     font-size: 40px;
