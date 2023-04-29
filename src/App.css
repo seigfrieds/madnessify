@@ -2,9 +2,8 @@
   text-align: center;
 }
 
-.title {
-    
-    color: red;
+#spotify-madness-title {
+    color: green;
 }
 
 .spotify-login-button {

@@ -78,7 +78,7 @@ function App() {
         <div className="App">
             {!token &&
                 <>
-                    <h1 className="title">Music Madness!</h1><br/>
+                    <h1 id="spotify-madness-title">Spotify Madness!</h1><br/>
 
                     <h2>Create a single-elimination bracket tournament out of your most played songs on Spotify!</h2><br/>
 
