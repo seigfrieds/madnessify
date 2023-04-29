@@ -4,10 +4,10 @@ iframe {
 }
 
 h3 {
-    color:rgb(206, 205, 205);
+    color:rgb(238, 238, 238);
     font-size:200%;
     margin: 10px;
-    text-shadow: black 1.5px 1.5px;
+    text-shadow: black 0px 2.2px;
 }
 
 .track-artist-title {
