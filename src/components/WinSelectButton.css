@@ -1,7 +1,7 @@
 #win-select-button {
-    background-color: green;
+    background-color: rgb(114, 119, 13);
     font-size:24px;
-    border: 2px solid black;
+    border: 2px solid rgb(206, 195, 75);
     color:white;
     border-radius: 10px;
     transition-duration: 0.3s;
@@ -9,5 +9,5 @@
 
 #win-select-button:hover {
     background-color: white;
-    color:green;
+    color:rgb(114, 119, 13);
 }

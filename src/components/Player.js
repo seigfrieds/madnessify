@@ -15,16 +15,16 @@ function insertEmbedHtml(id)
             ></iframe>;
 }
 
-function Player({id, artist, title}) 
+function Player({id, artist, title, onClick}) 
 {
     return (
-        <>
+        <div>
             {insertEmbedHtml(id)}
 
             <h3 className="track-artist-title">
                 {artist + " - " + title}
             </h3>
-        </>
+        </div>
     );
 }
 
