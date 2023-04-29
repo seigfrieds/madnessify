@@ -1,3 +1,5 @@
+import "./DownloadBracketButton.css";
+
 import domtoimage from 'dom-to-image';
 
 function DownloadBracketButton()
@@ -15,7 +17,7 @@ function DownloadBracketButton()
 
     return (
         <button onClick={download}>
-            Download your bracket!
+            Download your bracket to share with friends!
         </button>
     );
 }
