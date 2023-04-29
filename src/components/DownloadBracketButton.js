@@ -4,7 +4,7 @@ function DownloadBracketButton()
 {
     function download()
     {
-        domtoimage.toJpeg(document.getElementById("container"), { style: {position:"absolute",left: "50%",top:"50%",textAlign: "center",transform: "translate(-66.5%, -48.5%)" }})
+        domtoimage.toJpeg(document.getElementById("container"))
             .then(function (dataUrl) {
                 let link = document.createElement('a');
                 link.download = "bracket.jpeg";
