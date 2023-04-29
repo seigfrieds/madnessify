@@ -131,10 +131,18 @@ h4 {
                 rgb(156, 156, 156) 1px 0 7.5px /*glowy shadow*/;
 }
 
-#bracket-title {
-    color: green;
-    text-decoration:underline;
+#watermark {
+    color:green;
+    text-shadow:rgb(106, 228, 106) 2px 2px;
+    margin-bottom: 2px;
 }
+
+#watermark-link {
+    font-size: 82%;
+    color:rgb(85, 85, 248);
+    text-decoration: underline;
+}
+
 
 /*#round-of-16{
     background-color: gray;

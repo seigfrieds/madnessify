@@ -36,7 +36,6 @@ function VictoryPage({bracket})
             <h4>{winner.artists[0].name + " - " + winner.name}</h4>
             <br></br><br></br>
 
-            <h1 id="bracket-title">Your bracket!</h1>
             <DownloadBracketButton/>
 
             <article id="container">
@@ -57,6 +56,8 @@ function VictoryPage({bracket})
                 </section>
 
                 <section id="winner-round">
+                    <h1 id="watermark">Spotify Madness</h1>
+                    <p id="watermark-link">seigfrieds.github.io/spotify-madness</p>
                     <div>
                         <img src={winner.album.images[0].url} alt={winner.name} width="40" height="40"></img>
                         <p>{winner.name}</p>
