@@ -16,7 +16,7 @@ function DownloadBracketButton()
     }
 
     return (
-        <button onClick={download}>
+        <button id="download-button" onClick={download}>
             Download your bracket to share with friends!
         </button>
     );
