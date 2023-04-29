@@ -7,73 +7,99 @@
     text-align:left;
 }
 
+/*BRACKET CONTAINER*/
 #container { 
-    width: 800px; 
-    height: 600px; 
-    position:relative;
-    left:15%;
+    width: 1920px; 
+    height: 1080px; 
 }
 
+/*ROUND CONTAINER*/
 section { 
-    width: 130px; 
-    height: 520px; 
-    float: left;
+    width: 216px; /*one side of bracket will have at most 16 teams -> 
+                    32 team bracket is 5 rounds (including "winner" round)
+                    1080/5=216*/
+    height: 1080px; 
+    
+    float: left; /*sections (round) float left -> 
+                    means they are side by side horizontally*/
 }
 
+/*PLAYER CONTAINER*/
 section > div { 
     /*keeping image and text (somewhat) clean*/
     display: flex;
-    justify-content: left;
     align-items: center;
-    word-break: break-word;
     
     /*box stuff*/
-    width: 215px; 
-    height: 20px; 
-    border: 1px solid #000; 
-    margin: 10px 0; 
-    background: #eee2e2; 
-    color: rgb(0, 0, 0); 
-    padding: 10px 10px 10px 20px;
+    width: 216px; /*40px (image) + 176 px (title text) = 216*/
+    height: 42px; /*image height = 40px + 1px border line on top/bottom = 42px*/
 }
 
+/*SONG IMAGE CONTAINER*/
 section > div img {
-    flex-shrink: 0;
-    min-height: 90%;
-    translate: -50%;
+    height:40px;
+    width:40px;
     border: 1px solid black;
 }
 
+/*SONG TITLE CONTAINER*/
 section > div p {
+    font-size: 80%;
+
+    /*box stuff*/
+    width: 176px; 
+    height: 20px; 
+    border: 1px solid #000; 
+    border-left-width: 0px; /*album cover will have a border too -> remove borders doubling*/
+    background: #eee2e2; 
+
+    /*handle overflow*/
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+
+    /*keeping image and text (somewhat) clean*/
+    display: flex;
+    align-items: center;
+    word-break: break-word;
 }
 
-section > div:nth-child(2n) { 
-    margin-bottom: 40px;
+/*  DOES BIG MARGIN BETWEEN EACH PAIR 
+    OF PLAYERS (i.e. a match!) */
+section > div:nth-child(2n){ 
+    margin-bottom: 20px;
 }
 
-#round-of-4 > div { 
-    margin-left: 125px;
-    margin-top: 91px; 
+#round-of-16 > div:first-child { 
+    margin-top: 0px; 
+}
+#round-of-16 > div { 
+    margin-top: 27px; 
+}
+
+#round-of-8 > div:first-child { 
+    margin-top: 34px; 
+}
+#round-of-8 > div { 
+    margin-top: 96px; 
 }
 
 #round-of-4 > div:first-child { 
-    margin-top: 37px; 
+    margin-top: 103px; /*distance of first child from top container*/
+}
+#round-of-4 > div { 
+    margin-top: 235px; /*ditsance between each node in round*/ 
 }
 
-#final > div { 
-    margin-left:250px;
-    margin-top: 230px; 
-}
 #final > div:first-child { 
-    margin-top: 105px; 
+    margin-top: 241px; 
+}
+#final > div { 
+    margin-top: 512px; 
 }
 
 #winner-round > div { 
-    margin-left:375px;
-    margin-top: 250px; 
+    margin-top: 520px; 
 }
 
 #winner-display {
@@ -89,3 +115,19 @@ section > div:nth-child(2n) {
     color: green;
     text-decoration:underline;
 }
+
+/*#round-of-16{
+    background-color: gray;
+}
+#round-of-8{
+    background-color: aqua;
+}
+#round-of-4{
+    background-color: gray;
+}
+#final{
+    background-color: aqua;
+}
+#winner-round{
+    background-color: gray;
+}*/
