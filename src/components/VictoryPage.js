@@ -1,4 +1,5 @@
 import "./VictoryPage.css";
+import DownloadBracketButton from "./DownloadBracketButton";
 
 function roundToDivs(matchesInRound)
 {
@@ -35,7 +36,8 @@ function VictoryPage({bracket})
             <h4>{winner.artists[0].name + " - " + winner.name}</h4>
             <br></br><br></br>
 
-            <h1 id="bracket-title">The Final 8</h1>
+            <h1 id="bracket-title">Your bracket!</h1>
+            <DownloadBracketButton/>
 
             <article id="container">
                 <section id="round-of-16">
