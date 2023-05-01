@@ -10,7 +10,8 @@
 
 #match-display > h1 {
     color:white;
-    text-shadow:rgb(174, 163, 33) 2.5px 2.5px;
+    text-shadow:rgb(174, 163, 33) 2.5px 2.5px, /*3d text*/
+                rgb(255, 255, 255) 1px 0 7.5px /*glowy shadow*/;
 }
 
 .round-display {
