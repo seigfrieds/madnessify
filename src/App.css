@@ -2,10 +2,11 @@
     color:red;
 }
 
-.App {
-    min-height:100vh;
-    min-width:100vw;
+body {
     background-color: #2d2d2d;
+}
+
+.App {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
