@@ -22,6 +22,8 @@ function App() {
     const [tracks, setTracks] = useState(null);
     const [queryType, setQueryType] = useState(""); //top_tracks, playlist
 
+    const [error, setError] = useState(undefined);
+
     //global params
     const [numTracks, setNumTracks] = useState(8);
 
@@ -69,7 +71,7 @@ function App() {
 
             //if # of tracks in playlist does not accomodate chosen bracket size
             if (totalTracksInPlaylist < numTracks) {
-                console.log("Error: playlist cannot fill a bracket of size " + numTracks);
+                setError(<p id="error">Error! Not enough tracks in playlist</p>);
             }
             else {
                 //calculate # of sections with 100 songs in playlist (e.g. songs 1-99, songs 300-399)
@@ -176,6 +178,7 @@ function App() {
                                     handleTimeFrameChange={handleTimeFrameChange}
                                     handlePlaylistLinkChange={handlePlaylistLinkChange}
                                 />
+                                {error !== undefined && error}
                                 {console.log("Waiting for API...")} 
                             </>
                         :   <MatchPage players={tracks}/>}
