@@ -56,18 +56,23 @@ function App() {
             const PLAYLIST_ID = playlistLink.split("/playlist/")[1]
                                             .split("?si=")[0];
 
-            //get playlist (Defaults to first 100 tracks)
-            let request = await axios.get("https://api.spotify.com/v1/playlists/" + PLAYLIST_ID, {
-                headers: {
-                    Authorization: "Bearer " + token
-                },
-                params: {
-                    fields: "tracks"
-                }
-            });
+            //total # of tracks in the playlist
+            let totalTracksInPlaylist = 0;
 
-            //get total # of tracks in the playlist 
-            let totalTracksInPlaylist = request.data.tracks.total;
+            //spotify playlists have id's of length 22 -> enforce this check to reduce API spam
+            if (PLAYLIST_ID.length === 22) {
+                //get playlist (Defaults to first 100 tracks)
+                let request = await axios.get("https://api.spotify.com/v1/playlists/" + PLAYLIST_ID, {
+                    headers: {
+                        Authorization: "Bearer " + token
+                    },
+                    params: {
+                        fields: "tracks"
+                    }
+                });
+
+                totalTracksInPlaylist = request.data.tracks.total;
+            }
 
             //if # of tracks in playlist does not accomodate chosen bracket size
             if (totalTracksInPlaylist < numTracks) {
