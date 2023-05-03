@@ -18,32 +18,103 @@ function shuffleArray(array)
 
 function App() {
     const [token, setToken] = useState("");
-    const [topTracks, setTopTracks] = useState(null);
 
+    const [tracks, setTracks] = useState(null);
+    const [queryType, setQueryType] = useState(""); //top_tracks, playlist
+
+    //global params
     const [numTracks, setNumTracks] = useState(8);
+
+    //top tracks params
     const [timeFrame, setTimeFrame] = useState("medium_term");
 
-    async function getTopTracks(token)
+    //playlist params
+    const [playlistLink, setPlaylistLink] = useState("");
+    
+    async function getTracks(token)
     {
-        let request = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
-            headers: {
-                Authorization: "Bearer " + token
-            },
-            params: {
-                limit: numTracks,
-                time_range: timeFrame
+        if (queryType === "top_tracks") 
+        {
+            let request = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
+                headers: {
+                    Authorization: "Bearer " + token
+                },
+                params: {
+                    limit: numTracks,
+                    time_range: timeFrame
+                }
+            });
+
+            shuffleArray(request.data.items)
+
+            setTracks(request.data.items);
+        }
+        else if (queryType === "playlist")
+        {
+            const PLAYLIST_ID = playlistLink.split("/playlist/")[1]
+                                            .split("?si=")[0];
+
+            //get playlist (Defaults to first 100 tracks)
+            let request = await axios.get("https://api.spotify.com/v1/playlists/" + PLAYLIST_ID, {
+                headers: {
+                    Authorization: "Bearer " + token
+                },
+                params: {
+                    fields: "tracks"
+                }
+            });
+
+            //get total # of tracks in the playlist 
+            let totalTracksInPlaylist = request.data.tracks.total;
+
+            //if # of tracks in playlist does not accomodate chosen bracket size
+            if (totalTracksInPlaylist < numTracks) {
+                console.log("Error: playlist cannot fill a bracket of size " + numTracks);
             }
-        });
+            else {
+                //calculate # of sections with 100 songs in playlist (e.g. songs 1-99, songs 300-399)
+                const NUM_OF_100_SONG_SECTIONS_IN_PLAYLIST = Math.ceil(totalTracksInPlaylist/100);
 
-        shuffleArray(request.data.items)
+                //pick random 100 song section in playlist
+                let selectedSectionNum = Math.floor(Math.random() * NUM_OF_100_SONG_SECTIONS_IN_PLAYLIST);
+                //while randomly selected section cannot accomodate bracket
+                while ((totalTracksInPlaylist - selectedSectionNum*100) < numTracks) 
+                    selectedSectionNum = Math.floor(Math.random() * NUM_OF_100_SONG_SECTIONS_IN_PLAYLIST);
 
-        setTopTracks(request.data.items);
+                //get random 100 song section in playlist from api
+                let selectedSection = await axios.get("https://api.spotify.com/v1/playlists/" + PLAYLIST_ID + "/tracks?offset=" + (selectedSectionNum*100) + "&limit=100&locale=en-US,en;q=0.9", {
+                    headers: {
+                        Authorization: "Bearer " + token
+                    }
+                });
+
+                /* get tracks! */
+                shuffleArray(selectedSection.data.items);
+
+                let chosenPlaylistTracks = [];
+                for (let i = 0; i < numTracks; i++)
+                    chosenPlaylistTracks[i] = selectedSection.data.items[i].track;
+
+                setTracks(chosenPlaylistTracks);
+            }
+        }
     }
 
     function handleSubmit(event) {
         event.preventDefault();
 
-        getTopTracks(token);
+        getTracks(token);
+    }
+
+    function handlePlaylistLinkChange(event)
+    {
+        console.log(playlistLink);
+        setPlaylistLink(event.target.value);
+    }
+
+    function handleQueryTypeChange(event)
+    {
+        setQueryType(event.target.value);
     }
 
     function handleNumTracksChange(event) {
@@ -96,16 +167,18 @@ function App() {
             
             {token &&
                 <>
-                    {topTracks === null
+                    {tracks === null
                         ?   <> 
                                 <BracketParameterForm 
                                     handleSubmit={handleSubmit}
+                                    handleQueryTypeChange={handleQueryTypeChange}
                                     handleNumTracksChange={handleNumTracksChange}
                                     handleTimeFrameChange={handleTimeFrameChange}
+                                    handlePlaylistLinkChange={handlePlaylistLinkChange}
                                 />
                                 {console.log("Waiting for API...")} 
                             </>
-                        :   <MatchPage players={topTracks}/>}
+                        :   <MatchPage players={tracks}/>}
                 </>
             }
         </div>
