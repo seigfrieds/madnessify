@@ -11,12 +11,22 @@ function roundToDivs(matchesInRound)
         let trackTwo = matchesInRound[i].matchComponent.props.trackTwo;
         
         divArray.push(  <div key={trackOne.id}>
-                            <img src={trackOne.album.images[0].url} alt={trackOne.name}></img>
+                            <img 
+                                src={trackOne.album.images[0] !== undefined && trackOne.album.images[0].url} 
+                                alt={trackOne.name}
+                            >
+                            </img>
+
                             <p>{trackOne.name}</p>
                         </div>);
 
         divArray.push(  <div key={trackTwo.id}>
-                            <img src={trackTwo.album.images[0].url} alt={trackTwo.name}></img>
+                            <img 
+                                src={trackTwo.album.images[0] !== undefined && trackTwo.album.images[0].url} 
+                                alt={trackTwo.name}
+                            >
+                            </img>
+
                             <p>{trackTwo.name}</p>
                         </div>);
     }
@@ -32,7 +42,14 @@ function VictoryPage({bracket})
     return (
         <div id="victory-page">
             <h1 id="winner-display">Winner!</h1>
-            <img id="winner-image" src={winner.album.images[0].url} alt={winner.name} width="200" height="200"></img>
+            <img 
+                id="winner-image" 
+                src={winner.album.images[0] !== undefined && winner.album.images[0].url} 
+                alt={winner.name} 
+                width="200" 
+                height="200"
+            >
+            </img>
             <h4>{winner.artists[0].name + " - " + winner.name}</h4>
             <br></br><br></br>
 
@@ -59,7 +76,13 @@ function VictoryPage({bracket})
                     <h1 id="watermark">Spotify Madness</h1>
                     <p id="watermark-link">seigfrieds.github.io/spotify-madness</p>
                     <div>
-                        <img src={winner.album.images[0].url} alt={winner.name} width="40" height="40"></img>
+                        <img 
+                            src={winner.album.images[0] !== undefined && winner.album.images[0].url} 
+                            alt={winner.name} 
+                            idth="40" 
+                            height="40"
+                        >
+                        </img>
                         <p>{winner.name}</p>
                     </div>
                 </section>

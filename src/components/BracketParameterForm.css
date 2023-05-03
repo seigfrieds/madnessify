@@ -15,6 +15,16 @@ label {
                 rgb(97, 97, 97) 1px 0 7.5px /*glowy shadow*/;
 }
 
+#playlist-prompt {
+    padding: 10px;
+    margin:10px;
+    font-size: 24px;
+}
+
+#playlist-box {
+    width: 100%;
+}
+
 .dropdown > select {
     width:200px;
     font-size:20px;
