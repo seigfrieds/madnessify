@@ -10,6 +10,12 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+#error {
+    color: red;
+    text-align: center;
+    font-size: 50px;
+}
+
 #home-page {
     /*Center within screen*/
     position: absolute;
