@@ -161,6 +161,10 @@ function App() {
                     <h2 id="app-hook">Create a single-elimination bracket tournament out of your most played songs on Spotify!</h2><br/>
                     <h2 id="special-notice">In Development Mode - Need special access to use the site</h2><br/>
 
+                    <iframe width="420" height="315"
+                    src="https://www.youtube.com/embed/IMyBgxkcuw4">
+                    </iframe><br></br>
+
                     <a 
                         href={`${CONFIG.authEndpoint}?client_id=${CONFIG.clientId}&redirect_uri=${CONFIG.redirectUri}&response_type=${CONFIG.responseType}&scope=${CONFIG.scope}`}
                         className="spotify-login-button"
