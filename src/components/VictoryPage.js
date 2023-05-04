@@ -74,7 +74,7 @@ function VictoryPage({bracket})
 
                 <section id="winner-round">
                     <h1 id="watermark">Radio Madness</h1>
-                    <p id="watermark-link">seigfrieds.github.io/spotify-madness</p>
+                    <p id="watermark-link">seigfrieds.github.io/radio-madness</p>
                     <div>
                         <img 
                             src={winner.album.images[0] !== undefined && winner.album.images[0].url} 
