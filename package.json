@@ -1,6 +1,6 @@
 {
     "homepage": "https://seigfrieds.github.io/spotify-madness",
-    "name": "spotify-madness",
+    "name": "radio-madness",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
