@@ -133,8 +133,8 @@ h4 { /*winner text*/
 }
 
 #watermark {
-    color:green;
-    text-shadow:rgb(106, 228, 106) 2px 2px;
+    color:rgb(255, 38, 251);
+    text-shadow:rgb(131, 9, 206) 2px 2px;
     margin-bottom: 2px;
     font-size: 25px;
 }

@@ -156,9 +156,9 @@ function App() {
         <div className="App">
             {!token &&
                 <div id="home-page">
-                    <h1 id="spotify-madness-title">Spotify Madness!</h1>
+                    <h1 id="app-title">Radio Madness!</h1>
 
-                    <h2 id="app-hook">Create a single-elimination bracket tournament out of your most played songs on Spotify!</h2><br/>
+                    <h2 id="app-hook">Create a single-elimination bracket tournament out of your favorite songs on Spotify!</h2><br/>
                     <h2 id="special-notice">In Development Mode - Need special access to use the site</h2><br/>
 
                     <iframe width="420" height="315"
@@ -172,7 +172,7 @@ function App() {
                         Log in to Spotify!
                     </a><br/><br/><br/>
 
-                    <a id="github-link" href="https://github.com/seigfrieds/music-madness" target="_blank">GitHub</a>
+                    <a id="github-link" href="https://github.com/seigfrieds/spotify-madness" target="_blank">GitHub</a>
                 </div>
             }
             
