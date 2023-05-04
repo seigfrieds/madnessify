@@ -172,7 +172,7 @@ function App() {
                         Log in to Spotify!
                     </a><br/><br/><br/>
 
-                    <a id="github-link" href="https://github.com/seigfrieds/spotify-madness" target="_blank">GitHub</a>
+                    <a id="github-link" href="https://github.com/seigfrieds/radio-madness" target="_blank">GitHub</a>
                 </div>
             }
             
