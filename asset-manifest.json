@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/radio-madness/static/css/main.95494599.css",
-    "main.js": "/radio-madness/static/js/main.8d12abb8.js",
+    "main.js": "/radio-madness/static/js/main.25914d9f.js",
     "static/js/787.c5f6439e.chunk.js": "/radio-madness/static/js/787.c5f6439e.chunk.js",
     "index.html": "/radio-madness/index.html",
     "main.95494599.css.map": "/radio-madness/static/css/main.95494599.css.map",
-    "main.8d12abb8.js.map": "/radio-madness/static/js/main.8d12abb8.js.map",
+    "main.25914d9f.js.map": "/radio-madness/static/js/main.25914d9f.js.map",
     "787.c5f6439e.chunk.js.map": "/radio-madness/static/js/787.c5f6439e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.95494599.css",
-    "static/js/main.8d12abb8.js"
+    "static/js/main.25914d9f.js"
   ]
 }
