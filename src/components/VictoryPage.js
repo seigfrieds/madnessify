@@ -86,8 +86,14 @@ function VictoryPage({bracket})
                         <p>{winner.name}</p>
                     </div>
                 </section>
-
             </article>
+
+            <a 
+                href="https://accounts.spotify.com/logout"
+                id="spotify-logout-button"
+            >
+                Log out
+            </a>
         </div>
     );
 }

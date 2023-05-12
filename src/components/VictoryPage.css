@@ -145,6 +145,42 @@ h4 { /*winner text*/
     text-decoration: underline;
 }
 
+#spotify-logout-button {
+    /*button color*/
+    background-color: #043004;
+
+    /*text color*/
+    color: white;
+
+    /*round button*/
+    border-radius: 30px;
+
+    /*Padding around the text*/
+    padding: 35px 35px;
+
+    /*remove underline from href*/
+    text-decoration:none;
+
+    /*shadow under button*/
+    box-shadow: 0 8px 1px 0 rgb(0,0,0,0.5);
+
+    transition-duration: 0.2s;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-size: 20px;
+    display:inline-block;
+}
+
+#spotify-logout-button:hover {
+    /*button color*/
+    background-color: rgb(245, 245, 245);
+
+    /*text color*/
+    color: #ff0000;
+}
+
 
 /*#round-of-16{
     background-color: gray;
