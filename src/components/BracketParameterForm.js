@@ -58,9 +58,9 @@ function BracketParameterForm({ handleSubmit,
                 <div className="dropdown">
                     <label for="num-songs-select">Select the number of songs: </label><br></br>
                     <select onChange={handleNumTracksChange} id="num-songs-select" form="theform">
-                        <option value={8}>Top 8 songs</option>
-                        <option value={16}>Top 16 songs</option>
-                        <option value={32}>Top 32 songs</option>
+                        <option value={8}>8 random songs</option>
+                        <option value={16}>16 random songs</option>
+                        <option value={32}>32 random songs</option>
                     </select>
                 </div>
                 </>
