@@ -145,6 +145,10 @@ h4 { /*winner text*/
     text-decoration: underline;
 }
 
+#spotify-logout-text {
+    color:white;
+}
+
 #spotify-logout-button {
     /*button color*/
     background-color: #043004;
@@ -166,7 +170,6 @@ h4 { /*winner text*/
 
     transition-duration: 0.2s;
 
-    margin-top: 20px;
     margin-bottom: 20px;
 
     font-size: 20px;

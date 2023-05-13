@@ -88,8 +88,9 @@ function VictoryPage({bracket})
                 </section>
             </article>
 
+            <p id="spotify-logout-text">Want to disconnect from the app? Click the button and remove access to "Radio Madness"</p>
             <a 
-                href="https://accounts.spotify.com/logout"
+                href="https://www.spotify.com/account/apps/"
                 id="spotify-logout-button"
             >
                 Log out
