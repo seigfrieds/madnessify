@@ -1,5 +1,4 @@
 import "./VictoryPage.css";
-import DownloadBracketButton from "./DownloadBracketButton";
 
 function roundToDivs(matchesInRound)
 {
@@ -43,7 +42,6 @@ function VictoryPage({bracket})
         <div id="victory-page">
             <h1 id="winner-display">Winner!</h1>
             <img 
-                id="winner-image" 
                 src={winner.album.images[0] !== undefined && winner.album.images[0].url} 
                 alt={winner.name} 
                 width="200" 
@@ -52,8 +50,6 @@ function VictoryPage({bracket})
             </img>
             <h4>{winner.artists[0].name + " - " + winner.name}</h4>
             <br></br><br></br>
-
-            <DownloadBracketButton/>
 
             <article id="container">
                 <section id="round-of-16">
@@ -79,7 +75,7 @@ function VictoryPage({bracket})
                         <img 
                             src={winner.album.images[0] !== undefined && winner.album.images[0].url} 
                             alt={winner.name} 
-                            idth="40" 
+                            width="40" 
                             height="40"
                         >
                         </img>
