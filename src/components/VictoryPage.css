@@ -49,7 +49,6 @@ section > div {
 section > div img {
     height:40px;
     width:40px;
-    border: 1px solid black;
 }
 
 /*SONG TITLE CONTAINER*/
@@ -117,11 +116,6 @@ section > div:nth-child(2n){
 #winner-display {
     color: rgb(254, 165, 0);
     text-align: center;
-}
-
-#winner-image {
-    border:5px solid rgb(234, 207, 58);
-    border-radius: 5px;
 }
 
 h4 { /*winner text*/
