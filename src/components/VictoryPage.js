@@ -1,4 +1,5 @@
 import "./VictoryPage.css";
+import spotifyLogo from "../assets/Spotify_Logo_RGB_Black.png";
 
 function roundToDivs(matchesInRound)
 {
@@ -73,6 +74,7 @@ function VictoryPage({bracket})
                 </section>
 
                 <section id="winner-round">
+                    <img id="spotify-logo" src={spotifyLogo}></img>
                     <h1 id="watermark">Radio Madness</h1>
                     <p id="watermark-link">seigfrieds.github.io/radio-madness</p>
                     <div>
