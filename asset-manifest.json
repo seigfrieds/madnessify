@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/radio-madness/static/css/main.ee6d55b1.css",
-    "main.js": "/radio-madness/static/js/main.0386ce6f.js",
+    "main.css": "/radio-madness/static/css/main.2b187854.css",
+    "main.js": "/radio-madness/static/js/main.f08fa6b7.js",
     "static/js/787.c5f6439e.chunk.js": "/radio-madness/static/js/787.c5f6439e.chunk.js",
+    "static/media/Spotify_Logo_RGB_Black.png": "/radio-madness/static/media/Spotify_Logo_RGB_Black.0d1e5545dee9f6dc1079.png",
     "index.html": "/radio-madness/index.html",
-    "main.ee6d55b1.css.map": "/radio-madness/static/css/main.ee6d55b1.css.map",
-    "main.0386ce6f.js.map": "/radio-madness/static/js/main.0386ce6f.js.map",
+    "main.2b187854.css.map": "/radio-madness/static/css/main.2b187854.css.map",
+    "main.f08fa6b7.js.map": "/radio-madness/static/js/main.f08fa6b7.js.map",
     "787.c5f6439e.chunk.js.map": "/radio-madness/static/js/787.c5f6439e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ee6d55b1.css",
-    "static/js/main.0386ce6f.js"
+    "static/css/main.2b187854.css",
+    "static/js/main.f08fa6b7.js"
   ]
 }
