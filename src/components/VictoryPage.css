@@ -117,7 +117,7 @@ section > div:nth-child(2n){
 }
 
 #winner-round > div { 
-    margin-top: 440px; 
+    margin-top: 420px; 
 }
 
 #winner-display {
@@ -133,9 +133,15 @@ h4 { /*winner text*/
                 rgb(255, 255, 255) 1px 0 7.5px /*glowy shadow*/;
 }
 
+#spotify-logo {
+    width: 90px;
+    margin: 0px;
+}
+
 #watermark {
     color:rgb(255, 38, 251);
     text-shadow:rgb(131, 9, 206) 2px 2px;
+    margin-top: 10px;
     margin-bottom: 2px;
     font-size: 25px;
 }
