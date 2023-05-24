@@ -51,8 +51,15 @@ section > div img {
     width:40px;
 }
 
+a {
+    text-decoration: none;
+}
+
 /*SONG TITLE CONTAINER*/
-section > div p {
+.songtitle {
+    /*remove link decoration*/
+    color: black;
+
     font-size: 80%;
 
     padding-left:3px;

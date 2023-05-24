@@ -16,7 +16,7 @@ function roundToDivs(matchesInRound)
                             >
                             </img>
 
-                            <p>{trackOne.name}</p>
+                            <a className="songtitle" href={`https://open.spotify.com/track/${trackOne.id}`} target="_blank">{trackOne.name}</a>
                         </div>);
 
         divArray.push(  <div key={trackTwo.id}>
@@ -26,7 +26,7 @@ function roundToDivs(matchesInRound)
                             >
                             </img>
 
-                            <p>{trackTwo.name}</p>
+                            <a className="songtitle" href={`https://open.spotify.com/track/${trackTwo.id}`} target="_blank">{trackTwo.name}</a>
                         </div>);
     }
 
@@ -41,14 +41,18 @@ function VictoryPage({bracket})
     return (
         <div id="victory-page">
             <h1 id="winner-display">Winner!</h1>
-            <img 
-                src={winner.album.images[0] !== undefined && winner.album.images[0].url} 
-                alt={winner.name} 
-                width="200" 
-                height="200"
-            >
-            </img>
-            <h4>{winner.artists[0].name + " - " + winner.name}</h4>
+            <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank">
+                <img 
+                    src={winner.album.images[0] !== undefined && winner.album.images[0].url} 
+                    alt={winner.name} 
+                    width="200" 
+                    height="200"
+                >
+                </img>
+            </a>
+            <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank">
+                <h4>{winner.artists[0].name + " - " + winner.name}</h4>
+            </a>
             <br></br><br></br>
 
             <article id="container">
@@ -79,7 +83,7 @@ function VictoryPage({bracket})
                             height="40"
                         >
                         </img>
-                        <p>{winner.name}</p>
+                        <a className="songtitle" href={`https://open.spotify.com/track/${winner.id}`} target="_blank">{winner.name}</a>
                     </div>
                 </section>
             </article>
