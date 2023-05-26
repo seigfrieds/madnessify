@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/radio-madness/static/css/main.2b187854.css",
-    "main.js": "/radio-madness/static/js/main.f08fa6b7.js",
+    "main.js": "/radio-madness/static/js/main.41a2655d.js",
     "static/js/787.c5f6439e.chunk.js": "/radio-madness/static/js/787.c5f6439e.chunk.js",
     "static/media/Spotify_Logo_RGB_Black.png": "/radio-madness/static/media/Spotify_Logo_RGB_Black.0d1e5545dee9f6dc1079.png",
     "index.html": "/radio-madness/index.html",
     "main.2b187854.css.map": "/radio-madness/static/css/main.2b187854.css.map",
-    "main.f08fa6b7.js.map": "/radio-madness/static/js/main.f08fa6b7.js.map",
+    "main.41a2655d.js.map": "/radio-madness/static/js/main.41a2655d.js.map",
     "787.c5f6439e.chunk.js.map": "/radio-madness/static/js/787.c5f6439e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2b187854.css",
-    "static/js/main.f08fa6b7.js"
+    "static/js/main.41a2655d.js"
   ]
 }
