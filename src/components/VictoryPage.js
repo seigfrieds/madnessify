@@ -75,7 +75,7 @@ function VictoryPage({bracket})
 
                 <section id="winner-round">
                     <img id="spotify-logo" src={spotifyLogo}></img>
-                    <h1 id="watermark">Radio Madness</h1>
+                    <h1 id="watermark">Madnessify</h1>
                     <p id="watermark-link">seigfrieds.github.io/radio-madness</p>
                     <div>
                         <img 
