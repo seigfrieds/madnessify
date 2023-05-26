@@ -158,7 +158,7 @@ function App() {
         <div className="App">
             {!token &&
                 <div id="home-page">
-                    <h1 id="app-title">Radio Madness!</h1>
+                    <h1 id="app-title">Madnessify!</h1>
 
                     <h2 id="app-hook">Create a single-elimination bracket tournament out of your favorite songs on Spotify!</h2><br/>
                     <h2 id="special-notice">In Development Mode - Need special access to use the site</h2><br/>
