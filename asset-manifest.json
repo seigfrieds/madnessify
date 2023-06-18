@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/radio-madness/static/css/main.2b187854.css",
-    "main.js": "/radio-madness/static/js/main.41a2655d.js",
-    "static/js/787.c5f6439e.chunk.js": "/radio-madness/static/js/787.c5f6439e.chunk.js",
-    "static/media/Spotify_Logo_RGB_Black.png": "/radio-madness/static/media/Spotify_Logo_RGB_Black.0d1e5545dee9f6dc1079.png",
-    "index.html": "/radio-madness/index.html",
-    "main.2b187854.css.map": "/radio-madness/static/css/main.2b187854.css.map",
-    "main.41a2655d.js.map": "/radio-madness/static/js/main.41a2655d.js.map",
-    "787.c5f6439e.chunk.js.map": "/radio-madness/static/js/787.c5f6439e.chunk.js.map"
+    "main.css": "/madnessify/static/css/main.2b187854.css",
+    "main.js": "/madnessify/static/js/main.47ee9f54.js",
+    "static/js/787.51c1f44e.chunk.js": "/madnessify/static/js/787.51c1f44e.chunk.js",
+    "static/media/Spotify_Logo_RGB_Black.png": "/madnessify/static/media/Spotify_Logo_RGB_Black.0d1e5545dee9f6dc1079.png",
+    "index.html": "/madnessify/index.html",
+    "main.2b187854.css.map": "/madnessify/static/css/main.2b187854.css.map",
+    "main.47ee9f54.js.map": "/madnessify/static/js/main.47ee9f54.js.map",
+    "787.51c1f44e.chunk.js.map": "/madnessify/static/js/787.51c1f44e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2b187854.css",
-    "static/js/main.41a2655d.js"
+    "static/js/main.47ee9f54.js"
   ]
 }
