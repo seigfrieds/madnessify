@@ -1,6 +1,6 @@
 {
-    "homepage": "https://seigfrieds.github.io/radio-madness",
-    "name": "radio-madness",
+    "homepage": "https://seigfrieds.github.io/madnessify",
+    "name": "madnessify",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
