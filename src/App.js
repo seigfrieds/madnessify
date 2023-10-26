@@ -30,7 +30,7 @@ function App() {
     const [numTracks, setNumTracks] = useState(8);
 
     //top tracks params
-    const [timeFrame, setTimeFrame] = useState("medium_term");
+    const [timeFrame, setTimeFrame] = useState("short_term");
 
     //playlist params
     const [playlistLink, setPlaylistLink] = useState("");
