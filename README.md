@@ -7,7 +7,7 @@ This is a web app that generates tournament brackets with your most played songs
 
 [![Watch the video](https://i.imgur.com/wkYyjui.png)](https://www.youtube.com/watch?v=IMyBgxkcuw4)
 
-## [Try it yourself!](https://seigfrieds.github.io/spotify-madness/)
+## [Try it yourself!](https://seigfrieds.github.io/madnessify/)
 
 ## Built using
 - React
