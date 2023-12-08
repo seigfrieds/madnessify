@@ -3,194 +3,194 @@
     derived from https://stackoverflow.com/a/12816099
 */
 
-#victory-page
-{
-    text-align: center;
+#victory-page {
+  text-align: center;
 }
 
 .bracket-title {
-    text-align:left;
+  text-align: left;
 }
 
 /*BRACKET CONTAINER*/
-#container { 
-    border:3px solid black;
-    background-color: rgb(245, 245, 245);
+#container {
+  border: 3px solid black;
+  background-color: rgb(245, 245, 245);
 
-    padding: 20px;
+  padding: 20px;
 
-    width: 1080px; 
-    height: 1080px;    
+  width: 1080px;
+  height: 1080px;
 }
 
 /*ROUND CONTAINER*/
-section { 
-    width: 216px; /*one side of bracket will have at most 16 teams -> 
+section {
+  width: 216px; /*one side of bracket will have at most 16 teams -> 
                     32 team bracket is 5 rounds (including "winner" round)
                     1080/5=216*/
-    height: 1080px; 
-    
-    float: left; /*sections (round) float left -> 
+  height: 1080px;
+
+  float: left; /*sections (round) float left -> 
                     means they are side by side horizontally*/
 }
 
 /*PLAYER CONTAINER*/
-section > div { 
-    /*keeping image and text (somewhat) clean*/
-    display: flex;
-    align-items: center;
-    
-    /*box stuff*/
-    width: 216px; /*40px (image) + 176 px (title text) = 216*/
-    height: 42px; /*image height = 40px + 1px border line on top/bottom = 42px*/
+section > div {
+  /*keeping image and text (somewhat) clean*/
+  display: flex;
+  align-items: center;
+
+  /*box stuff*/
+  width: 216px; /*40px (image) + 176 px (title text) = 216*/
+  height: 42px; /*image height = 40px + 1px border line on top/bottom = 42px*/
 }
 
 /*SONG IMAGE CONTAINER*/
 section > div img {
-    height:40px;
-    width:40px;
+  height: 40px;
+  width: 40px;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 /*SONG TITLE CONTAINER*/
 .songtitle {
-    /*remove link decoration*/
-    color: black;
+  /*remove link decoration*/
+  color: black;
 
-    font-size: 80%;
+  font-size: 80%;
 
-    padding-left:3px;
+  padding-left: 3px;
 
-    /*box stuff*/
-    width: 176px; 
-    height: 20px; 
-    border: 1px solid #000; 
-    border-left-width: 0px; /*album cover will have a border too -> remove borders doubling*/
-    background: #eee2e2; 
+  /*box stuff*/
+  width: 176px;
+  height: 20px;
+  border: 1px solid #000;
+  border-left-width: 0px; /*album cover will have a border too -> remove borders doubling*/
+  background: #eee2e2;
 
-    /*handle overflow*/
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  /*handle overflow*/
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 
-    /*keeping image and text (somewhat) clean*/
-    display: flex;
-    align-items: center;
-    word-break: break-word;
+  /*keeping image and text (somewhat) clean*/
+  display: flex;
+  align-items: center;
+  word-break: break-word;
 }
 
 /*  DOES BIG MARGIN BETWEEN EACH PAIR 
     OF PLAYERS (i.e. a match!) */
-section > div:nth-child(2n){ 
-    margin-bottom: 20px;
+section > div:nth-child(2n) {
+  margin-bottom: 20px;
 }
 
-#round-of-16 > div:first-child { 
-    margin-top: 0px; 
+#round-of-16 > div:first-child {
+  margin-top: 0px;
 }
-#round-of-16 > div { 
-    margin-top: 27px; 
-}
-
-#round-of-8 > div:first-child { 
-    margin-top: 34px; 
-}
-#round-of-8 > div { 
-    margin-top: 96px; 
+#round-of-16 > div {
+  margin-top: 27px;
 }
 
-#round-of-4 > div:first-child { 
-    margin-top: 103px; /*distance of first child from top container*/
+#round-of-8 > div:first-child {
+  margin-top: 34px;
 }
-#round-of-4 > div { 
-    margin-top: 235px; /*ditsance between each node in round*/ 
-}
-
-#final > div:first-child { 
-    margin-top: 241px; 
-}
-#final > div { 
-    margin-top: 512px; 
+#round-of-8 > div {
+  margin-top: 96px;
 }
 
-#winner-round > div { 
-    margin-top: 420px; 
+#round-of-4 > div:first-child {
+  margin-top: 103px; /*distance of first child from top container*/
+}
+#round-of-4 > div {
+  margin-top: 235px; /*ditsance between each node in round*/
+}
+
+#final > div:first-child {
+  margin-top: 241px;
+}
+#final > div {
+  margin-top: 512px;
+}
+
+#winner-round > div {
+  margin-top: 420px;
 }
 
 #winner-display {
-    color: rgb(254, 165, 0);
-    text-align: center;
+  color: rgb(254, 165, 0);
+  text-align: center;
 }
 
-h4 { /*winner text*/
-    font-size: 150%;
-    padding: -10px;
-    color:rgb(229, 221, 2);
-    text-shadow:#000000 1.5px 1.5px, /*3d text*/
-                rgb(255, 255, 255) 1px 0 7.5px /*glowy shadow*/;
+h4 {
+  /*winner text*/
+  font-size: 150%;
+  padding: -10px;
+  color: rgb(229, 221, 2);
+  text-shadow:
+    #000000 1.5px 1.5px,
+    /*3d text*/ rgb(255, 255, 255) 1px 0 7.5px /*glowy shadow*/;
 }
 
 #spotify-logo {
-    width: 90px;
-    margin: 0px;
+  width: 90px;
+  margin: 0px;
 }
 
 #watermark {
-    color:rgb(255, 38, 251);
-    text-shadow:rgb(131, 9, 206) 2px 2px;
-    margin-top: 10px;
-    margin-bottom: 2px;
-    font-size: 25px;
+  color: rgb(255, 38, 251);
+  text-shadow: rgb(131, 9, 206) 2px 2px;
+  margin-top: 10px;
+  margin-bottom: 2px;
+  font-size: 25px;
 }
 
 #watermark-link {
-    font-size: 82%;
-    color:rgb(85, 85, 248);
-    text-decoration: underline;
+  font-size: 82%;
+  color: rgb(85, 85, 248);
+  text-decoration: underline;
 }
 
 #spotify-logout-text {
-    color:white;
+  color: white;
 }
 
 #spotify-logout-button {
-    /*button color*/
-    background-color: #043004;
+  /*button color*/
+  background-color: #043004;
 
-    /*text color*/
-    color: white;
+  /*text color*/
+  color: white;
 
-    /*round button*/
-    border-radius: 30px;
+  /*round button*/
+  border-radius: 30px;
 
-    /*Padding around the text*/
-    padding: 35px 35px;
+  /*Padding around the text*/
+  padding: 35px 35px;
 
-    /*remove underline from href*/
-    text-decoration:none;
+  /*remove underline from href*/
+  text-decoration: none;
 
-    /*shadow under button*/
-    box-shadow: 0 8px 1px 0 rgb(0,0,0,0.5);
+  /*shadow under button*/
+  box-shadow: 0 8px 1px 0 rgb(0, 0, 0, 0.5);
 
-    transition-duration: 0.2s;
+  transition-duration: 0.2s;
 
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 
-    font-size: 20px;
-    display:inline-block;
+  font-size: 20px;
+  display: inline-block;
 }
 
 #spotify-logout-button:hover {
-    /*button color*/
-    background-color: rgb(245, 245, 245);
+  /*button color*/
+  background-color: rgb(245, 245, 245);
 
-    /*text color*/
-    color: #ff0000;
+  /*text color*/
+  color: #ff0000;
 }
-
 
 /*#round-of-16{
     background-color: gray;
