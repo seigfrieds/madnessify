@@ -1,70 +1,72 @@
 #special-notice {
-    color:red;
+  color: red;
 }
 
 body {
-    background-color: #2d2d2d;
+  background-color: #2d2d2d;
 }
 
 .App {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial,
+    sans-serif;
 }
 
 #error {
-    color: red;
-    text-align: center;
-    font-size: 50px;
+  color: red;
+  text-align: center;
+  font-size: 50px;
 }
 
 #home-page {
-    /*Center within screen*/
-    position: absolute;
-    left:50%;
-    top:50%;
-    text-align: center;
-    transform: translate(-50%, -50%);
+  /*Center within screen*/
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
 }
 
 #app-title {
-    color: rgb(245, 8, 210);
-    text-shadow:#3b0248 3px 3px, /*3d text*/
-                rgb(247, 247, 247) 1px 0 7.5px /*glowy shadow*/;
+  color: rgb(245, 8, 210);
+  text-shadow:
+    #3b0248 3px 3px,
+    /*3d text*/ rgb(247, 247, 247) 1px 0 7.5px /*glowy shadow*/;
 }
 
 #app-hook {
-    color: white;
+  color: white;
 }
 
 #github-link {
-    color:lightblue;
+  color: lightblue;
 }
 
 .spotify-login-button {
-    /*button color*/
-    background-color: #0e640e;
+  /*button color*/
+  background-color: #0e640e;
 
-    /*text color*/
-    color: white;
+  /*text color*/
+  color: white;
 
-    /*round button*/
-    border-radius: 30px;
+  /*round button*/
+  border-radius: 30px;
 
-    /*Padding around the text*/
-    padding: 15px 25px;
+  /*Padding around the text*/
+  padding: 15px 25px;
 
-    /*remove underline from href*/
-    text-decoration:none;
+  /*remove underline from href*/
+  text-decoration: none;
 
-    /*shadow under button*/
-    box-shadow: 0 8px 1px 0 rgb(0,0,0,0.5);
+  /*shadow under button*/
+  box-shadow: 0 8px 1px 0 rgb(0, 0, 0, 0.5);
 
-    transition-duration: 0.2s;
+  transition-duration: 0.2s;
 }
 
 .spotify-login-button:hover {
-    /*button color*/
-    background-color: white;
+  /*button color*/
+  background-color: white;
 
-    /*text color*/
-    color: #0e640e;
+  /*text color*/
+  color: #0e640e;
 }
