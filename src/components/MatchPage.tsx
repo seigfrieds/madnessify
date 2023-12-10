@@ -3,25 +3,14 @@ import Match from "./Match.js";
 import VictoryPage from "./VictoryPage.jsx";
 import { useRef } from "react";
 import "./MatchPage.css";
-
-type Song = {
-  id: string;
-  artists: Array<{ name: string }>;
-  name: string;
-};
-
-type Bracket = Array<{
-  matchRound: number;
-  matchComponent: React.JSX.Element;
-  matchWinnerId: string | null;
-}>;
+import { Song, MatchSet } from "../types/index";
 
 type initializeBracketProps = {
   players: Array<Song>;
   handleClick: (arg0: number, arg1: string) => void;
 };
 
-function initializeBracket({ players, handleClick }: initializeBracketProps): Bracket {
+function initializeBracket({ players, handleClick }: initializeBracketProps): MatchSet {
   const bracket = [];
   let matchIndex = 0;
 
@@ -63,7 +52,7 @@ function MatchPage({ players }: MatchPageProps): React.JSX.Element {
     return bracketRef.current[nextMatchIdRef.current].matchComponent.props.trackTwo !== null;
   }
 
-  function addNextMatch(newBracket: Bracket, matchId: number, winnerId: string): Bracket {
+  function addNextMatch(newBracket: MatchSet, matchId: number, winnerId: string): MatchSet {
     if (!advanceMatchExists() || advanceMatchIsSet()) {
       //add new match to bracket
       newBracket.push({

@@ -7,12 +7,7 @@ import "./App.css";
 import MatchPage from "./components/MatchPage";
 import { CONFIG } from "./apiConfig";
 import axios from "axios";
-
-type Song = {
-  id: string;
-  artists: Array<{ name: string }>;
-  name: string;
-};
+import type { Song } from "./types/index";
 
 //durstenfeld shuffle: https://stackoverflow.com/a/12646864
 function shuffleArray(array: Array<any>): void {

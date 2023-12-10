@@ -2,12 +2,7 @@ import React from "react";
 import "./Match.css";
 import Player from "./Player";
 import WinSelectButton from "./WinSelectButton";
-
-type Song = {
-  id: string;
-  artists: Array<{ name: string }>;
-  name: string;
-};
+import { Song } from "../types/index";
 
 type Props = {
   matchId: number;
