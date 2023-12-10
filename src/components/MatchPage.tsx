@@ -45,9 +45,9 @@ function initializeBracket({ players, handleClick }: initializeBracketProps): Br
   return bracket;
 }
 
-interface MatchPageProps {
+type MatchPageProps = {
   players: Array<Song>;
-}
+};
 
 function MatchPage({ players }: MatchPageProps): React.JSX.Element {
   const [currMatchId, setCurrMatchId] = useState(0); //has to be in state -> will cause the rerenders
