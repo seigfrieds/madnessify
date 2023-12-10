@@ -5,8 +5,14 @@ import BracketParameterForm from "./components/BracketParameterForm";
 
 import "./App.css";
 import MatchPage from "./components/MatchPage";
-import { CONFIG } from "./apiConfig.js";
+import { CONFIG } from "./apiConfig";
 import axios from "axios";
+
+type Song = {
+  id: string;
+  artists: Array<{ name: string }>;
+  name: string;
+};
 
 //durstenfeld shuffle: https://stackoverflow.com/a/12646864
 function shuffleArray(array: Array<any>): void {
@@ -19,7 +25,7 @@ function shuffleArray(array: Array<any>): void {
 function App(): React.JSX.Element {
   const [token, setToken] = useState("");
 
-  const [tracks, setTracks] = useState<null | Array<object>>(null);
+  const [tracks, setTracks] = useState<null | Array<Song>>(null);
   const [queryType, setQueryType] = useState(""); //top_tracks, playlist
 
   const [error, setError] = useState(null);
