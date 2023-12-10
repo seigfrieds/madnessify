@@ -1,12 +1,14 @@
+import React from "react";
 import "./VictoryPage.css";
 import spotifyLogo from "../assets/Spotify_Logo_RGB_Black.png";
+import { MatchSet } from "../types/index";
 
-function roundToDivs(matchesInRound) {
-  let divArray = [];
+function roundToDivs(matchesInRound: MatchSet): React.JSX.Element[] {
+  const divArray = [];
 
   for (let i = 0; i < matchesInRound.length; i++) {
-    let trackOne = matchesInRound[i].matchComponent.props.trackOne;
-    let trackTwo = matchesInRound[i].matchComponent.props.trackTwo;
+    const trackOne = matchesInRound[i].matchComponent.props.trackOne;
+    const trackTwo = matchesInRound[i].matchComponent.props.trackTwo;
 
     divArray.push(
       <div key={trackOne.id}>
@@ -19,6 +21,7 @@ function roundToDivs(matchesInRound) {
           className="songtitle"
           href={`https://open.spotify.com/track/${trackOne.id}`}
           target="_blank"
+          rel="noreferrer"
         >
           {trackOne.name}
         </a>
@@ -36,6 +39,7 @@ function roundToDivs(matchesInRound) {
           className="songtitle"
           href={`https://open.spotify.com/track/${trackTwo.id}`}
           target="_blank"
+          rel="noreferrer"
         >
           {trackTwo.name}
         </a>
@@ -46,14 +50,18 @@ function roundToDivs(matchesInRound) {
   return divArray;
 }
 
-function VictoryPage({ bracket }) {
-  let winner = bracket[bracket.length - 1].matchComponent.props.trackOne;
-  let numPlayers = bracket.length;
+type VictoryPageProps = {
+  bracket: MatchSet;
+};
+
+function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
+  const winner = bracket[bracket.length - 1].matchComponent.props.trackOne;
+  const numPlayers = bracket.length;
 
   return (
     <div id="victory-page">
       <h1 id="winner-display">Winner!</h1>
-      <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank">
+      <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
         <img
           src={winner.album.images[0] !== undefined && winner.album.images[0].url}
           alt={winner.name}
@@ -61,7 +69,7 @@ function VictoryPage({ bracket }) {
           height="200"
         ></img>
       </a>
-      <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank">
+      <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
         <h4>{winner.artists[0].name + " - " + winner.name}</h4>
       </a>
       <br></br>
@@ -107,6 +115,7 @@ function VictoryPage({ bracket }) {
               className="songtitle"
               href={`https://open.spotify.com/track/${winner.id}`}
               target="_blank"
+              rel="noreferrer"
             >
               {winner.name}
             </a>
@@ -115,7 +124,7 @@ function VictoryPage({ bracket }) {
       </article>
 
       <p id="spotify-logout-text">
-        Want to disconnect from the app? Click the button and remove access to "Radio Madness"
+        {'Want to disconnect from the app? Click the button and remove access to "Madnessify"'}
       </p>
       <a href="https://www.spotify.com/account/apps/" id="spotify-logout-button">
         Log out

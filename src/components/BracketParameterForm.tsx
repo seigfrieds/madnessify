@@ -1,5 +1,13 @@
 import "./BracketParameterForm.css";
-import { useState } from "react";
+import React, { useState } from "react";
+
+type Props = {
+  handleSubmit: React.FormEventHandler<HTMLFormElement>;
+  handleQueryTypeChange: React.ChangeEventHandler<HTMLSelectElement>;
+  handleNumTracksChange: React.ChangeEventHandler<HTMLSelectElement>;
+  handleTimeFrameChange: React.ChangeEventHandler<HTMLSelectElement>;
+  handlePlaylistLinkChange: React.ChangeEventHandler<HTMLInputElement>;
+};
 
 function BracketParameterForm({
   handleSubmit,
@@ -7,10 +15,10 @@ function BracketParameterForm({
   handleNumTracksChange,
   handleTimeFrameChange,
   handlePlaylistLinkChange,
-}) {
+}: Props): React.JSX.Element {
   const [currQuery, setCurrQuery] = useState("");
 
-  function changeQuery(event) {
+  function changeQuery(event: React.ChangeEvent<HTMLSelectElement>): void {
     handleQueryTypeChange(event);
     setCurrQuery(event.target.value);
   }
@@ -18,9 +26,9 @@ function BracketParameterForm({
   return (
     <div className="FormScreen">
       <div className="dropdown">
-        <label for="query-select">Select where you want your songs to come from!</label>
+        <label htmlFor="query-select">Select where you want your songs to come from!</label>
         <br></br>
-        <select onChange={changeQuery} id="query-select" form="theform" selected="Please select...">
+        <select onChange={changeQuery} id="query-select" form="theform">
           <option value="" selected disabled hidden>
             Choose...
           </option>
@@ -32,7 +40,7 @@ function BracketParameterForm({
       {currQuery === "top_tracks" && (
         <>
           <div className="dropdown">
-            <label for="num-songs-select">Select the number of songs: </label>
+            <label htmlFor="num-songs-select">Select the number of songs: </label>
             <br></br>
             <select onChange={handleNumTracksChange} id="num-songs-select" form="theform">
               <option value={8}>Top 8 songs</option>
@@ -42,7 +50,7 @@ function BracketParameterForm({
           </div>
 
           <div className="dropdown">
-            <label for="time-frame-select">Select the time frame: </label>
+            <label htmlFor="time-frame-select">Select the time frame: </label>
             <br></br>
             <select onChange={handleTimeFrameChange} id="time-frame-select" form="theform">
               <option value={"short_term"}>Past 4 weeks</option>
@@ -56,13 +64,13 @@ function BracketParameterForm({
       {currQuery === "playlist" && (
         <>
           <div id="playlist-prompt">
-            <label for="playlist-prompt">Enter the link to your playlist:</label>
+            <label htmlFor="playlist-prompt">Enter the link to your playlist:</label>
             <br></br>
             <input type="text" id="playlist-box" onChange={handlePlaylistLinkChange}></input>
           </div>
 
           <div className="dropdown">
-            <label for="num-songs-select">Select the number of songs: </label>
+            <label htmlFor="num-songs-select">Select the number of songs: </label>
             <br></br>
             <select onChange={handleNumTracksChange} id="num-songs-select" form="theform">
               <option value={8}>8 random songs</option>

@@ -1,30 +1,31 @@
 //wow!
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEvent, ChangeEvent, ReactElement } from "react";
 import BracketParameterForm from "./components/BracketParameterForm";
 
 import "./App.css";
-import MatchPage from "./components/MatchPage.js";
-import { CONFIG } from "./apiConfig.js";
+import MatchPage from "./components/MatchPage";
+import { CONFIG } from "./apiConfig";
 import axios from "axios";
+import type { Song } from "./types/index";
 
 //durstenfeld shuffle: https://stackoverflow.com/a/12646864
-function shuffleArray(array) {
+function shuffleArray(array: Array<any>): void {
   for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
 
-function App() {
+function App(): React.JSX.Element {
   const [token, setToken] = useState("");
 
-  const [tracks, setTracks] = useState(null);
+  const [tracks, setTracks] = useState<null | Array<Song>>(null);
   const [queryType, setQueryType] = useState(""); //top_tracks, playlist
 
-  const [error, setError] = useState(undefined);
+  const [error, setError] = useState<null | ReactElement>(null);
 
-  //global params
+  //global
   const [numTracks, setNumTracks] = useState(8);
 
   //top tracks params
@@ -33,9 +34,9 @@ function App() {
   //playlist params
   const [playlistLink, setPlaylistLink] = useState("");
 
-  async function getTracks(token) {
+  async function getTracks(token: string): Promise<void> {
     if (queryType === "top_tracks") {
-      let request = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
+      const request = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -57,7 +58,7 @@ function App() {
       //spotify playlists have id's of length 22 -> enforce this check to reduce API spam
       if (PLAYLIST_ID.length === 22) {
         //get playlist (Defaults to first 100 tracks)
-        let request = await axios.get("https://api.spotify.com/v1/playlists/" + PLAYLIST_ID, {
+        const request = await axios.get("https://api.spotify.com/v1/playlists/" + PLAYLIST_ID, {
           headers: {
             Authorization: "Bearer " + token,
           },
@@ -83,7 +84,7 @@ function App() {
           selectedSectionNum = Math.floor(Math.random() * NUM_OF_100_SONG_SECTIONS_IN_PLAYLIST);
 
         //get random 100 song section in playlist from api
-        let selectedSection = await axios.get(
+        const selectedSection = await axios.get(
           "https://api.spotify.com/v1/playlists/" +
             PLAYLIST_ID +
             "/tracks?offset=" +
@@ -99,7 +100,7 @@ function App() {
         /* get tracks! */
         shuffleArray(selectedSection.data.items);
 
-        let chosenPlaylistTracks = [];
+        const chosenPlaylistTracks = [];
         for (let i = 0; i < numTracks; i++)
           chosenPlaylistTracks[i] = selectedSection.data.items[i].track;
 
@@ -108,26 +109,26 @@ function App() {
     }
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event: FormEvent): void {
     event.preventDefault();
 
     getTracks(token);
   }
 
-  function handlePlaylistLinkChange(event) {
+  function handlePlaylistLinkChange(event: ChangeEvent<HTMLInputElement>): void {
     console.log(playlistLink);
     setPlaylistLink(event.target.value);
   }
 
-  function handleQueryTypeChange(event) {
+  function handleQueryTypeChange(event: ChangeEvent<HTMLSelectElement>): void {
     setQueryType(event.target.value);
   }
 
-  function handleNumTracksChange(event) {
-    setNumTracks(event.target.value);
+  function handleNumTracksChange(event: ChangeEvent<HTMLSelectElement>): void {
+    setNumTracks(Number(event.target.value));
   }
 
-  function handleTimeFrameChange(event) {
+  function handleTimeFrameChange(event: ChangeEvent<HTMLSelectElement>): void {
     setTimeFrame(event.target.value);
   }
 
@@ -140,7 +141,7 @@ function App() {
         .substring(1)
         .split("&")
         .find((elem) => elem.startsWith("access_token"))
-        .split("=")[1];
+        ?.split("=")[1];
 
       if (spotifyToken) {
         setToken(spotifyToken);
@@ -174,7 +175,12 @@ function App() {
           <br />
           <br />
 
-          <a id="github-link" href="https://github.com/seigfrieds/radio-madness" target="_blank">
+          <a
+            id="github-link"
+            href="https://github.com/seigfrieds/radio-madness"
+            target="_blank"
+            rel="noreferrer"
+          >
             GitHub
           </a>
         </div>
@@ -191,7 +197,7 @@ function App() {
                 handleTimeFrameChange={handleTimeFrameChange}
                 handlePlaylistLinkChange={handlePlaylistLinkChange}
               />
-              {error !== undefined && error}
+              {error !== null && error}
               {console.log("Waiting for API...")}
             </>
           ) : (
