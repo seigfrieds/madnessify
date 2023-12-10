@@ -1,4 +1,4 @@
-import Match from "./Match.jsx";
+import Match from "./Match.tsx";
 import VictoryPage from "./VictoryPage.jsx";
 import { useRef, useState } from "react";
 import "./MatchPage.css";

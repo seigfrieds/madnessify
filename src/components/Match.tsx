@@ -1,8 +1,22 @@
+import React from "react";
 import "./Match.css";
-import Player from "./Player.tsx";
-import WinSelectButton from "./WinSelectButton.tsx";
+import Player from "./Player";
+import WinSelectButton from "./WinSelectButton";
 
-function Match({ matchId, trackOne, trackTwo, handleClick }) {
+type Song = {
+  id: string;
+  artists: Array<{ name: string }>;
+  name: string;
+};
+
+type Props = {
+  matchId: number;
+  trackOne: Song;
+  trackTwo: Song;
+  handleClick: (arg0: number, arg1: string) => void;
+};
+
+function Match({ matchId, trackOne, trackTwo, handleClick }: Props): React.JSX.Element {
   return (
     <div className="match">
       <div className="player">
