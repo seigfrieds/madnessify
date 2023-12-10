@@ -1,6 +1,11 @@
+import React from "react";
 import "./WinSelectButton.css";
 
-function WinSelectButton({ onClick }) {
+type Props = {
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+function WinSelectButton({ onClick }: Props): React.JSX.Element {
   return (
     <div>
       <button id="win-select-button" onClick={onClick}>

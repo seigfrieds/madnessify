@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "outDir": "build",
+    "target": "ES2017",
+    "jsx": "react",
+    "module": "ES6",
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "types": [
+        "vite/client",
+    ]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

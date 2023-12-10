@@ -1,5 +1,5 @@
-import Match from "./Match.js";
-import VictoryPage from "./VictoryPage.js";
+import Match from "./Match.jsx";
+import VictoryPage from "./VictoryPage.jsx";
 import { useRef, useState } from "react";
 import "./MatchPage.css";
 

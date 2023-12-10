@@ -1,10 +1,10 @@
 //wow!
 
 import React, { useState, useEffect } from "react";
-import BracketParameterForm from "./components/BracketParameterForm";
+import BracketParameterForm from "./components/BracketParameterForm.jsx";
 
 import "./App.css";
-import MatchPage from "./components/MatchPage.js";
+import MatchPage from "./components/MatchPage.jsx";
 import { CONFIG } from "./apiConfig.js";
 import axios from "axios";
 
