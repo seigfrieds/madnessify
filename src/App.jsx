@@ -1,7 +1,7 @@
 //wow!
 
 import React, { useState, useEffect } from "react";
-import BracketParameterForm from "./components/BracketParameterForm.jsx";
+import BracketParameterForm from "./components/BracketParameterForm.tsx";
 
 import "./App.css";
 import MatchPage from "./components/MatchPage.jsx";
