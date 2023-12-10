@@ -1,5 +1,5 @@
 import "./Match.css";
-import Player from "./Player.jsx";
+import Player from "./Player.tsx";
 import WinSelectButton from "./WinSelectButton.tsx";
 
 function Match({ matchId, trackOne, trackTwo, handleClick }) {
