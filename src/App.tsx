@@ -1,6 +1,6 @@
 //wow!
 
-import React, { useState, useEffect, FormEvent, ChangeEvent } from "react";
+import React, { useState, useEffect, FormEvent, ChangeEvent, ReactElement } from "react";
 import BracketParameterForm from "./components/BracketParameterForm";
 
 import "./App.css";
@@ -23,7 +23,7 @@ function App(): React.JSX.Element {
   const [tracks, setTracks] = useState<null | Array<Song>>(null);
   const [queryType, setQueryType] = useState(""); //top_tracks, playlist
 
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<null | ReactElement>(null);
 
   //global
   const [numTracks, setNumTracks] = useState(8);
@@ -125,7 +125,7 @@ function App(): React.JSX.Element {
   }
 
   function handleNumTracksChange(event: ChangeEvent<HTMLSelectElement>): void {
-    setNumTracks(event.target.value);
+    typeof event.target.value === "number" && setNumTracks(event.target.value);
   }
 
   function handleTimeFrameChange(event: ChangeEvent<HTMLSelectElement>): void {
