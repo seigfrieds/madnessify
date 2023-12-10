@@ -1,15 +1,33 @@
-import Match from "./Match.tsx";
+import React, { useState } from "react";
+import Match from "./Match.js";
 import VictoryPage from "./VictoryPage.jsx";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import "./MatchPage.css";
 
-function initializeBracket(players, handleClick) {
-  let bracket = [];
+type Song = {
+  id: string;
+  artists: Array<{ name: string }>;
+  name: string;
+};
+
+type Bracket = Array<{
+  matchRound: number;
+  matchComponent: React.JSX.Element;
+  matchWinnerId: string | null;
+}>;
+
+type initializeBracketProps = {
+  players: Array<Song>;
+  handleClick: (arg0: number, arg1: string) => void;
+};
+
+function initializeBracket({ players, handleClick }: initializeBracketProps): Bracket {
+  const bracket = [];
   let matchIndex = 0;
 
   //push first round into matches
   for (let i = 0; i < players.length; i += 2) {
-    let match = {
+    const match = {
       matchRound: 1,
       matchComponent: (
         <Match
@@ -21,35 +39,31 @@ function initializeBracket(players, handleClick) {
       ),
       matchWinnerId: null,
     };
-
     bracket.push(match);
   }
 
   return bracket;
 }
 
-function MatchPage({ players }) {
-  const [bracket, setBracket] = useState(() => initializeBracket(players, handleClick));
-  const bracketRef = useRef({});
-  bracketRef.current = bracket;
+interface MatchPageProps {
+  players: Array<Song>;
+}
 
-  const [currMatchId, setCurrMatchId] = useState(0);
-  const currMatchIdRef = useRef({});
-  currMatchIdRef.current = currMatchId;
+function MatchPage({ players }: MatchPageProps): React.JSX.Element {
+  const [currMatchId, setCurrMatchId] = useState(0); //has to be in state -> will cause the rerenders
 
-  const [nextMatchId, setNextMatchId] = useState(bracket.length);
-  const nextMatchIdRef = useRef({});
-  nextMatchIdRef.current = nextMatchId;
+  const bracketRef = useRef(initializeBracket({ players, handleClick }));
+  const nextMatchIdRef = useRef(bracketRef.current.length);
 
-  function advanceMatchExists() {
+  function advanceMatchExists(): boolean {
     return bracketRef.current[nextMatchIdRef.current] !== undefined;
   }
 
-  function advanceMatchIsSet() {
+  function advanceMatchIsSet(): boolean {
     return bracketRef.current[nextMatchIdRef.current].matchComponent.props.trackTwo !== null;
   }
 
-  function addNextMatch(newBracket, matchId, winnerId) {
+  function addNextMatch(newBracket: Bracket, matchId: number, winnerId: string): Bracket {
     if (!advanceMatchExists() || advanceMatchIsSet()) {
       //add new match to bracket
       newBracket.push({
@@ -69,8 +83,7 @@ function MatchPage({ players }) {
         matchWinnerId: null,
       });
 
-      if (advanceMatchExists() && advanceMatchIsSet())
-        setNextMatchId((nextMatchId) => nextMatchId + 1);
+      if (advanceMatchExists() && advanceMatchIsSet()) nextMatchIdRef.current++;
     }
     //advance match is not set
     else {
@@ -91,7 +104,7 @@ function MatchPage({ players }) {
     return newBracket;
   }
 
-  function handleClick(matchId, winnerId) {
+  function handleClick(matchId: number, winnerId: string): void {
     let newBracket = bracketRef.current.map((m, i) => {
       if (i === matchId)
         return {
@@ -103,8 +116,8 @@ function MatchPage({ players }) {
 
     newBracket = addNextMatch(newBracket, matchId, winnerId);
 
-    setBracket(newBracket);
-    setCurrMatchId((currMatchId) => currMatchId + 1);
+    bracketRef.current = newBracket;
+    setCurrMatchId((prev) => prev + 1);
   }
 
   return (
@@ -112,12 +125,13 @@ function MatchPage({ players }) {
       {currMatchId !== players.length - 1 ? (
         <div id="match-display">
           <h1 className="round-display">
-            {"Round of " + players.length / Math.pow(2, bracket[currMatchId].matchRound - 1)}
+            {"Round of " +
+              players.length / Math.pow(2, bracketRef.current[currMatchId].matchRound - 1)}
           </h1>
-          {bracket[currMatchId].matchComponent}
+          {bracketRef.current[currMatchId].matchComponent}
         </div>
       ) : (
-        <VictoryPage bracket={bracket} />
+        <VictoryPage bracket={bracketRef.current} />
       )}
     </>
   );

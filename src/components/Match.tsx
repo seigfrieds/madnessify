@@ -12,7 +12,7 @@ type Song = {
 type Props = {
   matchId: number;
   trackOne: Song;
-  trackTwo: Song;
+  trackTwo: Song | null;
   handleClick: (arg0: number, arg1: string) => void;
 };
 
@@ -30,8 +30,12 @@ function Match({ matchId, trackOne, trackTwo, handleClick }: Props): React.JSX.E
       <br></br>
 
       <div className="player">
-        <Player id={trackTwo.id} artist={trackTwo.artists[0].name} title={trackTwo.name} />
-        <WinSelectButton onClick={() => handleClick(matchId, trackTwo.id)} />
+        <Player
+          id={trackTwo?.id ?? "error"}
+          artist={trackTwo?.artists[0].name ?? "error"}
+          title={trackTwo?.name ?? "error"}
+        />
+        <WinSelectButton onClick={() => handleClick(matchId, trackTwo?.id ?? "error")} />
       </div>
     </div>
   );

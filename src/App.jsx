@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import BracketParameterForm from "./components/BracketParameterForm.tsx";
 
 import "./App.css";
-import MatchPage from "./components/MatchPage.jsx";
+import MatchPage from "./components/MatchPage.tsx";
 import { CONFIG } from "./apiConfig.js";
 import axios from "axios";
 
