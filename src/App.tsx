@@ -125,7 +125,7 @@ function App(): React.JSX.Element {
   }
 
   function handleNumTracksChange(event: ChangeEvent<HTMLSelectElement>): void {
-    typeof event.target.value === "number" && setNumTracks(event.target.value);
+    setNumTracks(Number(event.target.value));
   }
 
   function handleTimeFrameChange(event: ChangeEvent<HTMLSelectElement>): void {
