@@ -1,7 +1,6 @@
 import React from "react";
 import "./Match.css";
 import Player from "./Player/Player";
-import WinSelectButton from "./WinSelectButton/WinSelectButton";
 import { Song } from "../../../types/index";
 
 type Props = {
