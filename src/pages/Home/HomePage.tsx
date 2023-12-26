@@ -74,7 +74,7 @@ export default function HomePage(): React.JSX.Element {
       if (playlistSize < numTracks) {
         alert(`Error: Playlist does not have ${numTracks} tracks`);
       } else {
-        const startingPosition = Math.random() * playlistSize - 100;
+        const startingPosition = Math.floor(Math.random() * playlistSize - 100);
 
         const selectedSection = await axios.get(
           `https://api.spotify.com/v1/playlists/${PLAYLIST_ID}/tracks?offset=${
