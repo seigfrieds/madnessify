@@ -1,8 +1,8 @@
 import React from "react";
 import "./Match.css";
-import Player from "./Player";
-import WinSelectButton from "./WinSelectButton";
-import { Song } from "../types/index";
+import Player from "./Player/Player";
+import WinSelectButton from "./WinSelectButton/WinSelectButton";
+import { Song } from "../../../types/index";
 
 type Props = {
   matchId: number;
