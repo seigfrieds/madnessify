@@ -1,16 +1,28 @@
-//wow!
-
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import LoginPage from "./pages/Login/LoginPage";
 import HomePage from "./pages/Home/HomePage";
+import NotFound from "./components/404";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+
+type ProtectedProps = {
+  isAllowed: boolean;
+  redirect: string;
+  children: React.ReactNode;
+};
+
+function Protected({ isAllowed, redirect, children }: ProtectedProps): React.ReactNode {
+  if (!isAllowed) {
+    return <Navigate to={redirect} replace />;
+  }
+
+  return children;
+}
 
 function App(): React.JSX.Element {
   const [token, setToken] = useState("");
+  const navigate = useNavigate();
 
-  //when you click login to spotify and login, it returns to url with info
-  //e.g. localhost:3000 -> then click spotify login -> localhost:3000/#access_token=BQD5...
-  //info split into two: access_token and token_type -> need to split
   useEffect(() => {
     if (window.location.hash) {
       const spotifyToken = window.location.hash
@@ -21,13 +33,32 @@ function App(): React.JSX.Element {
 
       if (spotifyToken) {
         setToken(spotifyToken);
+        navigate("/home", { replace: true });
       }
-
-      window.location.hash = "";
     }
   }, []);
 
-  return <div className="App">{token ? <HomePage token={token} /> : <LoginPage />}</div>;
+  return (
+    <>
+      <Routes>
+        {/** Public routes */}
+        <Route path="/" element={<Navigate to="/login" replace />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
+
+        {/** Private routes */}
+        <Route
+          path="/home"
+          element={
+            <Protected isAllowed={!!token} redirect="/login">
+              <HomePage token={token} />
+            </Protected>
+          }
+        />
+
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
+    </>
+  );
 }
 
 export default App;
