@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import LoginPage from "./pages/Login/LoginPage";
 import HomePage from "./pages/Home/HomePage";
+import TournamentPage from "./pages/Tournament/TournamentPage";
 import NotFound from "./components/404";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
@@ -33,7 +34,7 @@ function App(): React.JSX.Element {
 
       if (spotifyToken) {
         setToken(spotifyToken);
-        navigate("/home", { replace: true });
+        navigate("/home", { state: { token: spotifyToken }, replace: true });
       }
     }
   }, []);
@@ -50,7 +51,15 @@ function App(): React.JSX.Element {
           path="/home"
           element={
             <Protected isAllowed={!!token} redirect="/login">
-              <HomePage token={token} />
+              <HomePage />
+            </Protected>
+          }
+        />
+        <Route
+          path="/tournament"
+          element={
+            <Protected isAllowed={!!token} redirect="/login">
+              <TournamentPage />
             </Protected>
           }
         />

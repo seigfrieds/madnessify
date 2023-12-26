@@ -1,12 +1,7 @@
 import React, { useState, FormEvent, ChangeEvent, ReactElement } from "react";
-import type { Song } from "../../types";
-import MatchPage from "../Tournament/TournamentPage";
 import BracketParameterForm from "./BracketParameterForm/BracketParameterForm";
 import axios from "axios";
-
-type Props = {
-  token: string;
-};
+import { useNavigate, useLocation } from "react-router-dom";
 
 //durstenfeld shuffle: https://stackoverflow.com/a/12646864
 function shuffleArray(array: Array<any>): void {
@@ -16,20 +11,15 @@ function shuffleArray(array: Array<any>): void {
   }
 }
 
-export default function HomePage({ token }: Props): React.JSX.Element {
-  const [tracks, setTracks] = useState<null | Array<Song>>(null);
+export default function HomePage(): React.JSX.Element {
+  const { state } = useLocation();
+  const { token } = state;
   const [queryType, setQueryType] = useState(""); //top_tracks, playlist
-
-  const [error, setError] = useState<null | ReactElement>(null);
-
-  //global
   const [numTracks, setNumTracks] = useState(8);
-
-  //top tracks params
   const [timeFrame, setTimeFrame] = useState("short_term");
-
-  //playlist params
   const [playlistLink, setPlaylistLink] = useState("");
+  const [error, setError] = useState<null | ReactElement>(null);
+  const navigate = useNavigate();
 
   async function getTracks(token: string): Promise<void> {
     if (queryType === "top_tracks") {
@@ -45,7 +35,7 @@ export default function HomePage({ token }: Props): React.JSX.Element {
 
       shuffleArray(request.data.items);
 
-      setTracks(request.data.items);
+      return request.data.items;
     } else if (queryType === "playlist") {
       const PLAYLIST_ID = playlistLink.split("/playlist/")[1].split("?si=")[0];
 
@@ -101,7 +91,7 @@ export default function HomePage({ token }: Props): React.JSX.Element {
         for (let i = 0; i < numTracks; i++)
           chosenPlaylistTracks[i] = selectedSection.data.items[i].track;
 
-        setTracks(chosenPlaylistTracks);
+        return chosenPlaylistTracks as any;
       }
     }
   }
@@ -109,7 +99,7 @@ export default function HomePage({ token }: Props): React.JSX.Element {
   function handleSubmit(event: FormEvent): void {
     event.preventDefault();
 
-    getTracks(token);
+    getTracks(token).then((result) => navigate("/tournament", { state: { players: result } }));
   }
 
   function handlePlaylistLinkChange(event: ChangeEvent<HTMLInputElement>): void {
@@ -131,21 +121,14 @@ export default function HomePage({ token }: Props): React.JSX.Element {
 
   return (
     <>
-      {tracks === null ? (
-        <>
-          <BracketParameterForm
-            handleSubmit={handleSubmit}
-            handleQueryTypeChange={handleQueryTypeChange}
-            handleNumTracksChange={handleNumTracksChange}
-            handleTimeFrameChange={handleTimeFrameChange}
-            handlePlaylistLinkChange={handlePlaylistLinkChange}
-          />
-          {error !== null && error}
-          {console.log("Waiting for API...")}
-        </>
-      ) : (
-        <MatchPage players={tracks} />
-      )}
+      <BracketParameterForm
+        handleSubmit={handleSubmit}
+        handleQueryTypeChange={handleQueryTypeChange}
+        handleNumTracksChange={handleNumTracksChange}
+        handleTimeFrameChange={handleTimeFrameChange}
+        handlePlaylistLinkChange={handlePlaylistLinkChange}
+      />
+      {error !== null && error}
     </>
   );
 }

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Match from "./Match/Match";
-import VictoryPage from "../Victory/VictoryPage";
+import VictoryPage from "./Victory/VictoryPage";
 import { useRef } from "react";
 import "./TournamentPage.css";
 import { Song, MatchSet } from "../../types/index";
+import { useLocation } from "react-router-dom";
 
 type initializeBracketProps = {
   players: Array<Song>;
@@ -34,11 +35,10 @@ function initializeBracket({ players, handleClick }: initializeBracketProps): Ma
   return bracket;
 }
 
-type TournamentPageProps = {
-  players: Array<Song>;
-};
+function TournamentPage(): React.JSX.Element {
+  const { state } = useLocation();
+  const { players } = state;
 
-function TournamentPage({ players }: TournamentPageProps): React.JSX.Element {
   const [currMatchId, setCurrMatchId] = useState(0); //has to be in state -> will cause the rerenders
 
   const bracketRef = useRef(initializeBracket({ players, handleClick }));
