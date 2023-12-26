@@ -20,11 +20,6 @@ function Match({ matchId, trackOne, trackTwo, handleClick }: Props): React.JSX.E
         </button>
       </div>
 
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-
       <div className="player">
         <Player
           id={trackTwo?.id ?? "error"}
