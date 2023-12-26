@@ -2,6 +2,7 @@ import React, { useState, FormEvent, ChangeEvent, ReactElement } from "react";
 import BracketParameterForm from "./BracketParameterForm/BracketParameterForm";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Song } from "../../types";
 
 type QueryData = {
   query?: string;
@@ -89,11 +90,9 @@ export default function HomePage(): React.JSX.Element {
 
         shuffleArray(selectedSection.data.items);
 
-        const chosenPlaylistTracks = [];
-        for (let i = 0; i < numTracks; i++)
-          chosenPlaylistTracks[i] = selectedSection.data.items[i].track;
-
-        return chosenPlaylistTracks as any;
+        return selectedSection.data.items
+          .slice(0, numTracks)
+          .map((item: { track: Song }) => item.track);
       }
     }
   }
