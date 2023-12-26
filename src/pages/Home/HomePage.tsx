@@ -1,7 +1,7 @@
 import React, { useState, FormEvent, ChangeEvent, ReactElement } from "react";
 import type { Song } from "../../types";
 import MatchPage from "../Tournament/TournamentPage";
-import BracketParameterForm from "./components/BracketParameterForm";
+import BracketParameterForm from "./BracketParameterForm/BracketParameterForm";
 import axios from "axios";
 
 type Props = {

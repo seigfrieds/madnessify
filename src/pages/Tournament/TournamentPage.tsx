@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Match from "./components/Match.js";
-import VictoryPage from "../Victory/VictoryPage.js";
+import Match from "./Match/Match";
+import VictoryPage from "../Victory/VictoryPage";
 import { useRef } from "react";
 import "./TournamentPage.css";
 import { Song, MatchSet } from "../../types/index";
