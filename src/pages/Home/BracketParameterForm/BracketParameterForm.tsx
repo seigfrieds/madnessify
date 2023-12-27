@@ -17,7 +17,6 @@ function BracketParameterForm({ handleSubmit }: Props): React.JSX.Element {
       <form onSubmit={handleSubmit} id="theform">
         <div className="dropdown">
           <label htmlFor="query-select">Select where you want your songs to come from!</label>
-          <br></br>
           <select onChange={changeQuery} id="query-select" name="queryselect">
             <option value="" selected disabled hidden>
               Choose...
@@ -31,7 +30,6 @@ function BracketParameterForm({ handleSubmit }: Props): React.JSX.Element {
           <>
             <div className="dropdown">
               <label htmlFor="num-songs-select">Select the number of songs: </label>
-              <br></br>
               <select id="num-songs-select" name="numsongsselect">
                 <option selected value={8}>
                   Top 8 songs
@@ -43,7 +41,6 @@ function BracketParameterForm({ handleSubmit }: Props): React.JSX.Element {
 
             <div className="dropdown">
               <label htmlFor="time-frame-select">Select the time frame: </label>
-              <br></br>
               <select id="time-frame-select" name="timeframeselect">
                 <option selected value={"short_term"}>
                   Past 4 weeks
@@ -59,13 +56,11 @@ function BracketParameterForm({ handleSubmit }: Props): React.JSX.Element {
           <>
             <div id="playlist-prompt">
               <label htmlFor="playlist-prompt">Enter the link to your playlist:</label>
-              <br></br>
               <input type="text" id="playlist-box" name="playlistbox"></input>
             </div>
 
             <div className="dropdown">
               <label htmlFor="num-songs-select">Select the number of songs: </label>
-              <br></br>
               <select id="num-songs-select" name="numsongsselect">
                 <option selected value={8}>
                   8 random songs

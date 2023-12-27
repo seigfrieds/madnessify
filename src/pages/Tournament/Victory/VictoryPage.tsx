@@ -72,8 +72,6 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
       <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
         <h4>{winner.artists[0].name + " - " + winner.name}</h4>
       </a>
-      <br></br>
-      <br></br>
 
       <article id="container">
         <section id="round-of-16">

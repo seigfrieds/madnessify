@@ -27,7 +27,7 @@ export default function HomePage(): React.JSX.Element {
     }
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
     const target = event.currentTarget;
@@ -42,7 +42,7 @@ export default function HomePage(): React.JSX.Element {
     getTracks(token, data).then((result: any) => {
       if (result) navigate("/tournament", { state: { players: result } });
     });
-  }
+  };
 
   return <BracketParameterForm handleSubmit={handleSubmit} />;
 }

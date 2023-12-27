@@ -1,4 +1,5 @@
 import React from "react";
+import "./LoginPage.css";
 import { CONFIG } from "../../apiConfig";
 
 export default function LoginPage(): React.JSX.Element {
@@ -9,10 +10,8 @@ export default function LoginPage(): React.JSX.Element {
       <h2 id="app-hook">
         Create a single-elimination bracket tournament out of your favorite songs on Spotify!
       </h2>
-      <br />
 
       <iframe width="420" height="315" src="https://www.youtube.com/embed/IMyBgxkcuw4"></iframe>
-      <br></br>
 
       <a
         href={`${CONFIG.authEndpoint}?client_id=${CONFIG.clientId}&redirect_uri=${CONFIG.redirectUri}&response_type=${CONFIG.responseType}&scope=${CONFIG.scope}`}
@@ -20,9 +19,6 @@ export default function LoginPage(): React.JSX.Element {
       >
         Log in to Spotify!
       </a>
-      <br />
-      <br />
-      <br />
 
       <a
         id="github-link"
