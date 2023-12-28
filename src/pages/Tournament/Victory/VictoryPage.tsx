@@ -25,6 +25,8 @@ function roundToDivs(matchesInRound: MatchSet): React.JSX.Element[] {
         >
           {trackOne.name}
         </a>
+        <span className="bracket-line-vertical"></span>
+        <span className="bracket-line-horizontal"></span>
       </div>,
     );
 
