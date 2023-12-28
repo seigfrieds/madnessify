@@ -87,39 +87,16 @@ a {
 /*  DOES BIG MARGIN BETWEEN EACH PAIR 
     OF PLAYERS (i.e. a match!) */
 section > div:nth-child(2n) {
-  margin-bottom: 20px;
 }
 
-#round-of-16 > div:first-child {
-  margin-top: 0px;
-}
-#round-of-16 > div {
-  margin-top: 27px;
-}
-
-#round-of-8 > div:first-child {
-  margin-top: 34px;
-}
-#round-of-8 > div {
-  margin-top: 96px;
+#container > section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-#round-of-4 > div:first-child {
-  margin-top: 103px; /*distance of first child from top container*/
-}
-#round-of-4 > div {
-  margin-top: 235px; /*ditsance between each node in round*/
-}
-
-#final > div:first-child {
-  margin-top: 241px;
-}
-#final > div {
-  margin-top: 512px;
-}
-
-#winner-round > div {
-  margin-top: 420px;
+#container > span {
+  position: absolute;
 }
 
 #winner-display {
@@ -194,19 +171,3 @@ h4 {
   /*text color*/
   color: #ff0000;
 }
-
-/*#round-of-16{
-    background-color: gray;
-}
-#round-of-8{
-    background-color: aqua;
-}
-#round-of-4{
-    background-color: gray;
-}
-#final{
-    background-color: aqua;
-}
-#winner-round{
-    background-color: gray;
-}*/

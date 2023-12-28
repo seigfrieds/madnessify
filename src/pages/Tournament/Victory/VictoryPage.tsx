@@ -101,9 +101,6 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
         </section>
 
         <section id="winner-round">
-          <img id="spotify-logo" src={spotifyLogo}></img>
-          <h1 id="watermark">Madnessify</h1>
-          <p id="watermark-link">seigfrieds.github.io/madnessify</p>
           <div>
             <img
               src={winner.album.images[0] !== undefined && winner.album.images[0].url}
@@ -121,6 +118,12 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
             </a>
           </div>
         </section>
+
+        <span id="app-watermark">
+          <img id="spotify-logo" src={spotifyLogo}></img>
+          <h1 id="watermark">Madnessify</h1>
+          <p id="watermark-link">seigfrieds.github.io/madnessify</p>
+        </span>
       </article>
 
       <p id="spotify-logout-text">
