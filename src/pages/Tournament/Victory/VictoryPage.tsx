@@ -1,6 +1,6 @@
 import React from "react";
 import "./VictoryPage.css";
-import spotifyLogo from "../../../assets/Spotify_Logo_RGB_Black.png";
+import spotifyLogo from "../../../assets/Spotify_Logo_RGB_White.png";
 import { MatchSet } from "../../../types/index";
 
 function roundToDivs(matchesInRound: MatchSet): React.JSX.Element[] {
@@ -62,18 +62,20 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
 
   return (
     <div id="victory-page">
-      <h1 id="winner-display">Winner!</h1>
-      <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
-        <img
-          src={winner.album.images[0] !== undefined && winner.album.images[0].url}
-          alt={winner.name}
-          width="200"
-          height="200"
-        ></img>
-      </a>
-      <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
-        <h4>{winner.artists[0].name + " - " + winner.name}</h4>
-      </a>
+      <div id="winner-display">
+        <h1>Winner!</h1>
+        <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
+          <img
+            src={winner.album.images[0] !== undefined && winner.album.images[0].url}
+            alt={winner.name}
+            width="200"
+            height="200"
+          ></img>
+        </a>
+        <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
+          <h4>{winner.artists[0].name + " - " + winner.name}</h4>
+        </a>
+      </div>
 
       <article id="container">
         {bracket[bracket.length - 1].matchRound === 5 && (

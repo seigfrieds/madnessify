@@ -5,6 +5,9 @@
 
 #victory-page {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bracket-title {
@@ -13,8 +16,6 @@
 
 /*BRACKET CONTAINER*/
 #container {
-  background-color: rgb(245, 245, 245);
-
   padding: 20px;
 
   width: 1150px;
@@ -52,6 +53,7 @@ section > div {
 section > div img {
   height: 40px;
   width: 40px;
+  border: 1px solid rgb(155, 155, 155);
 }
 
 a {
@@ -65,20 +67,21 @@ a {
 /*SONG TITLE CONTAINER*/
 .songtitle {
   /*remove link decoration*/
-  color: black;
+  color: rgb(255, 255, 255);
 
   font-size: 80%;
 
   padding-left: 3px;
 
+  font-weight: bold;
+
   /*box stuff*/
   width: 176px;
   height: 20px;
-  border: 1px solid #000;
+  border: 1px solid #ffffff;
   border-top-right-radius: 1em;
   border-bottom-right-radius: 1em;
   border-left-width: 0px; /*album cover will have a border too -> remove borders doubling*/
-  background: #eee2e2;
 
   /*handle overflow*/
   text-overflow: ellipsis;
@@ -110,14 +113,14 @@ section > div:nth-child(2n) {
   position: absolute;
   right: 0px;
   top: 25px;
-  border-left: 1px solid black;
+  border-left: 1px solid rgb(255, 255, 255);
 }
 
 .bracket-line-horizontal {
   position: absolute;
   right: -10px;
   width: 10px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 #round-of-16 .bracket-line-horizontal {
@@ -156,7 +159,7 @@ section > div:nth-child(2n) {
   position: absolute;
 }
 
-#winner-display {
+#winner-display > h1 {
   color: rgb(254, 165, 0);
   text-align: center;
 }
@@ -175,6 +178,7 @@ h4 {
   text-shadow:
     #000000 1.5px 1.5px,
     /*3d text*/ rgb(255, 255, 255) 1px 0 7.5px /*glowy shadow*/;
+  text-wrap: wrap;
 }
 
 #spotify-logo {
@@ -183,8 +187,8 @@ h4 {
 }
 
 #watermark {
-  color: rgb(255, 38, 251);
-  text-shadow: rgb(131, 9, 206) 2px 2px;
+  color: white;
+  text-shadow: rgb(148, 148, 148) 2px 2px;
   margin-top: 10px;
   margin-bottom: 2px;
   font-size: 25px;
@@ -192,7 +196,7 @@ h4 {
 
 #watermark-link {
   font-size: 82%;
-  color: rgb(85, 85, 248);
+  color: rgb(163, 163, 255);
   text-decoration: underline;
 }
 
