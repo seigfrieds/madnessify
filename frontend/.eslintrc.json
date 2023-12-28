@@ -20,8 +20,7 @@
     ],
     "rules": {
         "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/no-explicit-any": "false",
-        "@typescript-eslint/no-implicit-any": "true"
+        "@typescript-eslint/no-explicit-any": "off"
     },
     "overrides": [
         {
