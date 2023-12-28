@@ -5,6 +5,9 @@
 
 #victory-page {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bracket-title {
@@ -13,13 +16,13 @@
 
 /*BRACKET CONTAINER*/
 #container {
-  border: 3px solid black;
-  background-color: rgb(245, 245, 245);
-
   padding: 20px;
 
-  width: 1080px;
-  height: 1080px;
+  width: 1150px;
+  height: 800px;
+
+  display: flex;
+  justify-content: center;
 }
 
 /*ROUND CONTAINER*/
@@ -27,7 +30,7 @@ section {
   width: 216px; /*one side of bracket will have at most 16 teams -> 
                     32 team bracket is 5 rounds (including "winner" round)
                     1080/5=216*/
-  height: 1080px;
+  height: 100%;
 
   float: left; /*sections (round) float left -> 
                     means they are side by side horizontally*/
@@ -48,27 +51,35 @@ section > div {
 section > div img {
   height: 40px;
   width: 40px;
+  border: 1px solid rgb(155, 155, 155);
 }
 
 a {
   text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
+  line-height: 20px;
 }
 
 /*SONG TITLE CONTAINER*/
 .songtitle {
   /*remove link decoration*/
-  color: black;
+  color: rgb(255, 255, 255);
 
   font-size: 80%;
 
   padding-left: 3px;
 
+  font-weight: bold;
+
   /*box stuff*/
   width: 176px;
   height: 20px;
-  border: 1px solid #000;
+  border: 1px solid #ffffff;
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
   border-left-width: 0px; /*album cover will have a border too -> remove borders doubling*/
-  background: #eee2e2;
 
   /*handle overflow*/
   text-overflow: ellipsis;
@@ -76,52 +87,87 @@ a {
   white-space: nowrap;
 
   /*keeping image and text (somewhat) clean*/
+  display: block;
+}
+
+#container > section {
+  padding-left: 5px;
+  padding-right: 5px;
   display: flex;
-  align-items: center;
-  word-break: break-word;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-/*  DOES BIG MARGIN BETWEEN EACH PAIR 
-    OF PLAYERS (i.e. a match!) */
-section > div:nth-child(2n) {
-  margin-bottom: 20px;
+#container > section > div {
+  position: relative;
 }
 
-#round-of-16 > div:first-child {
-  margin-top: 0px;
-}
-#round-of-16 > div {
-  margin-top: 27px;
-}
-
-#round-of-8 > div:first-child {
-  margin-top: 34px;
-}
-#round-of-8 > div {
-  margin-top: 96px;
+.bracket-line-vertical {
+  position: absolute;
+  right: 0px;
+  top: 25px;
+  border-left: 1px solid rgb(255, 255, 255);
 }
 
-#round-of-4 > div:first-child {
-  margin-top: 103px; /*distance of first child from top container*/
-}
-#round-of-4 > div {
-  margin-top: 235px; /*ditsance between each node in round*/
-}
-
-#final > div:first-child {
-  margin-top: 241px;
-}
-#final > div {
-  margin-top: 512px;
+.bracket-line-horizontal {
+  position: absolute;
+  right: -10px;
+  width: 10px;
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 
-#winner-round > div {
-  margin-top: 420px;
+#round-of-16 .bracket-line-horizontal {
+  top: 110%;
 }
 
-#winner-display {
+#round-of-8 .bracket-line-horizontal {
+  top: 170%;
+}
+
+#round-of-4 .bracket-line-horizontal {
+  top: 285%;
+}
+
+#final .bracket-line-horizontal {
+  top: 525%;
+}
+
+#round-of-16 .bracket-line-vertical {
+  height: 100%;
+}
+
+#round-of-8 .bracket-line-vertical {
+  height: 225%;
+}
+
+#round-of-4 .bracket-line-vertical {
+  height: 475%;
+}
+
+#final .bracket-line-vertical {
+  height: 950%;
+}
+
+#container > span {
+  position: absolute;
+}
+
+#winner-display > h1 {
   color: rgb(254, 165, 0);
   text-align: center;
+}
+
+#winner-round {
+  position: relative;
+}
+
+#app-watermark {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  top: 20px;
+  right: 20px;
 }
 
 h4 {
@@ -132,6 +178,7 @@ h4 {
   text-shadow:
     #000000 1.5px 1.5px,
     /*3d text*/ rgb(255, 255, 255) 1px 0 7.5px /*glowy shadow*/;
+  text-wrap: wrap;
 }
 
 #spotify-logo {
@@ -140,17 +187,18 @@ h4 {
 }
 
 #watermark {
-  color: rgb(255, 38, 251);
-  text-shadow: rgb(131, 9, 206) 2px 2px;
-  margin-top: 10px;
-  margin-bottom: 2px;
+  color: white;
+  text-shadow: rgb(148, 148, 148) 2px 2px;
+  margin: 0;
   font-size: 25px;
 }
 
 #watermark-link {
   font-size: 82%;
-  color: rgb(85, 85, 248);
+  color: rgb(163, 163, 255);
   text-decoration: underline;
+  margin: 0;
+  margin-top: 5px;
 }
 
 #spotify-logout-text {
@@ -191,19 +239,3 @@ h4 {
   /*text color*/
   color: #ff0000;
 }
-
-/*#round-of-16{
-    background-color: gray;
-}
-#round-of-8{
-    background-color: aqua;
-}
-#round-of-4{
-    background-color: gray;
-}
-#final{
-    background-color: aqua;
-}
-#winner-round{
-    background-color: gray;
-}*/

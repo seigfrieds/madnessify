@@ -1,6 +1,6 @@
 import React from "react";
 import "./VictoryPage.css";
-import spotifyLogo from "../../../assets/Spotify_Logo_RGB_Black.png";
+import spotifyLogo from "../../../assets/Spotify_Logo_RGB_White.png";
 import { MatchSet } from "../../../types/index";
 
 function roundToDivs(matchesInRound: MatchSet): React.JSX.Element[] {
@@ -25,6 +25,8 @@ function roundToDivs(matchesInRound: MatchSet): React.JSX.Element[] {
         >
           {trackOne.name}
         </a>
+        <span className="bracket-line-vertical"></span>
+        <span className="bracket-line-horizontal"></span>
       </div>,
     );
 
@@ -60,27 +62,29 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
 
   return (
     <div id="victory-page">
-      <h1 id="winner-display">Winner!</h1>
-      <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
-        <img
-          src={winner.album.images[0] !== undefined && winner.album.images[0].url}
-          alt={winner.name}
-          width="200"
-          height="200"
-        ></img>
-      </a>
-      <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
-        <h4>{winner.artists[0].name + " - " + winner.name}</h4>
-      </a>
-      <br></br>
-      <br></br>
+      <div id="winner-display">
+        <h1>Winner!</h1>
+        <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
+          <img
+            src={winner.album.images[0] !== undefined && winner.album.images[0].url}
+            alt={winner.name}
+            width="200"
+            height="200"
+          ></img>
+        </a>
+        <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
+          <h4>{winner.artists[0].name + " - " + winner.name}</h4>
+        </a>
+      </div>
 
       <article id="container">
-        <section id="round-of-16">
-          {roundToDivs(
-            bracket.filter((match) => numPlayers / Math.pow(2, match.matchRound - 1) === 16),
-          )}
-        </section>
+        {bracket[bracket.length - 1].matchRound === 5 && (
+          <section id="round-of-16">
+            {roundToDivs(
+              bracket.filter((match) => numPlayers / Math.pow(2, match.matchRound - 1) === 16),
+            )}
+          </section>
+        )}
 
         <section id="round-of-8">
           {roundToDivs(
@@ -101,9 +105,6 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
         </section>
 
         <section id="winner-round">
-          <img id="spotify-logo" src={spotifyLogo}></img>
-          <h1 id="watermark">Madnessify</h1>
-          <p id="watermark-link">seigfrieds.github.io/madnessify</p>
           <div>
             <img
               src={winner.album.images[0] !== undefined && winner.album.images[0].url}
@@ -120,6 +121,12 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
               {winner.name}
             </a>
           </div>
+
+          <span id="app-watermark">
+            <img id="spotify-logo" src={spotifyLogo}></img>
+            <h1 id="watermark">Madnessify</h1>
+            <p id="watermark-link">seigfrieds.github.io/madnessify</p>
+          </span>
         </section>
       </article>
 

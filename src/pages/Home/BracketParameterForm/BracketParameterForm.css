@@ -14,6 +14,7 @@ label {
   text-shadow:
     #414141 3px 3px,
     /*3d text*/ rgb(97, 97, 97) 1px 0 7.5px /*glowy shadow*/;
+  display: block;
 }
 
 #playlist-prompt {

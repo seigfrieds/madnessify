@@ -1,0 +1,69 @@
+.spotify-login-button {
+  display: flex;
+
+  width: 150px;
+  height: 50px;
+
+  /*button color*/
+  background-color: #0e640e;
+
+  /*text color*/
+  color: white;
+
+  /*round button*/
+  border-radius: 30px;
+
+  /*Padding around the text*/
+  padding: 10px 10px;
+
+  /*remove underline from href*/
+  text-decoration: none;
+
+  justify-content: center;
+  align-items: center;
+
+  /*shadow under button*/
+  box-shadow: 0 8px 1px 0 rgb(0, 0, 0, 0.5);
+
+  transition-duration: 0.2s;
+}
+
+.spotify-login-button:hover {
+  /*button color*/
+  background-color: white;
+
+  /*text color*/
+  color: #0e640e;
+}
+
+#home-page {
+  /*Center within screen*/
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  gap: 10px;
+}
+
+#app-title {
+  color: rgb(245, 8, 210);
+  text-shadow:
+    #3b0248 3px 3px,
+    /*3d text*/ rgb(247, 247, 247) 1px 0 7.5px /*glowy shadow*/;
+  margin: 0;
+}
+
+#app-hook {
+  color: white;
+  margin: 0;
+}
+
+#github-link {
+  color: lightblue;
+}
