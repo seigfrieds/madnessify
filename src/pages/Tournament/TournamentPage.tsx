@@ -1,8 +1,8 @@
 import React from "react";
-import VictoryPage from "./Victory/VictoryPage";
+import VictoryPage from "./components/Victory/VictoryPage";
 import "./TournamentPage.css";
 import { useLocation } from "react-router-dom";
-import { useBracket } from "./useBracket";
+import { useBracket } from "./hooks/useBracket";
 
 function TournamentPage(): React.JSX.Element {
   const { state } = useLocation();

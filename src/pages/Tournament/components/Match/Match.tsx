@@ -1,7 +1,7 @@
 import React from "react";
 import "./Match.css";
 import Player from "./Player/Player";
-import { Song } from "../../../types/index";
+import { Song } from "../../../../types";
 
 type Props = {
   matchId: number;

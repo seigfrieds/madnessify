@@ -1,7 +1,7 @@
 import React from "react";
-import { Song, MatchSet, MatchType } from "../../types";
+import { Song, MatchSet, MatchType } from "../../../types";
 import { useState, useRef } from "react";
-import Match from "./Match/Match";
+import Match from "../components/Match/Match";
 
 type initializeBracketProps = {
   players: Array<Song>;
