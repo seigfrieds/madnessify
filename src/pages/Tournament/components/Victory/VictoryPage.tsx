@@ -78,7 +78,7 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
       </div>
 
       <article id="container">
-        {bracket[bracket.length - 1].matchRound === 5 && (
+        {bracket.length >= 16 && (
           <section id="round-of-16">
             {roundToDivs(
               bracket.filter((match) => numPlayers / Math.pow(2, match.matchRound - 1) === 16),
