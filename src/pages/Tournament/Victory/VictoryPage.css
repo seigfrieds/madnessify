@@ -20,6 +20,9 @@
 
   width: 1080px;
   height: 1080px;
+
+  display: flex;
+  justify-content: center;
 }
 
 /*ROUND CONTAINER*/
