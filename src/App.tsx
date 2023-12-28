@@ -21,20 +21,20 @@ function Protected({ isAllowed, redirect, children }: ProtectedProps): React.Rea
 }
 
 function App(): React.JSX.Element {
-  const [token, setToken] = useState("");
+  const [spotifyToken, setSpotifyToken] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     if (window.location.hash) {
-      const spotifyToken = window.location.hash
+      const spotifyAuthToken = window.location.hash
         .substring(1)
         .split("&")
         .find((elem) => elem.startsWith("access_token"))
         ?.split("=")[1];
 
-      if (spotifyToken) {
-        setToken(spotifyToken);
-        navigate("/home", { state: { token: spotifyToken }, replace: true });
+      if (spotifyAuthToken) {
+        setSpotifyToken(spotifyAuthToken);
+        navigate("/home", { state: { spotifyToken: spotifyAuthToken }, replace: true });
       }
     }
   }, []);
@@ -50,7 +50,7 @@ function App(): React.JSX.Element {
         <Route
           path="/home"
           element={
-            <Protected isAllowed={!!token} redirect="/login">
+            <Protected isAllowed={!!spotifyToken} redirect="/login">
               <HomePage />
             </Protected>
           }
@@ -58,7 +58,7 @@ function App(): React.JSX.Element {
         <Route
           path="/tournament"
           element={
-            <Protected isAllowed={!!token} redirect="/login">
+            <Protected isAllowed={!!spotifyToken} redirect="/login">
               <TournamentPage />
             </Protected>
           }

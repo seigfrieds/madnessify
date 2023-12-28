@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FormEvent } from "react";
 import { getTopTracks, getPlaylistTracks } from "../services/spotifyService/spotifyService";
 
@@ -9,15 +9,15 @@ type QueryData = {
   playlistLink?: string;
 };
 
-export function useBracketParameterForm() {
-  const { state } = useLocation();
-  const { token } = state;
+export function useBracketParameterForm(token: string) {
   const navigate = useNavigate();
 
-  async function getTracks(
-    token: string,
-    { query, numTracks, timeFrame, playlistLink }: QueryData,
-  ): Promise<void> {
+  async function getTracks({
+    query,
+    numTracks,
+    timeFrame,
+    playlistLink,
+  }: QueryData): Promise<void> {
     switch (query) {
       case "top_tracks":
         return getTopTracks(token, numTracks, timeFrame);
@@ -38,7 +38,7 @@ export function useBracketParameterForm() {
       playlistLink: target.playlistbox?.value,
     };
 
-    getTracks(token, data).then((result: any) => {
+    getTracks(data).then((result: any) => {
       if (result) navigate("/tournament", { state: { players: result } });
     });
   };
