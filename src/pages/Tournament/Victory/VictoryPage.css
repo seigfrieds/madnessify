@@ -23,8 +23,6 @@
 
   display: flex;
   justify-content: center;
-
-  position: relative;
 }
 
 /*ROUND CONTAINER*/
@@ -162,6 +160,10 @@ section > div:nth-child(2n) {
 #winner-display > h1 {
   color: rgb(254, 165, 0);
   text-align: center;
+}
+
+#winner-round {
+  position: relative;
 }
 
 #app-watermark {

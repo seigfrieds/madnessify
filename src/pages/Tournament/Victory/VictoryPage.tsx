@@ -121,13 +121,13 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
               {winner.name}
             </a>
           </div>
-        </section>
 
-        <span id="app-watermark">
-          <img id="spotify-logo" src={spotifyLogo}></img>
-          <h1 id="watermark">Madnessify</h1>
-          <p id="watermark-link">seigfrieds.github.io/madnessify</p>
-        </span>
+          <span id="app-watermark">
+            <img id="spotify-logo" src={spotifyLogo}></img>
+            <h1 id="watermark">Madnessify</h1>
+            <p id="watermark-link">seigfrieds.github.io/madnessify</p>
+          </span>
+        </section>
       </article>
 
       <p id="spotify-logout-text">
