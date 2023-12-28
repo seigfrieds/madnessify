@@ -1,7 +1,7 @@
 import React, { FormEvent } from "react";
-import BracketParameterForm from "./BracketParameterForm/BracketParameterForm";
+import BracketParameterForm from "./components/BracketParameterForm/BracketParameterForm";
 import { useNavigate, useLocation } from "react-router-dom";
-import { getPlaylistTracks, getTopTracks } from "./spotifyService";
+import { getPlaylistTracks, getTopTracks } from "./services/spotifyService/spotifyService";
 
 type QueryData = {
   query?: string;

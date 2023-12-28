@@ -1,6 +1,6 @@
 import axios from "axios";
 import { shuffleArray } from "./shuffle";
-import { Song } from "../../types";
+import { Song } from "../../../../types";
 
 export async function getTopTracks(
   token: string,

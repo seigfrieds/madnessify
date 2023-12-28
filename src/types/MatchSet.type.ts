@@ -1,7 +1,5 @@
-type MatchSet = Array<{
-    matchRound: number;
-    matchComponent: React.JSX.Element;
-    matchWinnerId: string | null;
-}>;
+import { MatchType } from "./Match.type";
 
-export {MatchSet};
+type MatchSet = Array<MatchType>;
+
+export { MatchSet };
