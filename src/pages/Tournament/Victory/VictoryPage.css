@@ -92,7 +92,7 @@ section > div:nth-child(2n) {
 #container > section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 #container > span {
