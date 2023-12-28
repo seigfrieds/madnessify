@@ -1,12 +1,11 @@
 import React from "react";
 import BracketParameterForm from "./components/BracketParameterForm/BracketParameterForm";
-import { useBracketParameterForm } from "./hooks/useBracketParameterForm";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { handleSubmit } from "./HomePage.logic";
 
 export default function HomePage(): React.JSX.Element {
-  const { state } = useLocation();
-  const { spotifyToken } = state;
-  const [handleSubmit] = useBracketParameterForm(spotifyToken);
+  const { spotifyToken } = useLocation().state;
+  const navigate = useNavigate();
 
-  return <BracketParameterForm handleSubmit={handleSubmit} />;
+  return <BracketParameterForm handleSubmit={(e) => handleSubmit(e, spotifyToken, navigate)} />;
 }
