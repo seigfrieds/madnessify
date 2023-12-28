@@ -19,7 +19,7 @@
   padding: 20px;
 
   width: 1150px;
-  height: 1080px;
+  height: 800px;
 
   display: flex;
   justify-content: center;
@@ -32,7 +32,7 @@ section {
   width: 216px; /*one side of bracket will have at most 16 teams -> 
                     32 team bracket is 5 rounds (including "winner" round)
                     1080/5=216*/
-  height: 1080px;
+  height: 100%;
 
   float: left; /*sections (round) float left -> 
                     means they are side by side horizontally*/
@@ -124,35 +124,35 @@ section > div:nth-child(2n) {
 }
 
 #round-of-16 .bracket-line-horizontal {
-  top: 125%;
+  top: 110%;
 }
 
 #round-of-8 .bracket-line-horizontal {
-  top: 210%;
+  top: 170%;
 }
 
 #round-of-4 .bracket-line-horizontal {
-  top: 370%;
+  top: 285%;
 }
 
 #final .bracket-line-horizontal {
-  top: 690%;
+  top: 525%;
 }
 
 #round-of-16 .bracket-line-vertical {
-  height: calc(150%);
+  height: 100%;
 }
 
 #round-of-8 .bracket-line-vertical {
-  height: calc(315%);
+  height: 225%;
 }
 
 #round-of-4 .bracket-line-vertical {
-  height: calc(635%);
+  height: 475%;
 }
 
 #final .bracket-line-vertical {
-  height: calc(1275%);
+  height: 950%;
 }
 
 #container > span {
