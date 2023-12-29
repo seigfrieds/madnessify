@@ -1,6 +1,5 @@
 import React from "react";
 import "./LoginPage.css";
-import { CONFIG } from "../../apiConfig";
 
 export default function LoginPage(): React.JSX.Element {
   return (
@@ -13,12 +12,15 @@ export default function LoginPage(): React.JSX.Element {
 
       <iframe width="420" height="315" src="https://www.youtube.com/embed/IMyBgxkcuw4"></iframe>
 
-      <a
-        href={`${CONFIG.authEndpoint}?client_id=${CONFIG.clientId}&redirect_uri=${CONFIG.redirectUri}&response_type=${CONFIG.responseType}&scope=${CONFIG.scope}`}
+      <button
         className="spotify-login-button"
+        onClick={async () => {
+          const res = await fetch("http://localhost:3005/oauth/login", { redirect: "manual" });
+          window.location.replace(res.url);
+        }}
       >
         Log in to Spotify!
-      </a>
+      </button>
 
       <a
         id="github-link"
