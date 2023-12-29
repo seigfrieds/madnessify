@@ -5,6 +5,7 @@ import HomePage from "./pages/Home/HomePage";
 import TournamentPage from "./pages/Tournament/TournamentPage";
 import NotFound from "./components/404";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 type ProtectedProps = {
   isAllowed: boolean;
@@ -22,33 +23,18 @@ function Protected({ isAllowed, redirect, children }: ProtectedProps): React.Rea
 
 function App(): React.JSX.Element {
   const [spotifyToken, setSpotifyToken] = useState("");
+  const [cookies] = useCookies(["spotifyToken"]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (window.location.hash) {
-      const spotifyAuthToken = window.location.hash
-        .substring(1)
-        .split("&")
-        .find((elem) => elem.startsWith("access_token"))
-        ?.split("=")[1];
-
-      if (spotifyAuthToken) {
-        setSpotifyToken(spotifyAuthToken);
-        navigate("/home", { state: { spotifyToken: spotifyAuthToken }, replace: true });
-      }
+    if (cookies.spotifyToken) {
+      setSpotifyToken(cookies.spotifyToken);
+      navigate("/home", { state: { spotifyToken: cookies.spotifyToken }, replace: true });
     }
   }, []);
 
   return (
     <>
-      <button
-        onClick={async () => {
-          const res = await fetch("http://localhost:3005/oauth", { redirect: "manual" });
-          window.location.replace(res.url);
-        }}
-      >
-        AUTH
-      </button>
       <Routes>
         {/** Public routes */}
         <Route path="/" element={<Navigate to="/login" replace />}></Route>
