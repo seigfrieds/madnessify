@@ -1,6 +1,5 @@
 import React from "react";
 import "./LoginPage.css";
-import { CONFIG } from "../../apiConfig";
 
 export default function LoginPage(): React.JSX.Element {
   return (
