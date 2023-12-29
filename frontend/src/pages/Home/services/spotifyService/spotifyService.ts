@@ -62,7 +62,7 @@ export async function getPlaylistTracks(
   }
 }
 
-async function getPlaylistSize(token: string, playlistId: string) {
+async function getPlaylistSize(token: string, playlistId: string): Promise<any> {
   const req = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, {
     headers: {
       Authorization: "Bearer " + token,
