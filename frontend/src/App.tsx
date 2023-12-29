@@ -37,19 +37,18 @@ function App(): React.JSX.Element {
         navigate("/home", { state: { spotifyToken: spotifyAuthToken }, replace: true });
       }
     }
-
-    fetch("http://localhost:3005/api")
-      .then((response) => {
-        console.log(response);
-        return response.text();
-      })
-      .then((data) => {
-        console.log(data);
-      });
   }, []);
 
   return (
     <>
+      <button
+        onClick={async () => {
+          const res = await fetch("http://localhost:3005/oauth", { redirect: "manual" });
+          window.location.replace(res.url);
+        }}
+      >
+        AUTH
+      </button>
       <Routes>
         {/** Public routes */}
         <Route path="/" element={<Navigate to="/login" replace />}></Route>
