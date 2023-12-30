@@ -47,11 +47,9 @@ router.get("/callback", (req, res) => {
 
     request.post(authOptions, (err, response, body) => {
       if (!err && response.statusCode === 200) {
-        const access_token = body.access_token;
-        const refresh_token = body.refresh_token;
+        const tokenTime = 1000 * 60 * 60; //1000 milliseconds * 60 seconds * 60 minutes = 1 hour
 
-        res.cookie("spotifyToken", access_token);
-        res.cookie("refreshToken", refresh_token);
+        res.cookie("spotifyToken", body.access_token, { maxAge: tokenTime });
 
         res.redirect(`${client_redirect}`);
       } else {
