@@ -2,18 +2,31 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import authRouter from "./routes/oauth.routes.js";
+import pool from "./db.js";
 
 dotenv.config();
 
 const port = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
+app.use(express.json()); //get req.body
 
 //routes
 app.use("/oauth", authRouter);
 
 app.get("/api", (req, res) => {
   res.send("HELLO!");
+});
+
+app.post("/api", async (req, res) => {
+  try {
+    const { id } = req.body;
+    const query = await pool.query("INSERT INTO usr (id) VALUES ($1)", [id]);
+
+    res.json(query);
+  } catch (err) {
+    console.log(err.message);
+  }
 });
 
 //listen for requests
