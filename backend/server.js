@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import authRouter from "./routes/oauth.routes.js";
 import bracketRouter from "./routes/bracket.routes.js";
+import resultRouter from "./routes/result.routes.js";
 import pool from "./db.js";
 
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(express.json()); //get req.body
 //routes
 app.use("/oauth", authRouter);
 app.use("/api/bracket", bracketRouter);
+app.use("/api/result", resultRouter);
 
 app.get("/api", (req, res) => {
   res.send("HELLO!");
