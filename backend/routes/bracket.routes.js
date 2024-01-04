@@ -1,78 +1,248 @@
 import express from "express";
+import pool from "../db.js";
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
-  res.json({ msg: "Created a bracket" });
+router.post("/", async (req, res) => {
+  try {
+    const { userId, bracket, title, description } = req.body;
+
+    const result = await pool.query(
+      "INSERT INTO bracket (user_id, bracket, title, description, created_at) " +
+        "VALUES($1, $2, $3, $4, now()) RETURNING *",
+      [userId, JSON.stringify(bracket), title, description]
+    );
+
+    res.status(200).json(result.rows[0]);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
 router
   .route("/:id")
-  .get((req, res) => {
-    const { id } = req.params;
-    res.json({ msg: `Getting bracket ${id}` });
+  .get(async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const result = await pool.query("SELECT * FROM bracket WHERE id = $1", [id]);
+
+      if (result.rowCount === 0) {
+        return res.status(404).json({ message: "Bracket not found!" });
+      }
+
+      res.status(200).json(result.rows[0]);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   })
-  .delete((req, res) => {
-    const { id } = req.params;
-    res.json({ msg: `Deleting bracket ${id}` });
+  .delete(async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const result = await pool.query("DELETE FROM bracket WHERE id = $1", [id]);
+
+      if (result.rowCount === 0) {
+        return res.status(404).json({ message: "Bracket not found!" });
+      }
+
+      res.status(200).json({ message: `Deleting result ${id}` });
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   })
-  .patch((req, res) => {
-    const { id } = req.params;
-    res.json({ msg: `Updating bracket ${id}` });
+  .patch(async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { title, description } = req.body;
+
+      const result = await pool.query(
+        "UPDATE bracket SET title = $1, description = $2 WHERE id = $3 RETURNING *",
+        [title, description, id]
+      );
+
+      if (result.rowCount === 0) {
+        return res.status(404).json({ message: "Bracket not found!" });
+      }
+
+      res.status(200).json(result.rows[0]);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   });
 
 router
-  .route("/:bracketid/likes")
-  .post((req, res) => {
-    const { bracketid } = req.params;
-    res.json({ msg: `Creating a like on bracket ${bracketid}` });
+  .route("/:bracketId/likes")
+  .post(async (req, res) => {
+    try {
+      const { bracketId } = req.params;
+      const { userId } = req.body;
+
+      const result = await pool.query(
+        "INSERT INTO bracket_like (user_id, bracket_id, liked_at) " +
+          "VALUES($1, $2, now()) RETURNING *",
+        [userId, bracketId]
+      );
+
+      res.status(200).json(result.rows[0]);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   })
-  .get((req, res) => {
-    const { bracketid } = req.params;
-    res.json({ msg: `Getting all likes on bracket ${bracketid}` });
+  .get(async (req, res) => {
+    try {
+      const { bracketId } = req.params;
+
+      //note: returns [] for non existent brackets
+      const result = await pool.query("SELECT * FROM bracket_like WHERE bracket_id = $1", [
+        bracketId,
+      ]);
+
+      res.status(200).json(result.rows);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   });
 
-router.delete("/:bracketid/likes/:userid", (req, res) => {
-  const { bracketid, userid } = req.params;
-  res.json({ msg: `Deleting ${userid}'s like on bracket ${bracketid}` });
+router.delete("/:bracketId/likes/:userId", async (req, res) => {
+  try {
+    const { bracketId, userId } = req.params;
+
+    const result = await pool.query(
+      "DELETE FROM bracket_like WHERE bracket_id = $1 AND user_id = $2",
+      [bracketId, userId]
+    );
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ msg: "That like did not exist" });
+    }
+
+    res.status(200).json({ msg: `Deleting like from user ${userId} on bracket ${bracketId}` });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
 router
-  .route("/:bracketid/saves")
-  .post((req, res) => {
-    const { bracketid } = req.params;
-    res.json({ msg: `Creating a save on bracket ${bracketid}` });
+  .route("/:bracketId/saves")
+  .post(async (req, res) => {
+    try {
+      const { bracketId } = req.params;
+      const { userId } = req.body;
+
+      const result = await pool.query(
+        "INSERT INTO bracket_save (user_id, bracket_id, saved_at) " +
+          "VALUES($1, $2, now()) RETURNING *",
+        [userId, bracketId]
+      );
+
+      res.status(200).json(result.rows[0]);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   })
-  .get((req, res) => {
-    const { bracketid } = req.params;
-    res.json({ msg: `Getting all saves on bracket ${bracketid}` });
+  .get(async (req, res) => {
+    try {
+      const { bracketId } = req.params;
+
+      //note: returns [] for non existent brackets
+      const result = await pool.query("SELECT * FROM bracket_save WHERE bracket_id = $1", [
+        bracketId,
+      ]);
+
+      res.status(200).json(result.rows);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   });
 
-router.delete("/:bracketid/saves/:userid", (req, res) => {
-  const { bracketid, userid } = req.params;
-  res.json({ msg: `Deleting ${userid}'s save on bracket ${bracketid}` });
+router.delete("/:bracketId/saves/:userId", async (req, res) => {
+  try {
+    const { bracketId, userId } = req.params;
+
+    const result = await pool.query(
+      "DELETE FROM bracket_save WHERE bracket_id = $1 AND user_id = $2",
+      [bracketId, userId]
+    );
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ msg: "That save did not exist" });
+    }
+
+    res.status(200).json({ msg: `Deleting save from user ${userId} on bracket ${bracketId}` });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
 router
-  .route("/:bracketid/comments")
-  .post((req, res) => {
-    const { bracketid } = req.params;
-    res.json({ msg: `Creating a comment on bracket ${bracketid}` });
+  .route("/:bracketId/comments")
+  .post(async (req, res) => {
+    try {
+      const { bracketId } = req.params;
+      const { parentId, userId, comment } = req.body;
+
+      const result = await pool.query(
+        "INSERT INTO bracket_comment (parent_id, user_id, bracket_id, comment, commented_at) " +
+          "VALUES($1, $2, $3, $4, now()) RETURNING *",
+        [parentId, userId, bracketId, comment]
+      );
+
+      res.status(200).json(result.rows[0]);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   })
-  .get((req, res) => {
-    const { bracketid } = req.params;
-    res.json({ msg: `Getting all comments on bracket ${bracketid}` });
+  .get(async (req, res) => {
+    try {
+      const { bracketId } = req.params;
+
+      //note: returns [] for non existent brackets
+      const result = await pool.query("SELECT * FROM bracket_comment WHERE bracket_id = $1", [
+        bracketId,
+      ]);
+
+      res.status(200).json(result.rows);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   });
 
 router
-  .route("/:bracketid/comments/:commentid")
-  .delete((req, res) => {
-    const { bracketid, commentid } = req.params;
-    res.json({ msg: `Deleting comment ${commentid} on bracket ${bracketid}` });
+  .route("/:bracketId/comments/:commentId")
+  .delete(async (req, res) => {
+    try {
+      const { bracketId, commentId } = req.params;
+
+      const result = await pool.query("DELETE FROM bracket_comment WHERE id = $1", [commentId]);
+
+      if (result.rowCount === 0) {
+        return res.status(404).json({ msg: "That comment did not exist" });
+      }
+
+      res.status(200).json({ msg: `Deleting comment ${commentId} on bracket ${bracketId}` });
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   })
-  .patch((req, res) => {
-    const { bracketid, commentid } = req.params;
-    res.json({ msg: `Updating comment ${commentid} on bracket ${bracketid}` });
+  .patch(async (req, res) => {
+    try {
+      const { commentId } = req.params;
+      const { comment } = req.body;
+
+      const result = await pool.query(
+        "UPDATE bracket_comment SET comment = $1 WHERE id = $2 RETURNING *",
+        [comment, commentId]
+      );
+
+      if (result.rowCount === 0) {
+        return res.status(404).json({ message: "Comment not found" });
+      }
+
+      res.json(result.rows[0]);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   });
 
 export default router;
