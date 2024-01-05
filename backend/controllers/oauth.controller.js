@@ -50,7 +50,7 @@ const callback = (req, res) => {
         const session = uuidv4();
         const token = jwt.sign({ session: session }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-        redis.set(session, body.access_token);
+        redis.setex(session, 60 * 60, body.access_token);
 
         res.cookie("madnessifySession", token, {
           httpOnly: true,
