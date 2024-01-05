@@ -15,7 +15,9 @@ export default function LoginPage(): React.JSX.Element {
       <button
         className="spotify-login-button"
         onClick={async () => {
-          const res = await fetch("http://localhost:3005/oauth/login", { redirect: "manual" });
+          const res = await fetch(`${import.meta.env.VITE_API_URL}/oauth/login`, {
+            redirect: "manual",
+          });
           window.location.replace(res.url);
         }}
       >

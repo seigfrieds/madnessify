@@ -5,7 +5,7 @@ import HomePage from "./pages/Home/HomePage";
 import TournamentPage from "./pages/Tournament/TournamentPage";
 import NotFound from "./components/404";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import axios from "axios";
 
 type ProtectedProps = {
   isAllowed: boolean;
@@ -22,15 +22,28 @@ function Protected({ isAllowed, redirect, children }: ProtectedProps): React.Rea
 }
 
 function App(): React.JSX.Element {
-  const [spotifyToken, setSpotifyToken] = useState("");
-  const [cookies] = useCookies(["spotifyToken"]);
+  const [isAuth, setIsAuth] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (cookies.spotifyToken) {
-      setSpotifyToken(cookies.spotifyToken);
-      navigate("/home", { state: { spotifyToken: cookies.spotifyToken }, replace: true });
-    }
+    const checkAuth = async (): Promise<void> => {
+      let succeeded = false;
+
+      await axios
+        .get(`${import.meta.env.VITE_API_URL}/oauth/check`, { withCredentials: true })
+        .then((res) => {
+          if (res.status === 200) {
+            succeeded = true;
+            setIsAuth(true);
+          }
+        });
+
+      if (succeeded) {
+        navigate("/home", { replace: true });
+      }
+    };
+
+    checkAuth();
   }, []);
 
   return (
@@ -44,7 +57,7 @@ function App(): React.JSX.Element {
         <Route
           path="/home"
           element={
-            <Protected isAllowed={!!spotifyToken} redirect="/login">
+            <Protected isAllowed={!!isAuth} redirect="/login">
               <HomePage />
             </Protected>
           }
@@ -52,7 +65,7 @@ function App(): React.JSX.Element {
         <Route
           path="/tournament"
           element={
-            <Protected isAllowed={!!spotifyToken} redirect="/login">
+            <Protected isAllowed={!!isAuth} redirect="/login">
               <TournamentPage />
             </Protected>
           }

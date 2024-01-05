@@ -69,4 +69,14 @@ const callback = (req, res) => {
   }
 };
 
-export { login, callback };
+const check = (req, res) => {
+  const madnessifyJwt = req.cookies.madnessifySession;
+
+  if (madnessifyJwt) {
+    return res.sendStatus(200);
+  }
+
+  res.sendStatus(401);
+};
+
+export { login, callback, check };
