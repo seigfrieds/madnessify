@@ -1,5 +1,8 @@
 import crypto from "crypto";
 import request from "request";
+import redis from "../redis.js";
+import { v4 as uuidv4 } from "uuid";
+import jwt from "jsonwebtoken";
 
 const generateRandomString = (length) => {
   return crypto.randomBytes(60).toString("hex").slice(0, length);
@@ -44,9 +47,19 @@ const callback = (req, res) => {
 
     request.post(authOptions, (err, response, body) => {
       if (!err && response.statusCode === 200) {
-        const tokenTime = 1000 * 60 * 60; //1000 milliseconds * 60 seconds * 60 minutes = 1 hour
+        const session = uuidv4();
+        const token = jwt.sign({ session: session }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-        res.cookie("spotifyToken", body.access_token, { maxAge: tokenTime });
+        redis.set(session, body.access_token);
+
+        res.cookie("madnessifySession", token, {
+          httpOnly: true,
+          sameSite: "lax",
+          maxAge: 1000 * 60 * 60, //1000ms * 60s * 60m = 1h
+          //secure: true,
+          //signed: true,
+        });
+        res.cookie("spotifyToken", body.access_token, { maxAge: 1000 * 60 * 60 });
 
         res.redirect(`${client_redirect}`);
       } else {

@@ -5,12 +5,14 @@ import authRouter from "./routes/oauth.routes.js";
 import bracketRouter from "./routes/bracket.routes.js";
 import resultRouter from "./routes/result.routes.js";
 import userRouter from "./routes/user.routes.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 const port = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json()); //get req.body
 
 //routes
