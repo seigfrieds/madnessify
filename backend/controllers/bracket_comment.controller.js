@@ -6,8 +6,8 @@ const createBracketComment = async (req, res) => {
     const { parentId, userId, comment } = req.body;
 
     const result = await pool.query(
-      "INSERT INTO bracket_comment (parent_id, user_id, bracket_id, comment, commented_at) " +
-        "VALUES($1, $2, $3, $4, now()) RETURNING *",
+      "INSERT INTO bracket_comment (parent_id, user_id, bracket_id, is_deleted, comment, commented_at) " +
+        "VALUES($1, $2, $3, false, $4, now()) RETURNING *",
       [parentId, userId, bracketId, comment]
     );
 
