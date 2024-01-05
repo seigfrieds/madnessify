@@ -1,24 +1,10 @@
 import express from "express";
+import { createUser, deleteUser, getUser } from "../controllers/user.controller.js";
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
-  res.json({ msg: "Creating a user" });
-});
+router.post("/", createUser);
 
-router
-  .route("/:id")
-  .get((req, res) => {
-    const { id } = req.params;
-    res.json({ msg: `Getting user ${id}` });
-  })
-  .delete((req, res) => {
-    const { id } = req.params;
-    res.json({ msg: `Deleting user ${id}` });
-  })
-  .patch((req, res) => {
-    const { id } = req.params;
-    res.json({ msg: `Updating user ${id}` });
-  });
+router.route("/:id").get(getUser).delete(deleteUser);
 
 export default router;

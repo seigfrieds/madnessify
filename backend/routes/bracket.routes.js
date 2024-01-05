@@ -1,78 +1,43 @@
 import express from "express";
+import {
+  createBracket,
+  deleteBracket,
+  getBracket,
+  updateBracket,
+} from "../controllers/bracket.controller.js";
+import {
+  createBracketLike,
+  deleteBracketLike,
+  getBracketLikes,
+} from "../controllers/bracket_like.controller.js";
+import {
+  createBracketSave,
+  deleteBracketSave,
+  getBracketSaves,
+} from "../controllers/bracket_save.controller.js";
+import {
+  createBracketComment,
+  deleteBracketComment,
+  getBracketComments,
+  updateBracketComment,
+} from "../controllers/bracket_comment.controller.js";
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
-  res.json({ msg: "Created a bracket" });
-});
+router.post("/", createBracket);
 
+router.route("/:id").get(getBracket).delete(deleteBracket).patch(updateBracket);
+
+router.route("/:bracketId/likes").post(createBracketLike).get(getBracketLikes);
+router.delete("/:bracketId/likes/:userId", deleteBracketLike);
+
+router.route("/:bracketId/saves").post(createBracketSave).get(getBracketSaves);
+router.delete("/:bracketId/saves/:userId", deleteBracketSave);
+
+router.route("/:bracketId/comments").post(createBracketComment).get(getBracketComments);
 router
-  .route("/:id")
-  .get((req, res) => {
-    const { id } = req.params;
-    res.json({ msg: `Getting bracket ${id}` });
-  })
-  .delete((req, res) => {
-    const { id } = req.params;
-    res.json({ msg: `Deleting bracket ${id}` });
-  })
-  .patch((req, res) => {
-    const { id } = req.params;
-    res.json({ msg: `Updating bracket ${id}` });
-  });
-
-router
-  .route("/:bracketid/likes")
-  .post((req, res) => {
-    const { bracketid } = req.params;
-    res.json({ msg: `Creating a like on bracket ${bracketid}` });
-  })
-  .get((req, res) => {
-    const { bracketid } = req.params;
-    res.json({ msg: `Getting all likes on bracket ${bracketid}` });
-  });
-
-router.delete("/:bracketid/likes/:userid", (req, res) => {
-  const { bracketid, userid } = req.params;
-  res.json({ msg: `Deleting ${userid}'s like on bracket ${bracketid}` });
-});
-
-router
-  .route("/:bracketid/saves")
-  .post((req, res) => {
-    const { bracketid } = req.params;
-    res.json({ msg: `Creating a save on bracket ${bracketid}` });
-  })
-  .get((req, res) => {
-    const { bracketid } = req.params;
-    res.json({ msg: `Getting all saves on bracket ${bracketid}` });
-  });
-
-router.delete("/:bracketid/saves/:userid", (req, res) => {
-  const { bracketid, userid } = req.params;
-  res.json({ msg: `Deleting ${userid}'s save on bracket ${bracketid}` });
-});
-
-router
-  .route("/:bracketid/comments")
-  .post((req, res) => {
-    const { bracketid } = req.params;
-    res.json({ msg: `Creating a comment on bracket ${bracketid}` });
-  })
-  .get((req, res) => {
-    const { bracketid } = req.params;
-    res.json({ msg: `Getting all comments on bracket ${bracketid}` });
-  });
-
-router
-  .route("/:bracketid/comments/:commentid")
-  .delete((req, res) => {
-    const { bracketid, commentid } = req.params;
-    res.json({ msg: `Deleting comment ${commentid} on bracket ${bracketid}` });
-  })
-  .patch((req, res) => {
-    const { bracketid, commentid } = req.params;
-    res.json({ msg: `Updating comment ${commentid} on bracket ${bracketid}` });
-  });
+  .route("/:bracketId/comments/:commentId")
+  .delete(deleteBracketComment)
+  .patch(updateBracketComment);
 
 export default router;
