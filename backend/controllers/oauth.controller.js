@@ -59,7 +59,6 @@ const callback = (req, res) => {
           //secure: true,
           //signed: true,
         });
-        res.cookie("spotifyToken", body.access_token, { maxAge: 1000 * 60 * 60 });
 
         res.redirect(`${client_redirect}`);
       } else {
