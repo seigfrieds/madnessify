@@ -48,14 +48,4 @@ const callback = (req, res) => {
   }
 };
 
-const check = (req, res) => {
-  const sessionCookie = req.cookies.madnessifySession;
-
-  if (sessionCookie) {
-    return res.sendStatus(200);
-  }
-
-  res.sendStatus(401);
-};
-
-export { login, callback, check };
+export { login, callback };

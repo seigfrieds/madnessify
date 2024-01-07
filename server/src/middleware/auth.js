@@ -11,12 +11,7 @@ const auth = async (req, res, next) => {
   jwt.verify(sessionCookie, process.env.JWT_SECRET, async (err, payload) => {
     if (err) {
       res.clearCookie("madnessifySession");
-
-      if (err.name === "TokenExpiredError") {
-        return res.status(401).json({ message: "Token expired. Reauthenticate!" });
-      }
-
-      return res.status(400).json({ message: err.message });
+      return res.status(401).json({ message: err.message });
     }
 
     const validSession = await cache.get(payload.session);
@@ -25,8 +20,10 @@ const auth = async (req, res, next) => {
       req.session = payload.session;
       next();
       return;
+    } else {
+      res.clearCookie("madnessifySession");
+      return res.status(401).json({ message: "Unauthorized" });
     }
-    return res.status(401).json({ message: "Unauthorized" });
   });
 };
 
