@@ -8,7 +8,7 @@ const auth = async (req, res, next) => {
     return res.status(400).json({ message: "Bad Request" });
   }
 
-  jwt.verify(sessionCookie, process.env.JWT_SECRET, async (err, decoded) => {
+  jwt.verify(sessionCookie, process.env.JWT_SECRET, async (err, payload) => {
     if (err) {
       res.clearCookie("madnessifySession");
 
@@ -16,14 +16,13 @@ const auth = async (req, res, next) => {
         return res.status(401).json({ message: "Unauthenticated" });
       }
 
-      //JsonWebTokenError
-      return res.status(400).json({ message: "Bad Request" });
+      return res.status(400).json({ message: err.message });
     }
 
-    const validSession = await cache.get(decoded.session);
+    const validSession = await cache.get(payload.session);
 
     if (validSession) {
-      req.session = decoded.session;
+      req.session = payload.session;
       next();
       return;
     }
