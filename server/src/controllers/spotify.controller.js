@@ -1,13 +1,7 @@
 import axios from "axios";
 import cache from "../redis.js";
-
-//durstenfeld shuffle: https://stackoverflow.com/a/12646864
-const shuffleArray = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-};
+import shuffleArray from "../../utils/shuffleArray.js";
+import getPlaylistSize from "../../helpers/getPlaylistSize.js";
 
 const getTopTracks = async (req, res) => {
   const accessToken = await cache.get(req.session);
@@ -67,19 +61,6 @@ const getPlaylistTracks = async (req, res) => {
         .json(selectedSection.data.items.slice(0, numTracks).map((item) => item.track));
     }
   }
-};
-
-const getPlaylistSize = async (token, playlistId) => {
-  const req = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-    params: {
-      fields: "tracks",
-    },
-  });
-
-  return req.data.tracks.total;
 };
 
 export { getTopTracks, getPlaylistTracks };
