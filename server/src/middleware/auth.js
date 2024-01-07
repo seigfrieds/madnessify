@@ -13,7 +13,7 @@ const auth = async (req, res, next) => {
       res.clearCookie("madnessifySession");
 
       if (err.name === "TokenExpiredError") {
-        return res.status(401).json({ message: "Unauthenticated" });
+        return res.status(401).json({ message: "Token expired. Reauthenticate!" });
       }
 
       return res.status(400).json({ message: err.message });
