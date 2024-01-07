@@ -1,12 +1,8 @@
-import crypto from "crypto";
+import generateRandomString from "../../utils/generateRandomString.js";
 import request from "request";
 import cache from "../redis.js";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
-
-const generateRandomString = (length) => {
-  return crypto.randomBytes(60).toString("hex").slice(0, length);
-};
 
 const login = (req, res) => {
   const state = generateRandomString(16);
