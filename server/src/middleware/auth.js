@@ -14,6 +14,7 @@ const auth = async (req, res, next) => {
       return res.status(401).json({ message: err.message });
     }
 
+    //check if session uuid is in the cache
     const validSession = await cache.get(payload.session);
 
     if (validSession) {
