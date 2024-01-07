@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import request from "request";
-import redis from "../redis.js";
+import cache from "../redis.js";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 
@@ -50,7 +50,7 @@ const callback = (req, res) => {
         const session = uuidv4();
         const token = jwt.sign({ session: session }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-        redis.setex(session, 60 * 60, body.access_token);
+        cache.setex(session, 60 * 60, body.access_token);
 
         res.cookie("madnessifySession", token, {
           httpOnly: true,

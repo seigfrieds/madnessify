@@ -1,5 +1,5 @@
 import axios from "axios";
-import redis from "../redis.js";
+import cache from "../redis.js";
 
 //durstenfeld shuffle: https://stackoverflow.com/a/12646864
 const shuffleArray = (array) => {
@@ -10,7 +10,7 @@ const shuffleArray = (array) => {
 };
 
 const getTopTracks = async (req, res) => {
-  const accessToken = await redis.get(req.session);
+  const accessToken = await cache.get(req.session);
   const numTracks = req.query.numTracks;
   const timeFrame = req.query.timeFrame;
 
@@ -32,7 +32,7 @@ const getTopTracks = async (req, res) => {
 };
 
 const getPlaylistTracks = async (req, res) => {
-  const accessToken = await redis.get(req.session);
+  const accessToken = await cache.get(req.session);
   const numTracks = req.query.numTracks;
   const playlistLink = req.query.playlistLink;
 

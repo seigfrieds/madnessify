@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import redis from "../redis.js";
+import cache from "../redis.js";
 
 const auth = async (req, res, next) => {
   const madnessifyJwt = req.cookies.madnessifySession;
@@ -22,7 +22,7 @@ const auth = async (req, res, next) => {
 
     const session = decoded.session;
 
-    const validSession = await redis.get(session);
+    const validSession = await cache.get(session);
 
     if (validSession) {
       req.session = session;
