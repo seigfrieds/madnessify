@@ -1,3 +1,5 @@
+//Connects to Postgres Database
+
 import pg from "pg";
 import dotenv from "dotenv";
 

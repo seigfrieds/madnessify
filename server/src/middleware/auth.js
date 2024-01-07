@@ -1,31 +1,28 @@
 import jwt from "jsonwebtoken";
-import redis from "../redis.js";
+import cache from "../redis.js";
 
 const auth = async (req, res, next) => {
-  const madnessifyJwt = req.cookies.madnessifySession;
+  const sessionCookie = req.cookies.madnessifySession;
 
-  if (!madnessifyJwt) {
+  if (!sessionCookie) {
     return res.status(400).json({ message: "Bad Request" });
   }
 
-  jwt.verify(madnessifyJwt, process.env.JWT_SECRET, async (err, decoded) => {
+  jwt.verify(sessionCookie, process.env.JWT_SECRET, async (err, payload) => {
     if (err) {
       res.clearCookie("madnessifySession");
 
       if (err.name === "TokenExpiredError") {
-        return res.status(401).json({ message: "Unauthenticated" });
+        return res.status(401).json({ message: "Token expired. Reauthenticate!" });
       }
 
-      //JsonWebTokenError
-      return res.status(400).json({ message: "Bad Request" });
+      return res.status(400).json({ message: err.message });
     }
 
-    const session = decoded.session;
-
-    const validSession = await redis.get(session);
+    const validSession = await cache.get(payload.session);
 
     if (validSession) {
-      req.session = session;
+      req.session = payload.session;
       next();
       return;
     }

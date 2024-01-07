@@ -1,16 +1,10 @@
 import axios from "axios";
-import redis from "../redis.js";
-
-//durstenfeld shuffle: https://stackoverflow.com/a/12646864
-const shuffleArray = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-};
+import cache from "../redis.js";
+import shuffleArray from "../../utils/shuffleArray.js";
+import getPlaylistSize from "../../helpers/getPlaylistSize.js";
 
 const getTopTracks = async (req, res) => {
-  const accessToken = await redis.get(req.session);
+  const accessToken = await cache.get(req.session);
   const numTracks = req.query.numTracks;
   const timeFrame = req.query.timeFrame;
 
@@ -32,7 +26,7 @@ const getTopTracks = async (req, res) => {
 };
 
 const getPlaylistTracks = async (req, res) => {
-  const accessToken = await redis.get(req.session);
+  const accessToken = await cache.get(req.session);
   const numTracks = req.query.numTracks;
   const playlistLink = req.query.playlistLink;
 
@@ -67,19 +61,6 @@ const getPlaylistTracks = async (req, res) => {
         .json(selectedSection.data.items.slice(0, numTracks).map((item) => item.track));
     }
   }
-};
-
-const getPlaylistSize = async (token, playlistId) => {
-  const req = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-    params: {
-      fields: "tracks",
-    },
-  });
-
-  return req.data.tracks.total;
 };
 
 export { getTopTracks, getPlaylistTracks };
