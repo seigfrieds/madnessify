@@ -49,9 +49,9 @@ const callback = (req, res) => {
 };
 
 const check = (req, res) => {
-  const madnessifyJwt = req.cookies.madnessifySession;
+  const sessionCookie = req.cookies.madnessifySession;
 
-  if (madnessifyJwt) {
+  if (sessionCookie) {
     return res.sendStatus(200);
   }
 
