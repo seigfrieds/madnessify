@@ -1,5 +1,5 @@
-import generateRandomString from "../../utils/generateRandomString.js";
-import exchangeAuthCodeForTokenRequest from "../../helpers/exchangeAuthCodeForTokenRequest.js";
+import generateRandomString from "../utils/generateRandomString.js";
+import exchangeAuthCodeForTokenRequest from "../helpers/exchangeAuthCodeForTokenRequest.js";
 import request from "request";
 import cache from "../redis.js";
 import { v4 as uuidv4 } from "uuid";

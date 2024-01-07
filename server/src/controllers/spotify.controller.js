@@ -1,7 +1,7 @@
 import axios from "axios";
 import cache from "../redis.js";
-import shuffleArray from "../../utils/shuffleArray.js";
-import getPlaylistSize from "../../helpers/getPlaylistSize.js";
+import shuffleArray from "../utils/shuffleArray.js";
+import getPlaylistSize from "../helpers/getPlaylistSize.js";
 
 const getTopTracks = async (req, res) => {
   const accessToken = await cache.get(req.session);
