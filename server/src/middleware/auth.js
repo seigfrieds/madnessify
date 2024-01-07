@@ -2,13 +2,13 @@ import jwt from "jsonwebtoken";
 import cache from "../redis.js";
 
 const auth = async (req, res, next) => {
-  const madnessifyJwt = req.cookies.madnessifySession;
+  const sessionCookie = req.cookies.madnessifySession;
 
-  if (!madnessifyJwt) {
+  if (!sessionCookie) {
     return res.status(400).json({ message: "Bad Request" });
   }
 
-  jwt.verify(madnessifyJwt, process.env.JWT_SECRET, async (err, decoded) => {
+  jwt.verify(sessionCookie, process.env.JWT_SECRET, async (err, decoded) => {
     if (err) {
       res.clearCookie("madnessifySession");
 
@@ -20,12 +20,10 @@ const auth = async (req, res, next) => {
       return res.status(400).json({ message: "Bad Request" });
     }
 
-    const session = decoded.session;
-
-    const validSession = await cache.get(session);
+    const validSession = await cache.get(decoded.session);
 
     if (validSession) {
-      req.session = session;
+      req.session = decoded.session;
       next();
       return;
     }
