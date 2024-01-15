@@ -1,5 +1,18 @@
 import axios from "axios";
 
+export async function searchTracks(query: string | undefined): Promise<void> {
+  if (query) {
+    const tracks = await axios.get(`${import.meta.env.VITE_API_URL}/spotify/searchTracks`, {
+      withCredentials: true,
+      params: {
+        search: query,
+      },
+    });
+
+    return tracks.data;
+  }
+}
+
 export async function getTopTracks(
   numTracks: number | undefined,
   timeFrame: string | undefined,

@@ -1,3 +1,4 @@
+import { searchTracks } from "../../services/spotifyService";
 import "./BracketParameterForm.css";
 import React, { useState } from "react";
 
@@ -12,6 +13,10 @@ function BracketParameterForm({ handleSubmit }: Props): React.JSX.Element {
     setCurrQuery(event.target.value);
   }
 
+  function onSearchChange(event: React.ChangeEvent<HTMLInputElement>): void {
+    console.log(searchTracks(event.target.value));
+  }
+
   return (
     <div className="FormScreen">
       <form onSubmit={handleSubmit} id="theform">
@@ -23,6 +28,8 @@ function BracketParameterForm({ handleSubmit }: Props): React.JSX.Element {
             </option>
             <option value={"top_tracks"}>Top Tracks</option>
             <option value={"playlist"}>Playlist</option>
+            <option value={"custom_album"}>Search for Albums</option>
+            <option value={"custom_tracks"}>Search for Tracks</option>
           </select>
         </div>
 
@@ -54,8 +61,8 @@ function BracketParameterForm({ handleSubmit }: Props): React.JSX.Element {
 
         {currQuery === "playlist" && (
           <>
-            <div id="playlist-prompt">
-              <label htmlFor="playlist-prompt">Enter the link to your playlist:</label>
+            <div id="prompt">
+              <label htmlFor="prompt">Enter the link to your playlist:</label>
               <input type="text" id="playlist-box" name="playlistbox"></input>
             </div>
 
@@ -69,6 +76,21 @@ function BracketParameterForm({ handleSubmit }: Props): React.JSX.Element {
                 <option value={32}>32 random songs</option>
               </select>
             </div>
+          </>
+        )}
+
+        {currQuery === "custom_tracks" && (
+          <>
+            <div id="prompt">
+              <label htmlFor="prompt">Search for a track:</label>
+              <input
+                type="text"
+                id="playlist-box"
+                name="playlistbox"
+                onChange={onSearchChange}
+              ></input>
+            </div>
+            <ul></ul>
           </>
         )}
 
