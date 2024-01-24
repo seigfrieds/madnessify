@@ -4,6 +4,7 @@ label {
     #414141 3px 3px,
     /*3d text*/ rgb(97, 97, 97) 1px 0 7.5px /*glowy shadow*/;
   display: block;
+  font-size: 24px;
 }
 
 ul {
@@ -34,6 +35,8 @@ ul > li:nth-child(2n) {
 
   list-style-type: none;
 
+  display: block;
+
   padding: 0;
   margin: 0;
 
@@ -43,5 +46,9 @@ ul > li:nth-child(2n) {
   overflow: hidden;
 
   position: absolute;
-  top: 65px;
+  top: 32px;
+}
+
+.hidden {
+  display: none !important;
 }
