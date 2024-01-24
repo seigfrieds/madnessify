@@ -13,6 +13,19 @@ export async function searchTracks(query: string | undefined): Promise<void> {
   }
 }
 
+export async function searchAlbums(query: string | undefined): Promise<void> {
+  if (query) {
+    const albums = await axios.get(`${import.meta.env.VITE_API_URL}/spotify/searchAlbums`, {
+      withCredentials: true,
+      params: {
+        search: query,
+      },
+    });
+
+    return albums.data;
+  }
+}
+
 export async function getTopTracks(
   numTracks: number | undefined,
   timeFrame: string | undefined,

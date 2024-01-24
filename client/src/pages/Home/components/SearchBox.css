@@ -1,0 +1,47 @@
+label {
+  color: rgb(255, 255, 255);
+  text-shadow:
+    #414141 3px 3px,
+    /*3d text*/ rgb(97, 97, 97) 1px 0 7.5px /*glowy shadow*/;
+  display: block;
+}
+
+ul {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+ul > li:nth-child(2n) {
+  background-color: rgb(161, 161, 161);
+}
+
+#prompt {
+  padding: 10px;
+  margin: 10px;
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#playlist-box {
+  width: 100%;
+}
+
+#search-results {
+  background-color: rgb(199, 199, 199);
+
+  list-style-type: none;
+
+  padding: 0;
+  margin: 0;
+
+  width: 100%;
+  text-align: left;
+
+  overflow: hidden;
+
+  position: absolute;
+  top: 65px;
+}

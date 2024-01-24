@@ -1,6 +1,7 @@
-import { searchTracks } from "../../services/spotifyService";
+import { searchTracks, searchAlbums } from "../../services/spotifyService";
 import "./BracketParameterForm.css";
 import React, { useState } from "react";
+import SearchBox from "../SearchBox";
 
 type Props = {
   handleSubmit: React.FormEventHandler<HTMLFormElement>;
@@ -11,10 +12,6 @@ function BracketParameterForm({ handleSubmit }: Props): React.JSX.Element {
 
   function changeQuery(event: React.ChangeEvent<HTMLSelectElement>): void {
     setCurrQuery(event.target.value);
-  }
-
-  function onSearchChange(event: React.ChangeEvent<HTMLInputElement>): void {
-    console.log(searchTracks(event.target.value));
   }
 
   return (
@@ -79,18 +76,21 @@ function BracketParameterForm({ handleSubmit }: Props): React.JSX.Element {
           </>
         )}
 
+        {currQuery === "custom_album" && (
+          <>
+            <SearchBox
+              searchFnc={searchAlbums}
+              mapFnc={(item) => <li key={item.id}>{item.artist + " - " + item.name}</li>}
+            ></SearchBox>
+          </>
+        )}
+
         {currQuery === "custom_tracks" && (
           <>
-            <div id="prompt">
-              <label htmlFor="prompt">Search for a track:</label>
-              <input
-                type="text"
-                id="playlist-box"
-                name="playlistbox"
-                onChange={onSearchChange}
-              ></input>
-            </div>
-            <ul></ul>
+            <SearchBox
+              searchFnc={searchTracks}
+              mapFnc={(item) => <li key={item.id}>{item.artist + " - " + item.name}</li>}
+            ></SearchBox>
           </>
         )}
 
