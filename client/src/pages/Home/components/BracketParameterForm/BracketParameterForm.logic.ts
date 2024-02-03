@@ -1,4 +1,4 @@
-import { getTopTracks, getPlaylistTracks } from "./services/spotifyService";
+import { getTopTracks, getPlaylistTracks } from "../../services/spotifyService";
 import { FormEvent } from "react";
 import { NavigateFunction } from "react-router-dom";
 
@@ -34,6 +34,7 @@ export const handleSubmit = (
   };
 
   getTracks(query).then((result: any) => {
+    console.log(result);
     if (result) navigate("/tournament", { state: { players: result } });
   });
 };

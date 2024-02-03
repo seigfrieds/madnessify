@@ -1,14 +1,13 @@
 import { searchTracks, searchAlbums } from "../../services/spotifyService";
+import { handleSubmit } from "./BracketParameterForm.logic";
 import "./BracketParameterForm.css";
 import React, { useState } from "react";
 import SearchBox from "../SearchBox";
+import { useNavigate } from "react-router-dom";
 
-type Props = {
-  handleSubmit: React.FormEventHandler<HTMLFormElement>;
-};
-
-function BracketParameterForm({ handleSubmit }: Props): React.JSX.Element {
+function BracketParameterForm(): React.JSX.Element {
   const [currQuery, setCurrQuery] = useState("");
+  const navigate = useNavigate();
 
   function changeQuery(event: React.ChangeEvent<HTMLSelectElement>): void {
     setCurrQuery(event.target.value);
@@ -16,7 +15,7 @@ function BracketParameterForm({ handleSubmit }: Props): React.JSX.Element {
 
   return (
     <div className="FormScreen">
-      <form onSubmit={handleSubmit} id="theform">
+      <form onSubmit={(e) => handleSubmit(e, navigate)} id="theform">
         <div className="dropdown">
           <label htmlFor="query-select">Select where you want your songs to come from!</label>
           <select onChange={changeQuery} id="query-select" name="queryselect">
