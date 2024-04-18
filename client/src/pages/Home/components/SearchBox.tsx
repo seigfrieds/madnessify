@@ -1,28 +1,15 @@
+import List from "./List";
 import "./SearchBox.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 type Props = {
-  searchFnc: (query: string) => Promise<void>;
-  mapFnc: (item: any) => React.ReactElement;
+  onChange: (...args: any[]) => any;
 };
 
-function SearchBox({ searchFnc, mapFnc }: Props): React.JSX.Element {
-  const [searchResults, setSearchResults] = useState(null);
+function SearchBox({ onChange }: Props): React.JSX.Element {
   const inputRef = useRef<HTMLInputElement>(null);
   const promptRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLInputElement>(null);
-
-  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const query = e.target.value;
-
-    if (query.length === 0) {
-      setSearchResults(null);
-    } else {
-      searchFnc(e.target.value).then((res) => {
-        setSearchResults(res);
-      });
-    }
-  };
 
   const handleClickOnSearch = (e: React.MouseEvent<HTMLElement>): void => {
     const clickedInSearchBox = inputRef.current?.contains(e.target as HTMLElement);
@@ -61,11 +48,8 @@ function SearchBox({ searchFnc, mapFnc }: Props): React.JSX.Element {
           type="text"
           id="playlist-box"
           name="playlistbox"
-          onChange={onSearchChange}
+          onChange={onChange}
         ></input>
-        <ul ref={resultsRef} id="search-results">
-          {searchResults != null && searchResults.map(mapFnc)}
-        </ul>
       </div>
     </>
     //

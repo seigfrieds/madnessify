@@ -18,13 +18,7 @@ const searchTracks = async (req, res) => {
     },
   });
 
-  res.status(200).json(
-    spotifyApi.data.tracks.items.map((track) => ({
-      artist: track.artists[0].name,
-      name: track.name,
-      id: track.id,
-    }))
-  );
+  res.status(200).json(spotifyApi.data.tracks.items);
 };
 
 const searchAlbums = async (req, res) => {
@@ -44,7 +38,7 @@ const searchAlbums = async (req, res) => {
 
   res.status(200).json(
     spotifyApi.data.albums.items.map((album) => ({
-      artist: album.artists[0].name,
+      artists: album.artists,
       name: album.name,
       id: album.id,
     }))

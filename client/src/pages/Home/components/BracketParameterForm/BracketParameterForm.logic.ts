@@ -15,6 +15,8 @@ async function getTracks({ query, numTracks, timeFrame, playlistLink }: QueryDat
       return getTopTracks(numTracks, timeFrame);
     case "playlist":
       return getPlaylistTracks(numTracks, playlistLink);
+    case "custom_tracks":
+      break;
   }
 }
 
