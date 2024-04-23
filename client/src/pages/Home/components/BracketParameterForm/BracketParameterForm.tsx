@@ -18,7 +18,7 @@ function BracketParameterForm(): React.JSX.Element {
   const [tracks, setTracks] = useState<Song[]>([]);
   const [timeFrame, setTimeFrame] = useState("short_term");
   const [playlistLink, setPlaylistLink] = useState("");
-  const [numTracks, setNumTracks] = useState<number>(8);
+  const [numTracks, setNumTracks] = useState<number>(-1);
   const navigate = useNavigate();
 
   const onInputChange = (
@@ -36,10 +36,14 @@ function BracketParameterForm(): React.JSX.Element {
     }
   };
 
+  useEffect(() => {
+    console.log(tracks);
+  }, [tracks]);
+
   const onItemClick = (e: React.MouseEvent): void => {
     const song = e.currentTarget.getAttribute("value");
 
-    setTracks((prev) => [...prev, song]);
+    setTracks((prev) => [...prev, JSON.parse(song)]);
   };
 
   function changeQuery(event: React.ChangeEvent<HTMLSelectElement>): void {
@@ -55,6 +59,7 @@ function BracketParameterForm(): React.JSX.Element {
   };
 
   useEffect(() => {
+    console.log("currQuery changed");
     setNumTracks(8);
     setTimeFrame("short_term");
     setPlaylistLink("");
@@ -62,6 +67,7 @@ function BracketParameterForm(): React.JSX.Element {
   }, [currQuery]);
 
   useEffect(() => {
+    console.log("numTracks/timeFrame changed (top_tracks)");
     const fetchAPI = async (): Promise<void> => {
       getTopTracks(numTracks, timeFrame).then((result: any) => {
         setTracks(result);
@@ -74,6 +80,7 @@ function BracketParameterForm(): React.JSX.Element {
   }, [numTracks, timeFrame]);
 
   useEffect(() => {
+    console.log("numTracks/playlistLink changed (playlist)");
     const fetchAPI = async (): Promise<void> => {
       getPlaylistTracks(numTracks, playlistLink).then((result: any) => {
         setTracks(result);
@@ -87,20 +94,20 @@ function BracketParameterForm(): React.JSX.Element {
 
   return (
     <div className="FormScreen">
-      <form onSubmit={(e) => onSubmit(e)} id="theform">
-        <div className="dropdown">
-          <label htmlFor="query-select">Select where you want your songs to come from!</label>
-          <select onChange={changeQuery} id="query-select" name="queryselect">
-            <option value="" selected disabled hidden>
-              Choose...
-            </option>
-            <option value={"top_tracks"}>Top Tracks</option>
-            <option value={"playlist"}>Playlist</option>
-            <option value={"custom_album"}>Search for Albums</option>
-            <option value={"custom_tracks"}>Search for Tracks</option>
-          </select>
-        </div>
+      <div className="dropdown">
+        <label htmlFor="query-select">Select where you want your songs to come from!</label>
+        <select onChange={changeQuery} id="query-select" name="queryselect">
+          <option value="" selected disabled hidden>
+            Choose...
+          </option>
+          <option value={"top_tracks"}>Top Tracks</option>
+          <option value={"playlist"}>Playlist</option>
+          <option value={"custom_tracks"}>Search for Tracks</option>
+          <option value={"custom_album"}>Search for Albums</option>
+        </select>
+      </div>
 
+      <form onSubmit={(e) => onSubmit(e)} id="theform">
         {currQuery === "top_tracks" && (
           <>
             <div className="dropdown">
@@ -176,16 +183,16 @@ function BracketParameterForm(): React.JSX.Element {
           </>
         )}
 
-        {currQuery === "custom_album" && (
+        {currQuery === "custom_tracks" && (
           <>
-            <SearchBox onChange={(e) => onInputChange(e, searchAlbums)}></SearchBox>
+            <SearchBox onChange={(e) => onInputChange(e, searchTracks)}></SearchBox>
             <List items={searchResults} onItemClick={onItemClick} />
           </>
         )}
 
-        {currQuery === "custom_tracks" && (
+        {currQuery === "custom_album" && (
           <>
-            <SearchBox onChange={(e) => onInputChange(e, searchTracks)}></SearchBox>
+            <SearchBox onChange={(e) => onInputChange(e, searchAlbums)}></SearchBox>
             <List items={searchResults} onItemClick={onItemClick} />
           </>
         )}

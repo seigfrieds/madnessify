@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import VictoryPage from "./components/Victory/VictoryPage";
 import "./TournamentPage.css";
 import { useLocation } from "react-router-dom";
@@ -8,6 +8,10 @@ function TournamentPage(): React.JSX.Element {
   const { state } = useLocation();
   const { players } = state;
   const [bracket, currMatchId] = useBracket(players);
+
+  useEffect(() => {
+    console.log(bracket);
+  }, [bracket]);
 
   return (
     <>
