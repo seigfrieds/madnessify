@@ -1,12 +1,17 @@
 .FormScreen {
   /*center within screen*/
-  position: absolute;
+  /* position: absolute;
   left: 50%;
   top: 50%;
   text-align: center;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 
-  background-color: #2d2d2d;
+  margin-top: 35vh;
+
+  align-items: center;
+
+  display: flex;
+  flex-direction: column;
 }
 
 label {
@@ -17,6 +22,37 @@ label {
   display: block;
 }
 
+.tracks-display {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  border: 1px solid magenta;
+
+  height: 40px;
+}
+
+.track > img {
+  height: 100%;
+}
+
+.track > p {
+  margin-left: 5px;
+  color: white;
+  border: 1px solid black;
+}
+
+.track > button {
+  margin-left: auto;
+  width: 40px;
+  height: 100%;
+  border: 1px solid red;
+}
+
 #prompt {
   padding: 10px;
   margin: 10px;
@@ -24,6 +60,7 @@ label {
   display: flex;
   flex-direction: column;
   position: relative;
+  width: 100%;
 }
 
 #playlist-box {
@@ -41,7 +78,13 @@ label {
 .dropdown {
   padding: 10px;
   margin: 10px;
+  margin-top: 0px;
+  padding-top: 0px;
   font-size: 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #submit-button {
@@ -58,4 +101,10 @@ label {
   background-color: aliceblue;
   color: green;
   box-shadow: 0 11px 0px 0 rgb(0, 0, 0, 0.5);
+}
+
+#theform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
