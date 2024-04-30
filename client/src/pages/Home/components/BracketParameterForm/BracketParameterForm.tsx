@@ -54,7 +54,9 @@ function BracketParameterForm(): React.JSX.Element {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (tracks?.length > 0) {
+    if (tracks?.length !== 8 && tracks?.length !== 16 && tracks?.length !== 32) {
+      window.alert("Error! You must select either 8, 16, or 32 tracks!");
+    } else {
       navigate("/tournament", { state: { players: tracks } });
     }
   };
