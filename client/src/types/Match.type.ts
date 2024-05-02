@@ -1,6 +1,10 @@
+import { Song } from "./Song.type";
+
 type MatchType = {
   matchRound: number;
-  matchComponent: React.JSX.Element;
+  matchId: number;
+  trackOne: Song | null;
+  trackTwo: Song | null;
   matchWinnerId: string | null;
 };
 

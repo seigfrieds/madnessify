@@ -10,23 +10,23 @@ type VictoryPageProps = {
 };
 
 function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
-  const winner = bracket[bracket.length - 1].matchComponent.props.trackOne;
+  const winner = bracket[bracket.length - 1].trackOne;
   const numPlayers = bracket.length;
 
   return (
     <div id="victory-page">
       <div id="winner-display">
         <h1>Winner!</h1>
-        <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
+        <a href={`https://open.spotify.com/track/${winner?.id}`} target="_blank" rel="noreferrer">
           <img
-            src={winner.album.images[0] !== undefined && winner.album.images[0].url}
-            alt={winner.name}
+            src={winner?.album.images[0] !== undefined ? winner.album.images[0].url : undefined}
+            alt={winner?.name}
             width="200"
             height="200"
           ></img>
         </a>
-        <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
-          <h4>{winner.artists[0].name + " - " + winner.name}</h4>
+        <a href={`https://open.spotify.com/track/${winner?.id}`} target="_blank" rel="noreferrer">
+          <h4>{winner?.artists[0].name + " - " + winner?.name}</h4>
         </a>
       </div>
 
@@ -60,18 +60,18 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
         <section id="winner-round">
           <div>
             <img
-              src={winner.album.images[0] !== undefined && winner.album.images[0].url}
-              alt={winner.name}
+              src={winner?.album.images[0] !== undefined ? winner.album.images[0].url : undefined}
+              alt={winner?.name}
               width="40"
               height="40"
             ></img>
             <a
               className="songtitle"
-              href={`https://open.spotify.com/track/${winner.id}`}
+              href={`https://open.spotify.com/track/${winner?.id}`}
               target="_blank"
               rel="noreferrer"
             >
-              {winner.name}
+              {winner?.name}
             </a>
           </div>
 
@@ -95,9 +95,9 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
           const sanitizedBracket = bracket.map((match) => {
             return {
               matchRound: match.matchRound,
-              matchId: match.matchComponent.props.matchId,
-              trackOne: match.matchComponent.props.trackOne,
-              trackTwo: match.matchComponent.props.trackTwo,
+              matchId: match.matchId,
+              trackOne: match.trackOne,
+              trackTwo: match.trackTwo,
               matchWinnerId: match.matchWinnerId,
             };
           });
