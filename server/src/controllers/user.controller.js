@@ -2,7 +2,9 @@ import pool from "../db.js";
 
 const createUser = async (req, res) => {
   try {
-    const result = await pool.query("INSERT INTO usr DEFAULT VALUES RETURNING *", []);
+    const { userId } = req.body;
+
+    const result = await pool.query("INSERT INTO usr (id) VALUES ($1) RETURNING *", [userId]);
 
     res.status(200).json(result.rows[0]);
   } catch (err) {

@@ -3,6 +3,7 @@ import "./VictoryPage.css";
 import spotifyLogo from "../../../../assets/Spotify_Logo_RGB_White.png";
 import { MatchSet } from "../../../../types";
 import { roundToDivs } from "./VictoryPage.logic";
+import axios from "axios";
 
 type VictoryPageProps = {
   bracket: MatchSet;
@@ -88,6 +89,30 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
       <a href="https://www.spotify.com/account/apps/" id="spotify-logout-button">
         Log out
       </a>
+
+      <button
+        onClick={() => {
+          const sanitizedBracket = bracket.map((match) => {
+            return {
+              matchRound: match.matchRound,
+              matchId: match.matchComponent.props.matchId,
+              trackOne: match.matchComponent.props.trackOne,
+              trackTwo: match.matchComponent.props.trackTwo,
+              matchWinnerId: match.matchWinnerId,
+            };
+          });
+          const postBracket = async (): Promise<void> => {
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/bracket`, {
+              userId: `${import.meta.env.VITE_TEMP_USER_ID}`,
+              bracket: sanitizedBracket,
+            });
+          };
+
+          postBracket();
+        }}
+      >
+        Post Bracket
+      </button>
     </div>
   );
 }
