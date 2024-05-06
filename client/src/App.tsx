@@ -7,6 +7,7 @@ import NotFound from "./components/404";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "./components/Header/Header.tsx";
+import Result from "./pages/Result/Result";
 
 type ProtectedProps = {
   isAllowed: boolean;
@@ -53,6 +54,7 @@ function App(): React.JSX.Element {
         {/** Public routes */}
         <Route path="/" element={<Navigate to="/login" replace />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/result/:resultId" element={<Result />}></Route>
 
         {/** Private routes */}
         <Route
