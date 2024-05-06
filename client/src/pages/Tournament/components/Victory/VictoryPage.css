@@ -175,9 +175,6 @@ h4 {
   font-size: 150%;
   padding: -10px;
   color: rgb(229, 221, 2);
-  text-shadow:
-    #000000 1.5px 1.5px,
-    /*3d text*/ rgb(255, 255, 255) 1px 0 7.5px /*glowy shadow*/;
   text-wrap: wrap;
 }
 

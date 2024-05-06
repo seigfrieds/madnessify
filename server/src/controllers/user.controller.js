@@ -2,9 +2,12 @@ import pool from "../db.js";
 
 const createUser = async (req, res) => {
   try {
-    const { userId } = req.body;
+    const { userId, displayName, imageUrl } = req.body;
 
-    const result = await pool.query("INSERT INTO usr (id) VALUES ($1) RETURNING *", [userId]);
+    const result = await pool.query(
+      "INSERT INTO usr (id, display_name, image_url) VALUES ($1, $2, $3) RETURNING *",
+      [userId, displayName, imageUrl]
+    );
 
     res.status(200).json(result.rows[0]);
   } catch (err) {
