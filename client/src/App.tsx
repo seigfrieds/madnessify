@@ -6,6 +6,7 @@ import TournamentPage from "./pages/Tournament/TournamentPage";
 import NotFound from "./components/404";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Header from "./components/Header/Header.tsx";
 
 type ProtectedProps = {
   isAllowed: boolean;
@@ -58,6 +59,7 @@ function App(): React.JSX.Element {
           path="/home"
           element={
             <Protected isAllowed={!!isAuth} redirect="/login">
+              <Header />
               <HomePage />
             </Protected>
           }
@@ -66,6 +68,7 @@ function App(): React.JSX.Element {
           path="/tournament"
           element={
             <Protected isAllowed={!!isAuth} redirect="/login">
+              <Header />
               <TournamentPage />
             </Protected>
           }

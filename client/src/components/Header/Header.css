@@ -1,0 +1,19 @@
+.header-bar {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  gap: 20px;
+}
+
+.header-bar > p {
+  color: white;
+}
+
+.user-picture {
+  object-fit: cover;
+  border: 1px solid white;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}

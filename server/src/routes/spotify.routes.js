@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  getUserProfile,
   getTopTracks,
   getPlaylistTracks,
   searchTracks,
@@ -8,6 +9,7 @@ import {
 
 const router = express.Router();
 
+router.get("/getUserProfile", getUserProfile);
 router.get("/getTopTracks", getTopTracks);
 router.get("/getPlaylistTracks", getPlaylistTracks);
 router.get("/searchTracks", searchTracks);
