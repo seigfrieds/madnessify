@@ -1,5 +1,7 @@
 .match {
   text-align: center;
+  width: 100%;
+  display: flex;
 }
 
 .win-select-button {
@@ -14,8 +16,4 @@
 .win-select-button:hover {
   background-color: white;
   color: rgb(114, 119, 13);
-}
-
-.player {
-  margin: 40px;
 }

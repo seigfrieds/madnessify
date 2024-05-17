@@ -21,9 +21,9 @@ function Header(): React.JSX.Element {
   return (
     <>
       <div className="header-bar">
-        <img className="user-picture" src={picture}></img>
         <p>Brackets</p>
         <p>Results</p>
+        <img className="user-picture" src={picture}></img>
       </div>
     </>
   );
