@@ -5,15 +5,15 @@ label {
     /*3d text*/ rgb(97, 97, 97) 1px 0 7.5px /*glowy shadow*/;
   display: block;
   font-size: 24px;
+  text-align: center;
 }
 
 #prompt {
-  padding: 10px;
-  margin: 10px;
   font-size: 24px;
   display: flex;
   flex-direction: column;
   position: relative;
+  text-align: center;
 }
 
 #playlist-box {

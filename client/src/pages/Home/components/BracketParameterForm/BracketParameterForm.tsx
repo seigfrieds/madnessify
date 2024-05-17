@@ -83,7 +83,7 @@ function BracketParameterForm(): React.JSX.Element {
 
   return (
     <div className="FormScreen">
-      <div>
+      <div className="bracket-options">
         <div className="dropdown">
           <label htmlFor="query-select">Select where you want your songs to come from!</label>
           <select onChange={changeQuery} id="query-select" name="queryselect">
@@ -175,15 +175,19 @@ function BracketParameterForm(): React.JSX.Element {
 
           {currQuery === "custom_tracks" && (
             <>
-              <SearchBox onChange={(e) => onInputChange(e, searchTracks)}></SearchBox>
-              <List items={searchResults} onItemClick={onItemClick} />
+              <div className="user-search">
+                <SearchBox onChange={(e) => onInputChange(e, searchTracks)}></SearchBox>
+                <List items={searchResults} onItemClick={onItemClick} />
+              </div>
             </>
           )}
 
           {currQuery === "custom_album" && (
             <>
-              <SearchBox onChange={(e) => onInputChange(e, searchAlbums)}></SearchBox>
-              <List items={searchResults} onItemClick={onItemClick} />
+              <div className="user-search">
+                <SearchBox onChange={(e) => onInputChange(e, searchAlbums)}></SearchBox>
+                <List items={searchResults} onItemClick={onItemClick} />
+              </div>
             </>
           )}
 
@@ -193,6 +197,7 @@ function BracketParameterForm(): React.JSX.Element {
         </form>
       </div>
       <div className="tracks-display">
+        <p className="tracks-display-title">Tracks</p>
         {tracks.length > 0 &&
           tracks.map((track, index) => (
             <div className="track">
@@ -207,6 +212,7 @@ function BracketParameterForm(): React.JSX.Element {
                     const newTracks = tracks.filter((t, i) => i !== index);
                     setTracks(newTracks);
                   }}
+                  style={{ borderRadius: "2.5em", border: "2px solid grey" }}
                 >
                   X
                 </button>

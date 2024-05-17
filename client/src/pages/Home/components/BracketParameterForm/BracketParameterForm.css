@@ -6,10 +6,20 @@
   text-align: center;
   transform: translate(-50%, -50%); */
 
-  align-items: center;
+  align-items: start;
+
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+  gap: 10px;
 
   display: flex;
+}
+
+.bracket-options {
+  width: 50%;
+  display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 label {
@@ -24,41 +34,78 @@ label {
   display: flex;
   flex-direction: column;
   overflow: auto;
+  width: 50%;
+  gap: 3px;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  min-height: 5em;
+
+  border-radius: 1.5em;
+
+  background-color: rgb(84, 84, 84);
+}
+
+.tracks-display-title {
+  text-align: center;
+  color: white;
+  font-weight: bolder;
+  font-size: 1em;
+}
+
+.tracks-display .track:nth-child(odd) {
+  background-color: rgb(111, 111, 111);
+}
+
+.tracks-display .track:nth-child(even) {
+  background-color: rgb(146, 146, 146);
 }
 
 .track {
   display: flex;
   align-items: center;
-  border: 1px solid magenta;
+
+  margin-left: 5px;
+  margin-right: 5px;
 
   height: 40px;
+
+  border-radius: 2em;
 }
 
 .track > img {
   height: 100%;
+
+  border-radius: 2em;
 }
 
 .track > p {
   margin-left: 5px;
-  color: white;
-  border: 1px solid black;
+  color: black;
+  font-weight: bold;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .track > button {
   margin-left: auto;
   width: 40px;
   height: 100%;
-  border: 1px solid red;
 }
 
 #prompt {
-  padding: 10px;
-  margin: 10px;
   font-size: 24px;
   display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
+}
+
+#prompt > input {
+  box-sizing: border-box;
 }
 
 #playlist-box {
@@ -74,15 +121,15 @@ label {
 }
 
 .dropdown {
-  padding: 10px;
-  margin: 10px;
-  margin-top: 0px;
-  padding-top: 0px;
   font-size: 24px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.user-search {
+  width: 100%;
 }
 
 #submit-button {
@@ -105,4 +152,5 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
 }
