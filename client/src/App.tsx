@@ -8,6 +8,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
 import Header from "./components/Header/Header";
 import Result from "./pages/Result/Result";
+import AuthProvider, { AuthContext } from "./context/AuthContext";
+import { useContext } from "react";
 
 type ProtectedProps = {
   redirect: string;
@@ -15,7 +17,7 @@ type ProtectedProps = {
 };
 
 function Protected({ redirect, children }: ProtectedProps): React.ReactNode {
-  const [isAuth, setIsAuth] = useState(false);
+  const { isAuth, setIsAuth } = useContext(AuthContext);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -47,33 +49,35 @@ function Protected({ redirect, children }: ProtectedProps): React.ReactNode {
 function App(): React.JSX.Element {
   return (
     <>
-      <Header />
-      <Routes>
-        {/** Public routes */}
-        <Route path="/" element={<Navigate to="/login" replace />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/result/:resultId" element={<Result />}></Route>
+      <AuthProvider>
+        <Header />
+        <Routes>
+          {/** Public routes */}
+          <Route path="/" element={<Navigate to="/login" replace />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/result/:resultId" element={<Result />}></Route>
 
-        {/** Private routes */}
-        <Route
-          path="/home"
-          element={
-            <Protected redirect="/login">
-              <HomePage />
-            </Protected>
-          }
-        />
-        <Route
-          path="/tournament"
-          element={
-            <Protected redirect="/login">
-              <TournamentPage />
-            </Protected>
-          }
-        />
+          {/** Private routes */}
+          <Route
+            path="/home"
+            element={
+              <Protected redirect="/login">
+                <HomePage />
+              </Protected>
+            }
+          />
+          <Route
+            path="/tournament"
+            element={
+              <Protected redirect="/login">
+                <TournamentPage />
+              </Protected>
+            }
+          />
 
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </AuthProvider>
     </>
   );
 }

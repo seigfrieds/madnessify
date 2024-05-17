@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import "./Header.css";
 
 function Header(): React.JSX.Element {
+  const { isAuth } = useContext(AuthContext);
   const [picture, setPicture] = useState(undefined);
 
   useEffect(() => {
@@ -23,7 +26,7 @@ function Header(): React.JSX.Element {
       <div className="header-bar">
         <p>Brackets</p>
         <p>Results</p>
-        {picture ? (
+        {isAuth ? (
           <img className="user-picture" src={picture}></img>
         ) : (
           <button
