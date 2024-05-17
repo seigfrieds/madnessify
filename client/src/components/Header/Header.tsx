@@ -23,7 +23,21 @@ function Header(): React.JSX.Element {
       <div className="header-bar">
         <p>Brackets</p>
         <p>Results</p>
-        <img className="user-picture" src={picture}></img>
+        {picture ? (
+          <img className="user-picture" src={picture}></img>
+        ) : (
+          <button
+            className="login-button"
+            onClick={async () => {
+              const res = await fetch(`${import.meta.env.VITE_API_URL}/oauth/login`, {
+                redirect: "manual",
+              });
+              window.location.replace(res.url);
+            }}
+          >
+            Log in to Spotify!
+          </button>
+        )}
       </div>
     </>
   );

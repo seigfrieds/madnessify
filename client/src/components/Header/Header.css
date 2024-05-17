@@ -22,6 +22,27 @@
   margin-left: auto;
 }
 
+.login-button {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  border-radius: 2.5em;
+  border: 0px;
+
+  background-color: green;
+  color: white;
+
+  font-weight: bold;
+}
+
+.login-button:hover {
+  background-color: darkgreen;
+}
+
+.header-bar button:last-child {
+  margin-left: auto;
+}
+
 .header-bar > p {
   color: white;
 }
