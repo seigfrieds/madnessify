@@ -8,6 +8,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .bracket-title {
@@ -16,8 +20,6 @@
 
 /*BRACKET CONTAINER*/
 #container {
-  padding: 20px;
-
   height: 800px;
 
   display: flex;
@@ -42,7 +44,7 @@ section > div {
   align-items: center;
 
   /*box stuff*/
-  width: 216px; /*40px (image) + 176 px (title text) = 216*/
+  width: 100%; /*40px (image) + 176 px (title text) = 216*/
   height: 42px; /*image height = 40px + 1px border line on top/bottom = 42px*/
 }
 
@@ -68,8 +70,6 @@ a {
 
   font-size: 80%;
 
-  padding-left: 3px;
-
   font-weight: bold;
 
   /*box stuff*/
@@ -90,7 +90,6 @@ a {
 }
 
 #container > section {
-  padding-left: 5px;
   padding-right: 5px;
   display: flex;
   flex-direction: column;
