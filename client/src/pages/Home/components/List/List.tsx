@@ -1,6 +1,6 @@
 import "./List.css";
 import React from "react";
-import { Song } from "../../../types";
+import { Song } from "../../../../types";
 
 type Props = {
   items: Array<Song> | null;

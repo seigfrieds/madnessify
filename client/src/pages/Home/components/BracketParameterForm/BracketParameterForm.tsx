@@ -7,9 +7,9 @@ import {
 import { handleSubmit } from "./BracketParameterForm.logic";
 import "./BracketParameterForm.css";
 import React, { useEffect, useState } from "react";
-import SearchBox from "../SearchBox";
+import SearchBox from "../SearchBox/SearchBox";
 import { useNavigate } from "react-router-dom";
-import List from "../List";
+import List from "../List/List";
 import { Song } from "../../../../types";
 
 function BracketParameterForm(): React.JSX.Element {

@@ -1,4 +1,4 @@
-import List from "./List";
+import List from "../List/List";
 import "./SearchBox.css";
 import React, { useEffect, useRef } from "react";
 
