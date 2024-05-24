@@ -1,25 +1,13 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { redirectToSpotifyLogin } from "./Header.logic";
 import "./Header.css";
+import { useUserData } from "./useUserData";
 
 function Header(): React.JSX.Element {
   const { isAuth } = useContext(AuthContext);
-  const [picture, setPicture] = useState(undefined);
-
-  useEffect(() => {
-    const getPictureUrl = async (): Promise<void> => {
-      await axios
-        .get(`${import.meta.env.VITE_API_URL}/spotify/getUserProfile`, {
-          withCredentials: true,
-        })
-        .then((res) => {
-          setPicture(res.data.images[0].url);
-        });
-    };
-    getPictureUrl();
-  }, []);
+  const [picture] = useUserData();
 
   return (
     <>
@@ -29,15 +17,7 @@ function Header(): React.JSX.Element {
         {isAuth ? (
           <img className="user-picture" src={picture}></img>
         ) : (
-          <button
-            className="login-button"
-            onClick={async () => {
-              const res = await fetch(`${import.meta.env.VITE_API_URL}/oauth/login`, {
-                redirect: "manual",
-              });
-              window.location.replace(res.url);
-            }}
-          >
+          <button className="login-button" onClick={redirectToSpotifyLogin}>
             Log in to Spotify!
           </button>
         )}
