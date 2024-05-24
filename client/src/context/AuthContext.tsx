@@ -6,16 +6,16 @@ type AuthContextType = {
   setIsAuth: (isAuth: boolean) => void;
 };
 
-type AuthProviderProps = {
-  children: React.ReactNode;
-};
-
 export const AuthContext = createContext<AuthContextType>({
   isAuth: false,
   setIsAuth: () => {},
 });
 
-export default function AuthProvider({ children }: AuthProviderProps): React.JSX.Element {
+export default function AuthProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}): React.JSX.Element {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
