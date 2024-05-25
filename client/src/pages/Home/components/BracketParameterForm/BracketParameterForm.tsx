@@ -7,10 +7,10 @@ import {
 import { handleSubmit } from "./BracketParameterForm.logic";
 import "./BracketParameterForm.css";
 import React, { useEffect, useState } from "react";
-import SearchBox from "../SearchBox/SearchBox";
 import { useNavigate } from "react-router-dom";
 import List from "../List/List";
 import { Song } from "../../../../types";
+import Input from "./Input";
 
 function BracketParameterForm(): React.JSX.Element {
   const [currQuery, setCurrQuery] = useState(null);
@@ -141,16 +141,13 @@ function BracketParameterForm(): React.JSX.Element {
           {currQuery === "playlist" && (
             <>
               <div id="prompt">
-                <label htmlFor="prompt">Enter the link to your playlist:</label>
-                <input
+                <Input
+                  label="Enter the link to your playlist:"
                   onChange={(e) => {
                     setPlaylistLink(e.target.value);
                   }}
-                  type="text"
-                  id="playlist-box"
-                  name="playlistbox"
-                  value={playlistLink}
-                ></input>
+                  onFocus={() => {}}
+                ></Input>
               </div>
 
               <div className="dropdown">
@@ -176,16 +173,11 @@ function BracketParameterForm(): React.JSX.Element {
           {currQuery === "custom_tracks" && (
             <>
               <div className="user-search">
-                <SearchBox onChange={(e) => onInputChange(e, searchTracks)}></SearchBox>
-                <List items={searchResults} onItemClick={onItemClick} />
-              </div>
-            </>
-          )}
-
-          {currQuery === "custom_album" && (
-            <>
-              <div className="user-search">
-                <SearchBox onChange={(e) => onInputChange(e, searchAlbums)}></SearchBox>
+                <Input
+                  label="Search for a track:"
+                  onChange={(e) => onInputChange(e, searchTracks)}
+                  onFocus={() => {}}
+                ></Input>
                 <List items={searchResults} onItemClick={onItemClick} />
               </div>
             </>
