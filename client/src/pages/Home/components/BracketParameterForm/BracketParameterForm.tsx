@@ -149,7 +149,7 @@ function BracketParameterForm(): React.JSX.Element {
 
           {currQuery === "custom_tracks" && (
             <>
-              <div className="user-search">
+              <div className="prompt">
                 <Input
                   label="Search for a track:"
                   onChange={(e) => onInputChange(e, searchTracks)}

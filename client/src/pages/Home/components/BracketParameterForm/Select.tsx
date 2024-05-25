@@ -17,8 +17,8 @@ function Select({
 }: SelectProps): React.JSX.Element {
   return (
     <>
-      <label htmlFor="num-songs-select">{label}</label>
-      <select onChange={onChange} id="num-songs-select" name="numsongsselect">
+      <label>{label}</label>
+      <select onChange={onChange}>
         {options.map((option, index) => {
           return (
             <option
