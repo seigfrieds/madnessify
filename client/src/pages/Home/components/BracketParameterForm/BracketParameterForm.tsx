@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import List from "../List/List";
 import { Song } from "../../../../types";
 import Input from "./Input";
+import Select from "./Select";
 
 function BracketParameterForm(): React.JSX.Element {
   const [currQuery, setCurrQuery] = useState(null);
@@ -85,62 +86,45 @@ function BracketParameterForm(): React.JSX.Element {
     <div className="FormScreen">
       <div className="bracket-options">
         <div className="dropdown">
-          <label htmlFor="query-select">Select where you want your songs to come from!</label>
-          <select onChange={changeQuery} id="query-select" name="queryselect">
-            <option value="" selected disabled hidden>
-              Choose...
-            </option>
-            <option value={"top_tracks"}>Top Tracks</option>
-            <option value={"playlist"}>Playlist</option>
-            <option value={"custom_tracks"}>Search for Tracks</option>
-            {/* <option value={"custom_album"}>Search for Albums</option> */}
-          </select>
+          <Select
+            label="Select where you want your songs to come from!"
+            options={["Choose...", "Top Tracks", "Playlist", "Search for Tracks"]}
+            optionValues={["", "top_tracks", "playlist", "custom_tracks"]}
+            optionModifiers={[["selected", "disabled", "hidden"], [], [], []]}
+            onChange={changeQuery}
+          />
         </div>
 
         <form onSubmit={(e) => onSubmit(e)} id="theform">
           {currQuery === "top_tracks" && (
             <>
               <div className="dropdown">
-                <label htmlFor="num-songs-select">Select the number of songs: </label>
-                <select
+                <Select
+                  label="Select the number of songs:"
+                  options={["Top 8 songs", "Top 16 songs", "Top 32 songs"]}
+                  optionValues={[8, 16, 32]}
                   onChange={(e) => {
                     setNumTracks(e.target.value);
                   }}
-                  id="num-songs-select"
-                  name="numsongsselect"
-                  value={numTracks}
-                >
-                  <option selected value={8}>
-                    Top 8 songs
-                  </option>
-                  <option value={16}>Top 16 songs</option>
-                  <option value={32}>Top 32 songs</option>
-                </select>
+                />
               </div>
 
               <div className="dropdown">
-                <label htmlFor="time-frame-select">Select the time frame: </label>
-                <select
+                <Select
+                  label="Select the time frame:"
+                  options={["Past 4 weeks", "Past 6 months", "Past several years"]}
+                  optionValues={["short_term", "medium_term", "long_term"]}
                   onChange={(e) => {
                     setTimeFrame(e.target.value);
                   }}
-                  id="time-frame-select"
-                  name="timeframeselect"
-                  value={timeFrame}
-                >
-                  <option selected value={"short_term"}>
-                    Past 4 weeks
-                  </option>
-                  <option value={"medium_term"}>Past 6 months</option>
-                  <option value={"long_term"}>Past several years</option>
-                </select>
+                />
               </div>
             </>
           )}
 
           {currQuery === "playlist" && (
             <>
-              <div id="prompt">
+              <div className="prompt">
                 <Input
                   label="Enter the link to your playlist:"
                   onChange={(e) => {
@@ -151,21 +135,14 @@ function BracketParameterForm(): React.JSX.Element {
               </div>
 
               <div className="dropdown">
-                <label htmlFor="num-songs-select">Select the number of songs: </label>
-                <select
+                <Select
+                  label="Select the number of songs:"
+                  options={["8 random songs", "16 random songs", "32 random songs"]}
+                  optionValues={[8, 16, 32]}
                   onChange={(e) => {
                     setNumTracks(e.target.value);
                   }}
-                  id="num-songs-select"
-                  name="numsongsselect"
-                  value={numTracks}
-                >
-                  <option selected value={8}>
-                    8 random songs
-                  </option>
-                  <option value={16}>16 random songs</option>
-                  <option value={32}>32 random songs</option>
-                </select>
+                />
               </div>
             </>
           )}
