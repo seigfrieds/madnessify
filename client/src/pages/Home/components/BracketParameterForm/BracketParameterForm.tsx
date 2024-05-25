@@ -12,6 +12,9 @@ import List from "../List/List";
 import { Song } from "../../../../types";
 import Input from "./Input";
 import Select from "./Select";
+import TopTracksForm from "./TopTracksForm";
+import PlaylistForm from "./PlaylistForm";
+import CustomTracksForm from "./CustomTracksForm";
 
 function BracketParameterForm(): React.JSX.Element {
   const [currQuery, setCurrQuery] = useState(null);
@@ -95,75 +98,38 @@ function BracketParameterForm(): React.JSX.Element {
           />
         </div>
 
-        <form onSubmit={(e) => onSubmit(e)} id="theform">
-          {currQuery === "top_tracks" && (
-            <>
-              <div className="dropdown">
-                <Select
-                  label="Select the number of songs:"
-                  options={["Top 8 songs", "Top 16 songs", "Top 32 songs"]}
-                  optionValues={[8, 16, 32]}
-                  onChange={(e) => {
-                    setNumTracks(e.target.value);
-                  }}
-                />
-              </div>
+        {currQuery === "top_tracks" && (
+          <TopTracksForm
+            setNumTracks={(e) => {
+              setNumTracks(e.target.value);
+            }}
+            setTimeFrame={(e) => {
+              setTimeFrame(e.target.value);
+            }}
+            onSubmit={onSubmit}
+          />
+        )}
 
-              <div className="dropdown">
-                <Select
-                  label="Select the time frame:"
-                  options={["Past 4 weeks", "Past 6 months", "Past several years"]}
-                  optionValues={["short_term", "medium_term", "long_term"]}
-                  onChange={(e) => {
-                    setTimeFrame(e.target.value);
-                  }}
-                />
-              </div>
-            </>
-          )}
+        {currQuery === "playlist" && (
+          <PlaylistForm
+            setNumTracks={(e) => {
+              setNumTracks(e.target.value);
+            }}
+            setPlaylistLink={(e) => {
+              setPlaylistLink(e.target.value);
+            }}
+            onSubmit={onSubmit}
+          />
+        )}
 
-          {currQuery === "playlist" && (
-            <>
-              <div className="prompt">
-                <Input
-                  label="Enter the link to your playlist:"
-                  onChange={(e) => {
-                    setPlaylistLink(e.target.value);
-                  }}
-                  onFocus={() => {}}
-                ></Input>
-              </div>
-
-              <div className="dropdown">
-                <Select
-                  label="Select the number of songs:"
-                  options={["8 random songs", "16 random songs", "32 random songs"]}
-                  optionValues={[8, 16, 32]}
-                  onChange={(e) => {
-                    setNumTracks(e.target.value);
-                  }}
-                />
-              </div>
-            </>
-          )}
-
-          {currQuery === "custom_tracks" && (
-            <>
-              <div className="prompt">
-                <Input
-                  label="Search for a track:"
-                  onChange={(e) => onInputChange(e, searchTracks)}
-                  onFocus={() => {}}
-                ></Input>
-                <List items={searchResults} onItemClick={onItemClick} />
-              </div>
-            </>
-          )}
-
-          <button id="submit-button" type="submit">
-            Submit!
-          </button>
-        </form>
+        {currQuery === "custom_tracks" && (
+          <CustomTracksForm
+            items={searchResults}
+            onChange={(e) => onInputChange(e, searchTracks)}
+            onItemClick={onItemClick}
+            onSubmit={onSubmit}
+          />
+        )}
       </div>
       <div className="tracks-display">
         <p className="tracks-display-title">Tracks</p>
