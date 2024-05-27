@@ -5,13 +5,17 @@ This is a web app that generates tournament brackets with your most played songs
 
 ## Demonstration 
 
-[![Watch the video](https://i.imgur.com/wkYyjui.png)](https://www.youtube.com/watch?v=IMyBgxkcuw4)
+[![Watch the video](https://i.imgur.com/0idVD7S.png)](https://www.youtube.com/watch?v=qO28tLWiIks)
 
 ## [Try it yourself!](https://seigfrieds.github.io/madnessify/)
+**Note: This version is outdated, and does not match demonstration entirely. New version coming soon!**
 
 ## Built using
 - React
-- JavaScript
-- HTML
-- CSS
+- React Router
+- Node.js
+- Express
+- JavaScript/TypeScript
+- HTML/CSS
+- Redis
 - Spotify's Web API
