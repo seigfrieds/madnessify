@@ -233,3 +233,12 @@ h4 {
   /*text color*/
   color: #ff0000;
 }
+
+#save-button {
+  background-color: dimgray;
+  border: 1px solid white;
+  color: white;
+  border-radius: 30px;
+  padding: 20px 20px;
+  cursor: pointer;
+}

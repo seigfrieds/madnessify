@@ -83,14 +83,8 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
         </section>
       </article>
 
-      <p id="spotify-logout-text">
-        {'Want to disconnect from the app? Click the button and remove access to "Madnessify"'}
-      </p>
-      <a href="https://www.spotify.com/account/apps/" id="spotify-logout-button">
-        Log out
-      </a>
-
       <button
+        id="save-button"
         onClick={() => {
           const postBracket = async (): Promise<void> => {
             return axios.post(`${import.meta.env.VITE_API_URL}/api/bracket`, {
@@ -110,8 +104,15 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
           postBracket().then((bracket) => postResult(bracket.data.id));
         }}
       >
-        Post Result
+        Save Result
       </button>
+
+      <p id="spotify-logout-text">
+        {'Want to disconnect from the app? Click the button and remove access to "Madnessify"'}
+      </p>
+      <a href="https://www.spotify.com/account/apps/" id="spotify-logout-button">
+        Log out
+      </a>
 
       {/* <button
         onClick={() => {
