@@ -126,13 +126,6 @@ function Result(): React.JSX.Element {
             </span>
           </section>
         </article>
-
-        <p id="spotify-logout-text">
-          {'Want to disconnect from the app? Click the button and remove access to "Madnessify"'}
-        </p>
-        <a href="https://www.spotify.com/account/apps/" id="spotify-logout-button">
-          Log out
-        </a>
       </div>
     );
   }
