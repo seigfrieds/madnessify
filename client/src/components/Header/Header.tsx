@@ -12,8 +12,7 @@ function Header(): React.JSX.Element {
   return (
     <>
       <div className="header-bar">
-        <p>Brackets</p>
-        <p>Results</p>
+        <p id="header-title">Madnessify</p>
         {isAuth ? (
           <img className="user-picture" src={picture}></img>
         ) : (

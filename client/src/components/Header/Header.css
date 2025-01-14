@@ -22,6 +22,12 @@
   margin-left: auto;
 }
 
+#header-title {
+  font-style: italic;
+  font-weight: bolder;
+  font-size: 1em;
+}
+
 .login-button {
   padding-left: 15px;
   padding-right: 15px;
