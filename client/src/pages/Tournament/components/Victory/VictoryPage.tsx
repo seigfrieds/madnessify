@@ -106,21 +106,6 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
       >
         Save Result
       </button>
-
-      {/* <button
-        onClick={() => {
-          const postBracket = async (): Promise<void> => {
-            await axios.post(`${import.meta.env.VITE_API_URL}/api/bracket`, {
-              userId: `${import.meta.env.VITE_TEMP_USER_ID}`,
-              bracket: bracket,
-            });
-          };
-
-          postBracket();
-        }}
-      >
-        Post Bracket
-      </button> */}
     </div>
   );
 }
