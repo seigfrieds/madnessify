@@ -107,13 +107,6 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
         Save Result
       </button>
 
-      <p id="spotify-logout-text">
-        {'Want to disconnect from the app? Click the button and remove access to "Madnessify"'}
-      </p>
-      <a href="https://www.spotify.com/account/apps/" id="spotify-logout-button">
-        Log out
-      </a>
-
       {/* <button
         onClick={() => {
           const postBracket = async (): Promise<void> => {
