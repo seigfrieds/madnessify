@@ -94,14 +94,18 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
           };
 
           const postResult = async (bracketId: number): Promise<void> => {
-            await axios.post(`${import.meta.env.VITE_API_URL}/api/result`, {
+            return axios.post(`${import.meta.env.VITE_API_URL}/api/result`, {
               userId: `${import.meta.env.VITE_TEMP_USER_ID}`,
               bracketId: bracketId,
               bracket: bracket,
             });
           };
 
-          postBracket().then((bracket) => postResult(bracket.data.id));
+          postBracket().then((bracket) =>
+            postResult(bracket.data.id).then((result) =>
+              window.location.replace(`${import.meta.env.VITE_SITE_URL}/result/${result.data.id}`),
+            ),
+          );
         }}
       >
         Save Result
