@@ -7,7 +7,7 @@ This is a web app that generates tournament brackets with your most played songs
 **Note: This version is outdated, and does not match the demonstration below entirely. New version coming soon!**
 
 ## Demonstration 
-[![Watch the video](https://imgur.com/a/JkJyD4R)](https://www.youtube.com/watch?v=mzqTB_JPpNQ)
+[![Watch the video](https://i.imgur.com/HpORqJv.png)](https://www.youtube.com/watch?v=mzqTB_JPpNQ)
 
 ## Built using
 - React
