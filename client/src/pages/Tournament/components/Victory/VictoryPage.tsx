@@ -3,29 +3,30 @@ import "./VictoryPage.css";
 import spotifyLogo from "../../../../assets/Spotify_Logo_RGB_White.png";
 import { MatchSet } from "../../../../types";
 import { roundToDivs } from "./VictoryPage.logic";
+import axios from "axios";
 
 type VictoryPageProps = {
   bracket: MatchSet;
 };
 
 function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
-  const winner = bracket[bracket.length - 1].matchComponent.props.trackOne;
+  const winner = bracket[bracket.length - 1].trackOne;
   const numPlayers = bracket.length;
 
   return (
     <div id="victory-page">
       <div id="winner-display">
         <h1>Winner!</h1>
-        <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
+        <a href={`https://open.spotify.com/track/${winner?.id}`} target="_blank" rel="noreferrer">
           <img
-            src={winner.album.images[0] !== undefined && winner.album.images[0].url}
-            alt={winner.name}
+            src={winner?.album.images[0] !== undefined ? winner.album.images[0].url : undefined}
+            alt={winner?.name}
             width="200"
             height="200"
           ></img>
         </a>
-        <a href={`https://open.spotify.com/track/${winner.id}`} target="_blank" rel="noreferrer">
-          <h4>{winner.artists[0].name + " - " + winner.name}</h4>
+        <a href={`https://open.spotify.com/track/${winner?.id}`} target="_blank" rel="noreferrer">
+          <h4>{winner?.artists[0].name + " - " + winner?.name}</h4>
         </a>
       </div>
 
@@ -59,18 +60,18 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
         <section id="winner-round">
           <div>
             <img
-              src={winner.album.images[0] !== undefined && winner.album.images[0].url}
-              alt={winner.name}
+              src={winner?.album.images[0] !== undefined ? winner.album.images[0].url : undefined}
+              alt={winner?.name}
               width="40"
               height="40"
             ></img>
             <a
               className="songtitle"
-              href={`https://open.spotify.com/track/${winner.id}`}
+              href={`https://open.spotify.com/track/${winner?.id}`}
               target="_blank"
               rel="noreferrer"
             >
-              {winner.name}
+              {winner?.name}
             </a>
           </div>
 
@@ -82,12 +83,33 @@ function VictoryPage({ bracket }: VictoryPageProps): React.JSX.Element {
         </section>
       </article>
 
-      <p id="spotify-logout-text">
-        {'Want to disconnect from the app? Click the button and remove access to "Madnessify"'}
-      </p>
-      <a href="https://www.spotify.com/account/apps/" id="spotify-logout-button">
-        Log out
-      </a>
+      <button
+        id="save-button"
+        onClick={() => {
+          const postBracket = async (): Promise<void> => {
+            return axios.post(`${import.meta.env.VITE_API_URL}/api/bracket`, {
+              userId: `${import.meta.env.VITE_TEMP_USER_ID}`,
+              bracket: bracket.filter((match) => match.matchRound == 1),
+            });
+          };
+
+          const postResult = async (bracketId: number): Promise<void> => {
+            return axios.post(`${import.meta.env.VITE_API_URL}/api/result`, {
+              userId: `${import.meta.env.VITE_TEMP_USER_ID}`,
+              bracketId: bracketId,
+              bracket: bracket,
+            });
+          };
+
+          postBracket().then((bracket) =>
+            postResult(bracket.data.id).then((result) =>
+              window.location.replace(`${import.meta.env.VITE_SITE_URL}/result/${result.data.id}`),
+            ),
+          );
+        }}
+      >
+        Save Result
+      </button>
     </div>
   );
 }

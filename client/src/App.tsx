@@ -4,17 +4,42 @@ import LoginPage from "./pages/Login/LoginPage";
 import HomePage from "./pages/Home/HomePage";
 import TournamentPage from "./pages/Tournament/TournamentPage";
 import NotFound from "./components/404";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
+import Header from "./components/Header/Header";
+import Result from "./pages/Result/Result";
+import AuthProvider, { AuthContext } from "./context/AuthContext";
+import { useContext } from "react";
 
 type ProtectedProps = {
-  isAllowed: boolean;
   redirect: string;
   children: React.ReactNode;
 };
 
-function Protected({ isAllowed, redirect, children }: ProtectedProps): React.ReactNode {
-  if (!isAllowed) {
+function Protected({ redirect, children }: ProtectedProps): React.ReactNode {
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = async (): Promise<void> => {
+      try {
+        await axios.get(`${import.meta.env.VITE_API_URL}/oauth/check`, { withCredentials: true });
+        setIsAuth(true);
+      } catch {
+        setIsAuth(false);
+      } finally {
+        setIsLoaded(true);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
+  if (!isLoaded) {
+    return null;
+  }
+
+  if (!isAuth) {
     return <Navigate to={redirect} replace />;
   }
 
@@ -22,57 +47,37 @@ function Protected({ isAllowed, redirect, children }: ProtectedProps): React.Rea
 }
 
 function App(): React.JSX.Element {
-  const [isAuth, setIsAuth] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const checkAuth = async (): Promise<void> => {
-      let succeeded = false;
-
-      await axios
-        .get(`${import.meta.env.VITE_API_URL}/oauth/check`, { withCredentials: true })
-        .then((res) => {
-          if (res.status === 200) {
-            succeeded = true;
-            setIsAuth(true);
-          }
-        });
-
-      if (succeeded) {
-        navigate("/home", { replace: true });
-      }
-    };
-
-    checkAuth();
-  }, []);
-
   return (
     <>
-      <Routes>
-        {/** Public routes */}
-        <Route path="/" element={<Navigate to="/login" replace />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
+      <AuthProvider>
+        <Header />
+        <Routes>
+          {/** Public routes */}
+          <Route path="/" element={<Navigate to="/login" replace />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/result/:resultId" element={<Result />}></Route>
 
-        {/** Private routes */}
-        <Route
-          path="/home"
-          element={
-            <Protected isAllowed={!!isAuth} redirect="/login">
-              <HomePage />
-            </Protected>
-          }
-        />
-        <Route
-          path="/tournament"
-          element={
-            <Protected isAllowed={!!isAuth} redirect="/login">
-              <TournamentPage />
-            </Protected>
-          }
-        />
+          {/** Private routes */}
+          <Route
+            path="/home"
+            element={
+              <Protected redirect="/login">
+                <HomePage />
+              </Protected>
+            }
+          />
+          <Route
+            path="/tournament"
+            element={
+              <Protected redirect="/login">
+                <TournamentPage />
+              </Protected>
+            }
+          />
 
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </AuthProvider>
     </>
   );
 }

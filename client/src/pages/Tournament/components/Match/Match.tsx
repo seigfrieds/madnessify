@@ -5,7 +5,7 @@ import { Song } from "../../../../types";
 
 type Props = {
   matchId: number;
-  trackOne: Song;
+  trackOne: Song | null;
   trackTwo: Song | null;
   handleClick: (arg0: number, arg1: string) => void;
 };
@@ -14,8 +14,15 @@ function Match({ matchId, trackOne, trackTwo, handleClick }: Props): React.JSX.E
   return (
     <div className="match">
       <div className="player">
-        <Player id={trackOne.id} artist={trackOne.artists[0].name} title={trackOne.name} />
-        <button className="win-select-button" onClick={() => handleClick(matchId, trackOne.id)}>
+        <Player
+          id={trackOne?.id ?? "error"}
+          artist={trackOne?.artists[0].name ?? "error"}
+          title={trackOne?.name ?? "error"}
+        />
+        <button
+          className="win-select-button"
+          onClick={() => handleClick(matchId, trackOne?.id ?? "error")}
+        >
           Select to win!
         </button>
       </div>

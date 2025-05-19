@@ -8,6 +8,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
 }
 
 .bracket-title {
@@ -16,9 +21,6 @@
 
 /*BRACKET CONTAINER*/
 #container {
-  padding: 20px;
-
-  width: 1150px;
   height: 800px;
 
   display: flex;
@@ -43,7 +45,7 @@ section > div {
   align-items: center;
 
   /*box stuff*/
-  width: 216px; /*40px (image) + 176 px (title text) = 216*/
+  width: 100%; /*40px (image) + 176 px (title text) = 216*/
   height: 42px; /*image height = 40px + 1px border line on top/bottom = 42px*/
 }
 
@@ -69,8 +71,6 @@ a {
 
   font-size: 80%;
 
-  padding-left: 3px;
-
   font-weight: bold;
 
   /*box stuff*/
@@ -91,7 +91,6 @@ a {
 }
 
 #container > section {
-  padding-left: 5px;
   padding-right: 5px;
   display: flex;
   flex-direction: column;
@@ -175,9 +174,6 @@ h4 {
   font-size: 150%;
   padding: -10px;
   color: rgb(229, 221, 2);
-  text-shadow:
-    #000000 1.5px 1.5px,
-    /*3d text*/ rgb(255, 255, 255) 1px 0 7.5px /*glowy shadow*/;
   text-wrap: wrap;
 }
 
@@ -237,4 +233,13 @@ h4 {
 
   /*text color*/
   color: #ff0000;
+}
+
+#save-button {
+  background-color: dimgray;
+  border: 1px solid white;
+  color: white;
+  border-radius: 30px;
+  padding: 20px 20px;
+  cursor: pointer;
 }

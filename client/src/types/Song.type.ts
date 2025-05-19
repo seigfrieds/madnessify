@@ -1,7 +1,8 @@
 type Song = {
-    id: string;
-    artists: Array<{ name: string }>;
-    name: string;
+  album: { images: Array<{ url: string }> };
+  id: string;
+  artists: Array<{ name: string }>;
+  name: string;
 };
 
-export {Song};
+export { Song };

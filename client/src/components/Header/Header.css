@@ -1,0 +1,62 @@
+.header-bar {
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+
+  margin: 20px 20px 40px 20px;
+
+  border-radius: 3em;
+
+  background-color: rgb(34, 32, 32);
+
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+
+  height: 50px;
+  gap: 20px;
+}
+
+.header-bar img:last-child {
+  margin-left: auto;
+}
+
+#header-title {
+  font-style: italic;
+  font-weight: bolder;
+  font-size: 1em;
+}
+
+.login-button {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  border-radius: 2.5em;
+  border: 0px;
+
+  background-color: green;
+  color: white;
+
+  font-weight: bold;
+}
+
+.login-button:hover {
+  background-color: darkgreen;
+}
+
+.header-bar button:last-child {
+  margin-left: auto;
+}
+
+.header-bar > p {
+  color: white;
+}
+
+.user-picture {
+  object-fit: cover;
+  border: 1px solid white;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}

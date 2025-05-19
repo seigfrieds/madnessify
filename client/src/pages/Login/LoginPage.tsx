@@ -11,27 +11,6 @@ export default function LoginPage(): React.JSX.Element {
       </h2>
 
       <iframe width="420" height="315" src="https://www.youtube.com/embed/IMyBgxkcuw4"></iframe>
-
-      <button
-        className="spotify-login-button"
-        onClick={async () => {
-          const res = await fetch(`${import.meta.env.VITE_API_URL}/oauth/login`, {
-            redirect: "manual",
-          });
-          window.location.replace(res.url);
-        }}
-      >
-        Log in to Spotify!
-      </button>
-
-      <a
-        id="github-link"
-        href="https://github.com/seigfrieds/madnessify"
-        target="_blank"
-        rel="noreferrer"
-      >
-        GitHub
-      </a>
     </div>
   );
 }

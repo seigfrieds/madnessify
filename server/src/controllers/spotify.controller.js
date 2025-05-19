@@ -3,6 +3,60 @@ import cache from "../redis.js";
 import shuffleArray from "../utils/shuffleArray.js";
 import getPlaylistSize from "../helpers/getPlaylistSize.js";
 
+const getUserProfile = async (req, res) => {
+  const accessToken = await cache.get(req.session);
+
+  const spotifyApi = await axios.get(`https://api.spotify.com/v1/me`, {
+    headers: {
+      Authorization: "Bearer " + accessToken,
+    },
+  });
+
+  res.status(200).json(spotifyApi.data);
+};
+
+const searchTracks = async (req, res) => {
+  const accessToken = await cache.get(req.session);
+  const search = req.query.search.split(" ").join("+");
+
+  const spotifyApi = await axios.get(`https://api.spotify.com/v1/search`, {
+    headers: {
+      Authorization: "Bearer " + accessToken,
+    },
+    params: {
+      query: search,
+      limit: 10,
+      type: "track",
+    },
+  });
+
+  res.status(200).json(spotifyApi.data.tracks.items);
+};
+
+const searchAlbums = async (req, res) => {
+  const accessToken = await cache.get(req.session);
+  const search = req.query.search.split(" ").join("+");
+
+  const spotifyApi = await axios.get(`https://api.spotify.com/v1/search`, {
+    headers: {
+      Authorization: "Bearer " + accessToken,
+    },
+    params: {
+      query: search,
+      limit: 10,
+      type: "album",
+    },
+  });
+
+  res.status(200).json(
+    spotifyApi.data.albums.items.map((album) => ({
+      artists: album.artists,
+      name: album.name,
+      id: album.id,
+    }))
+  );
+};
+
 const getTopTracks = async (req, res) => {
   const accessToken = await cache.get(req.session);
   const numTracks = req.query.numTracks;
@@ -63,4 +117,4 @@ const getPlaylistTracks = async (req, res) => {
   }
 };
 
-export { getTopTracks, getPlaylistTracks };
+export { getUserProfile, getTopTracks, getPlaylistTracks, searchTracks, searchAlbums };
