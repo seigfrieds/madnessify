@@ -1,5 +1,5 @@
 import React from "react";
-import { MatchSet } from "../../../../types";
+import { MatchSet } from "../../../../../types";
 
 export function roundToDivs(matchesInRound: MatchSet): React.JSX.Element[] {
   const divArray = [];

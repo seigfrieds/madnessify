@@ -9,7 +9,7 @@ import "./BracketParameterForm.css";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import List from "../List/List";
-import { Song } from "../../../../types";
+import { Song } from "../../../../../types";
 import Input from "./Input";
 import Select from "./Select";
 import TopTracksForm from "./TopTracksForm";

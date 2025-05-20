@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import spotifyLogo from "../../assets/Spotify_Logo_RGB_White.png";
+import spotifyLogo from "../../../assets/Spotify_Logo_RGB_White.png";
 import { roundToDivs } from "../Tournament/components/Victory/VictoryPage.logic";
-import NotFound from "../../components/404";
+import NotFound from "../../../components/404";
 import "./Result.css";
 
 function Result(): React.JSX.Element {

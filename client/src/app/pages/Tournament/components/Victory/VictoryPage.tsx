@@ -1,7 +1,7 @@
 import React from "react";
 import "./VictoryPage.css";
-import spotifyLogo from "../../../../assets/Spotify_Logo_RGB_White.png";
-import { MatchSet } from "../../../../types";
+import spotifyLogo from "../../../../../assets/Spotify_Logo_RGB_White.png";
+import { MatchSet } from "../../../../../types";
 import { roundToDivs } from "./VictoryPage.logic";
 import axios from "axios";
 
