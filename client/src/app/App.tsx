@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import LoginPage from "./pages/Login/LoginPage";
-import HomePage from "./pages/Home/HomePage";
-import TournamentPage from "./pages/Tournament/TournamentPage";
-import NotFound from "./components/404";
+import LoginPage from "../pages/Login/LoginPage";
+import HomePage from "../pages/Home/HomePage";
+import TournamentPage from "../pages/Tournament/TournamentPage";
+import NotFound from "../components/404";
 import { Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
-import Header from "./components/Header/Header";
-import Result from "./pages/Result/Result";
-import AuthProvider, { AuthContext } from "./context/AuthContext";
+import Header from "../components/Header/Header";
+import Result from "../pages/Result/Result";
+import AuthProvider, { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 
 type ProtectedProps = {
