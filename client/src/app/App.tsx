@@ -10,6 +10,7 @@ import Header from "../components/Header/Header";
 import Result from "../pages/Result/Result";
 import AuthProvider, { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
+import { BrowserRouter } from "react-router-dom";
 
 type ProtectedProps = {
   redirect: string;
@@ -48,7 +49,7 @@ function Protected({ redirect, children }: ProtectedProps): React.ReactNode {
 
 function App(): React.JSX.Element {
   return (
-    <>
+    <BrowserRouter>
       <AuthProvider>
         <Header />
         <Routes>
@@ -78,7 +79,7 @@ function App(): React.JSX.Element {
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </AuthProvider>
-    </>
+    </BrowserRouter>
   );
 }
 
